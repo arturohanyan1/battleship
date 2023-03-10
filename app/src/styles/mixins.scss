@@ -1,0 +1,35 @@
+@mixin shipShadow($color, $height, $width, ) {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  height: $height;
+  width: $width;
+  outline: 3px solid #14bb0b;
+  top: 0;
+  left: 0;
+}
+
+@mixin svg-size($height, $width) {
+  >div {
+    width: $width;
+    height: $height;
+
+    >div {
+      width: $width;
+      height: $height;
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin svg-color($color) {
+  svg {
+    path {
+      fill: $color;
+    }
+  }
+}
