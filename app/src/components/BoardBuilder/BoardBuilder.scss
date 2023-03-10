@@ -1,0 +1,70 @@
+@import '../../styles/constants.scss';
+
+.board-builder {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  padding: 40px 0px 0px;
+}
+
+.board-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.board-table-wrapper {
+  border: 1px solid #313341;
+  padding: 30px;
+  position: relative;
+  // background-image: url('../../../public/images/board/sea.jpg');
+  // background-size: contain;
+}
+
+.ships-section {
+  width: 100%;
+}
+
+.toaster {
+  border: 1px solid black;
+  margin-bottom: 50px;
+  padding: 0px 10px;
+  height: 30px;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  background: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  width: 300px;
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  button {
+    margin-right: 50px;
+    background: #1B1D24;
+    border-radius: 8px;
+    border: 1px solid #313341;
+    padding: 8px 12px;
+    color: #fff;
+    white-space: nowrap;
+    text-transform: capitalize;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
