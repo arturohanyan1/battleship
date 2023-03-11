@@ -22,11 +22,11 @@ const playerWinMessage = {
 
 const botWinMessage = {
   type: 'success',
-  content: 'Player Win! Game Over!'
+  content: 'Bot Win! Game Over!'
 }
 
-const LEVELS = ['beginer', 'advanced', 'profi', 'super']
-const LEVEL = 'advanced'
+const LEVELS = ['level1', 'level2', 'level3', 'level4']
+const LEVEL = 'level3'
 
 const Game = () => {
   const dispatch = useDispatch()
@@ -60,7 +60,7 @@ const Game = () => {
     return board
   }
 
-  // for beginer level
+  // for level1 level
   const handleAvailablePlacesForShot = (board) => {
     const availablePlacesForShot = []
     for (let i = 0; i < board.length; i++) {
@@ -77,7 +77,7 @@ const Game = () => {
     return null
   }
 
-  // for super level
+  // for level4 level
   const handlePlayerAllShipsCoords = (board) => {
     const availablePlacesForShot = []
     for (let i = 0; i < board.length; i++) {
@@ -96,11 +96,11 @@ const Game = () => {
   }
 
 
-  // for advanced level
+  // for level2 level
   const getCoordsForPlayerInjuredShips = (board, coords) => {
     const { x, y } = coords[0];
     const coordsLength = coords.length;
-    const availablePlacesForShot = []
+    const availablePlacesForShot = [];
     if (coordsLength === 1) {
       if (y + 1 <= 9) if (!board[x][y + 1].shoted) availablePlacesForShot.push({ x: x, y: y + 1 })
       if (y - 1 >= 0) if (!board[x][y - 1].shoted) availablePlacesForShot.push({ x: x, y: y - 1 })
@@ -129,15 +129,30 @@ const Game = () => {
     }
   }
 
-  // for profi level
+  // for level3 level
+  const getAllCoordsForPlayerInjuredShips = (board, ships, coords) => {
+    const { x, y } = coords[0];
+    const { shipId } = board[x][y];
+    const targetedShipCoords = ships.filter(ship => shipId == ship.id)[0].shipCoords;
+    const availablePlacesForShot = targetedShipCoords.filter(coord => !board[coord.x][coord.y].shoted);
+    if (availablePlacesForShot.length) {
+      const randomPlace = Math.floor(Math.random() * availablePlacesForShot.length);
+      console.log('availablePlacesForShot[randomPlace]', availablePlacesForShot[randomPlace])
+      return availablePlacesForShot[randomPlace]
+    } else {
+      return null
+    }
+  }
 
   // get coords for shot
-  const getShotCoords = (level, board, coords) => {
-    if (level === 'beginer') {
+  const getShotCoords = (level, board, ships, coords) => {
+    if (level === 'level1') {
       return handleAvailablePlacesForShot(board)
-    } else if (level === 'advanced' && coords.length) {
+    } else if (level === 'level2' && coords.length) {
       return getCoordsForPlayerInjuredShips(board, coords)
-    } else if (level === 'super') {
+    } else if (level === 'level3' && coords.length) {
+      return getAllCoordsForPlayerInjuredShips(board, ships, coords)
+    } else if (level === 'level4') {
       return handlePlayerAllShipsCoords(board)
     } else {
       return handleAvailablePlacesForShot(board)
@@ -158,21 +173,22 @@ const Game = () => {
 
   useEffect(() => {
     if (playerCrashedShips.length === 10) {
-      messageApi.open(playerWinMessage)
+      messageApi.open(botWinMessage)
     }
   }, [playerCrashedShips])
 
   useEffect(() => {
     if (botCrashedShips.length === 10) {
-      messageApi.open(botWinMessage)
+      messageApi.open(playerWinMessage)
     }
   }, [botCrashedShips])
 
   useEffect(() => {
     if (!playerTurn && playerBoard) {
-      const shotCoords = getShotCoords(LEVEL, playerBoard, playerInjuredShipCoords);
-      // const shotCoords = LEVEL === 'super' ? handlePlayerAllShipsCoords(playerBoard) : (LEVEL === 'advanced' && playerInjuredShipCoords.length) ? getCoordsForPlayerInjuredShips(playerBoard, playerInjuredShipCoords) : handleAvailablePlacesForShot(playerBoard);
-      if (!shotCoords) return alert('gameover')
+      const shotCoords = getShotCoords(LEVEL, playerBoard, playerShips, playerInjuredShipCoords);
+      console.log('shotCoords', shotCoords)
+      // const shotCoords = LEVEL === 'level4' ? handlePlayerAllShipsCoords(playerBoard) : (LEVEL === 'level2' && playerInjuredShipCoords.length) ? getCoordsForPlayerInjuredShips(playerBoard, playerInjuredShipCoords) : handleAvailablePlacesForShot(playerBoard);
+      // if (!shotCoords) return alert('gameover')
       const { x, y } = shotCoords;
       if (!playerBoard[x][y].shoted) {
         setTimeout(() => {
