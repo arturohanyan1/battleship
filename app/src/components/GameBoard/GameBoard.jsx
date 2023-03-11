@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './GameBoard.scss';
 
-const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn }) => {
+const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
 
   const [hoverCoordinates, setHoverCoordinates] = useState()
 
   const setClasses = (item, isPlayerBoard) => {
-    if (isPlayerBoard) {
+    if (isPlayerBoard || gameOver) {
       switch (item.body) {
         case '1-1':
         case '1-2':
