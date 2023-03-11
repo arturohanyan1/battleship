@@ -20,9 +20,7 @@ const BuilderShips = ({ ships, setShips, onDragEndHandler, selectedShip, onDragS
             onDragStart={(e) => onDragStartHandler(e, el)}
             src={`./images/ships/ship-${el.shipName}-${el.dir}.svg`}
             alt=''
-            fill='red'
           />
-
         ))}
       </div>
     </div>
