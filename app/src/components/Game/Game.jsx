@@ -129,7 +129,6 @@ const Game = () => {
     }
     if (availablePlacesForShot.length) {
       const randomPlace = Math.floor(Math.random() * availablePlacesForShot.length);
-      console.log('availablePlacesForShot[randomPlace]', availablePlacesForShot[randomPlace])
       return availablePlacesForShot[randomPlace]
     } else {
       return null
@@ -144,7 +143,6 @@ const Game = () => {
     const availablePlacesForShot = targetedShipCoords.filter(coord => !board[coord.x][coord.y].shoted);
     if (availablePlacesForShot.length) {
       const randomPlace = Math.floor(Math.random() * availablePlacesForShot.length);
-      console.log('availablePlacesForShot[randomPlace]', availablePlacesForShot[randomPlace])
       return availablePlacesForShot[randomPlace]
     } else {
       return null
@@ -215,13 +213,12 @@ const Game = () => {
   useEffect(() => {
     if (!playerTurn && playerBoard && !gameOver) {
       const shotCoords = getShotCoords(LEVEL, playerBoard, playerShips, playerInjuredShipCoords);
-      console.log('shotCoords', shotCoords)
+      // console.log('shotCoords', shotCoords)
       if (!shotCoords) return alert('gameover')
       if (Boolean(shotCoords)) {
         const { x, y } = shotCoords;
         if (!playerBoard[x][y].shoted) {
           setTimeout(() => {
-            // alert(5)
             const newPlayerBoard = JSON.parse(JSON.stringify(playerBoard))
             newPlayerBoard[x][y].shoted = true;
             if (!newPlayerBoard[x][y].hasShipPart) {
@@ -231,16 +228,14 @@ const Game = () => {
               setPlayerInjuredShipCoords(prev => [...prev, { x, y }])
               const newPlayerShips = playerShips.map(ship => {
                 if (newPlayerBoard[x][y].shipId === ship.id) {
-                  // ship.shotedCount++
-                  if (ship.shotedCount + 1 === ship.length) {
-                    // alert('crash')
-                    ship.crashed = true
-                    // setPlayerCrashedShip({ ...ship })
+                  ship.shotedCount++
+                  if (ship.shotedCount === ship.length) {
+                    ship.crashed = true;
                     setPlayerInjuredShipCoords([])
                     handleCrashedBoard(ship, newPlayerBoard)
                     setPlayerCrashedShips(prev => [...prev, { ...ship }])
-                  } else {
-                    ship.shotedCount++
+                    // } else {
+                    //   ship.shotedCount++
                   }
                 }
                 return ship
@@ -254,42 +249,13 @@ const Game = () => {
           setPlayerTurn(true)
         }
       } else {
-        alert('game over?')
+        alert('something went wrong');
       }
     }
   }, [playerTurn, playerBoard])
 
-
-
   const shotHandler = (x, y, isPlayerBoard, shipId) => {
-    if (isPlayerBoard && !playerTurn) {
-      // const newPlayerBoard = JSON.parse(JSON.stringify(playerBoard))
-      // if (newPlayerBoard[x][y].shoted) return messageApi.open(alreadyShotedMessage)
-      // newPlayerBoard[x][y].shoted = true;
-      // if (!newPlayerBoard[x][y].hasShipPart) {
-      //   setPlayerTurn(true)
-      // }
-      // if (Boolean(shipId)) {
-      //   newPlayerBoard[x][y].shipStatus = 'injured';
-      //   const newPlayerShips = playerShips.map(ship => {
-      //     if (shipId === ship.id) {
-      //       // ship.shotedCount++
-      //       alert(4)
-      //       if (ship.shotedCount + 1 === ship.length) {
-      //         alert(1)
-      //         ship.crashed = true
-      //         // setPlayerCrashedShip(ship)
-      //         handleCrashedBoard(ship, newPlayerBoard)
-      //       } else {
-      //         ship.shotedCount++
-      //       }
-      //     }
-      //     return ship
-      //   })
-      //   setPlayerShips(JSON.parse(JSON.stringify(newPlayerShips)))
-      // }
-      // setPlayerBoard(JSON.parse(JSON.stringify(newPlayerBoard)))
-    } else if (!isPlayerBoard && playerTurn && !gameOver) {
+    if (!isPlayerBoard && playerTurn && !gameOver) {
       const newBotBoard = JSON.parse(JSON.stringify(botBoard))
       if (newBotBoard[x][y].shoted) return messageApi.open(alreadyShotedMessage)
       newBotBoard[x][y].shoted = true
@@ -300,14 +266,14 @@ const Game = () => {
         newBotBoard[x][y].shipStatus = 'injured';
         const newBotShips = botShips.map(ship => {
           if (shipId === ship.id) {
-            // ship.shotedCount++
-            if (ship.shotedCount + 1 === ship.length) {
+            ship.shotedCount++
+            if (ship.shotedCount === ship.length) {
               ship.crashed = true
-              // setBotCrashedShip(ship)
+              // ship.shotedCount++
               handleCrashedBoard(ship, newBotBoard)
               setBotCrashedShips(prev => [...prev, { ...ship }])
-            } else {
-              ship.shotedCount++
+              // } else {
+              //   ship.shotedCount++
             }
           }
           return ship
@@ -318,13 +284,14 @@ const Game = () => {
     }
   }
 
-  console.log(111)
+  // console.log(botCrashedShips)
 
   return (
     <div className='game_container'>
       {/* <h2>{JSON.stringify(availablePlacesForShot)}</h2> */}
       {/* <h2>{JSON.stringify(playerInjuredShipCoords)}</h2> */}
       {/* <h2>{availablePlacesForShot.length}</h2> */}
+      {/* <h2>{JSON.parse(JSON.stringify(botCrashedShips[0], null, 2))}</h2> */}
       <h2>{playerCrashedShips.length}</h2>
       <h2>{botCrashedShips.length}</h2>
       {contextHolder}
@@ -350,7 +317,6 @@ const Game = () => {
         />
       </div>
     </div>
-
   )
 }
 
