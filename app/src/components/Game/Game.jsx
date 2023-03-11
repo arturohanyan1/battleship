@@ -15,6 +15,17 @@ const alreadyShotedMessage = {
   duration: 2,
 }
 
+const playerWinMessage = {
+  type: 'success',
+  content: 'Player Win! Game Over!'
+}
+
+const botWinMessage = {
+  type: 'success',
+  content: 'Player Win! Game Over!'
+}
+
+const LEVELS = ['beginer', 'advanced', 'profi', 'super']
 const LEVEL = 'advanced'
 
 const Game = () => {
@@ -31,8 +42,8 @@ const Game = () => {
   const [botBoard, setBotBoard] = useState([])
   const [botShips, setBotShips] = useState([])
   const [playerTurn, setPlayerTurn] = useState(true)
-  const [botCrashedShip, setBotCrashedShip] = useState()
-  const [playerCrashedShip, setPlayerCrashedShip] = useState()
+  const [botCrashedShips, setBotCrashedShips] = useState([])
+  const [playerCrashedShips, setPlayerCrashedShips] = useState([])
   const [availablePlacesForShot, setAvailablePlacesForShot] = useState([]);
   const [playerShipsCoords, setPlayerShipsCoords] = useState([]);
   const [playerInjuredShipCoords, setPlayerInjuredShipCoords] = useState([])
@@ -49,6 +60,7 @@ const Game = () => {
     return board
   }
 
+  // for beginer level
   const handleAvailablePlacesForShot = (board) => {
     const availablePlacesForShot = []
     for (let i = 0; i < board.length; i++) {
@@ -65,6 +77,7 @@ const Game = () => {
     return null
   }
 
+  // for super level
   const handlePlayerAllShipsCoords = (board) => {
     const availablePlacesForShot = []
     for (let i = 0; i < board.length; i++) {
@@ -82,6 +95,8 @@ const Game = () => {
     }
   }
 
+
+  // for advanced level
   const getCoordsForPlayerInjuredShips = (board, coords) => {
     const { x, y } = coords[0];
     const coordsLength = coords.length;
@@ -114,6 +129,24 @@ const Game = () => {
     }
   }
 
+  // for profi level
+
+  // get coords for shot
+  const getShotCoords = (level, board, coords) => {
+    if (level === 'beginer') {
+      return handleAvailablePlacesForShot(board)
+    } else if (level === 'advanced' && coords.length) {
+      return getCoordsForPlayerInjuredShips(board, coords)
+    } else if (level === 'super') {
+      return handlePlayerAllShipsCoords(board)
+    } else {
+      return handleAvailablePlacesForShot(board)
+    }
+  }
+
+
+
+  // Effects
   useEffect(() => {
     if (reduxPlayerBoard.length && reduxPlayerShips.length && reduxBotBoard.length && reduxBotShips.length) {
       setPlayerBoard(reduxPlayerBoard);
@@ -123,16 +156,22 @@ const Game = () => {
     }
   }, [reduxPlayerBoard, reduxPlayerShips, reduxBotBoard, reduxBotShips])
 
-  // useEffect(() => {
-  //   const places = handleAvailablePlacesForShot(playerBoard)
-  //   setAvailablePlacesForShot([...places])
-  // }, [playerBoard])
+  useEffect(() => {
+    if (playerCrashedShips.length === 10) {
+      messageApi.open(playerWinMessage)
+    }
+  }, [playerCrashedShips])
 
+  useEffect(() => {
+    if (botCrashedShips.length === 10) {
+      messageApi.open(botWinMessage)
+    }
+  }, [botCrashedShips])
 
   useEffect(() => {
     if (!playerTurn && playerBoard) {
-      if (playerInjuredShipCoords.length) { console.log(getCoordsForPlayerInjuredShips(playerBoard, playerInjuredShipCoords)) }
-      const shotCoords = LEVEL === 'super' ? handlePlayerAllShipsCoords(playerBoard) : (LEVEL === 'advanced' && playerInjuredShipCoords.length) ? getCoordsForPlayerInjuredShips(playerBoard, playerInjuredShipCoords) : handleAvailablePlacesForShot(playerBoard);
+      const shotCoords = getShotCoords(LEVEL, playerBoard, playerInjuredShipCoords);
+      // const shotCoords = LEVEL === 'super' ? handlePlayerAllShipsCoords(playerBoard) : (LEVEL === 'advanced' && playerInjuredShipCoords.length) ? getCoordsForPlayerInjuredShips(playerBoard, playerInjuredShipCoords) : handleAvailablePlacesForShot(playerBoard);
       if (!shotCoords) return alert('gameover')
       const { x, y } = shotCoords;
       if (!playerBoard[x][y].shoted) {
@@ -154,6 +193,7 @@ const Game = () => {
                   // setPlayerCrashedShip({ ...ship })
                   setPlayerInjuredShipCoords([])
                   handleCrashedBoard(ship, newPlayerBoard)
+                  setPlayerCrashedShips(prev => [...prev, { ...ship }])
                 } else {
                   ship.shotedCount++
                 }
@@ -217,6 +257,7 @@ const Game = () => {
               ship.crashed = true
               // setBotCrashedShip(ship)
               handleCrashedBoard(ship, newBotBoard)
+              setBotCrashedShips(prev => [...prev, { ...ship }])
             } else {
               ship.shotedCount++
             }
@@ -234,8 +275,10 @@ const Game = () => {
   return (
     <div className='game_container'>
       {/* <h2>{JSON.stringify(availablePlacesForShot)}</h2> */}
-      <h2>{JSON.stringify(playerInjuredShipCoords)}</h2>
+      {/* <h2>{JSON.stringify(playerInjuredShipCoords)}</h2> */}
       {/* <h2>{availablePlacesForShot.length}</h2> */}
+      <h2>{playerCrashedShips.length}</h2>
+      <h2>{botCrashedShips.length}</h2>
       {contextHolder}
       {/* <div className='game_container__header'>Game --- {playerName}</div> */}
       <button onClick={() => { dispatch(deletePlayerBoard()); dispatch(deleteBotBoard()); dispatch(deleteBotShips()); dispatch(deletePlayerShips()) }}>delete</button>
