@@ -51,7 +51,7 @@ const BuilderTable = ({
                   onDragLeave={(e) => onDragLeaveHandler(e, selectedShip)}
                   onDrop={(e) => onDropHandler(e, board, selectedShip, x, y)}
                 >
-                  {/* {col.hasShipPart && <img src={`./images/board/ship.png`} alt='' />} */}
+                  {/* {col.hasShipPart && col.hasShipImg && (<img src={`./images/ships/ship-${col.body}-${col.dir}.svg`} alt='' />)} */}
                 </div>
               </td>))}
             </tr>))}

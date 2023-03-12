@@ -27,21 +27,6 @@
       img {
         height: $builder-table-col - 10;
         width: auto;
-        animation: scale 3s ease infinite;
-
-        @keyframes scale {
-          0% {
-            transform: scale(1);
-          }
-
-          50% {
-            transform: scale(1.2);
-          }
-
-          100% {
-            transform: scale(1);
-          }
-        }
       }
     }
 
@@ -57,7 +42,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: blue;
+        background-color: white;
       }
     }
 

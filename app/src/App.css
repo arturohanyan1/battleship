@@ -83,3 +83,7 @@ acronym {
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-image: url('../public/images/layout/background-image.jpg');
+}
