@@ -26,7 +26,7 @@ const botWinMessage = {
 }
 
 const LEVELS = ['level1', 'level2', 'level3', 'level4', 'level5']
-const LEVEL = 'level4'
+const LEVEL = 'level3'
 
 const Game = () => {
   const dispatch = useDispatch()
@@ -292,8 +292,8 @@ const Game = () => {
       {/* <h2>{JSON.stringify(playerInjuredShipCoords)}</h2> */}
       {/* <h2>{availablePlacesForShot.length}</h2> */}
       {/* <h2>{JSON.parse(JSON.stringify(botCrashedShips[0], null, 2))}</h2> */}
-      <h2>{playerCrashedShips.length}</h2>
-      <h2>{botCrashedShips.length}</h2>
+      <h2 style={{color: 'white'}}>{playerCrashedShips.length}</h2>
+      <h2 style={{color: 'white'}}>{botCrashedShips.length}</h2>
       {contextHolder}
       {/* <div className='game_container__header'>Game --- {playerName}</div> */}
       <button onClick={() => { dispatch(deletePlayerBoard()); dispatch(deleteBotBoard()); dispatch(deleteBotShips()); dispatch(deletePlayerShips()) }}>delete</button>

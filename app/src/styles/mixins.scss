@@ -1,5 +1,5 @@
-@mixin shipShadow($color, $height, $width, ) {
-  content: '';
+@mixin shipShadow($color, $height, $width) {
+  content: "";
   display: inline-block;
   position: absolute;
   height: $height;
@@ -10,19 +10,19 @@
 }
 
 @mixin svg-size($height, $width) {
-  >div {
+  > div {
     width: $width;
     height: $height;
 
-    >div {
+    > div {
       width: $width;
       height: $height;
     }
   }
 
   svg {
-    width: 100%;
-    height: 100%;
+    width: $width;
+    height: $height;
   }
 }
 
