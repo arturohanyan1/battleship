@@ -42,7 +42,7 @@ function App() {
   //   dispatch(setBotBoard(xx))
   // }, [])
 
-  console.log('playerBoard', playerBoard)
+  // console.log('playerBoard', playerBoard)
 
   return (
     <div className="App">

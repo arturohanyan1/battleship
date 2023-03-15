@@ -4,31 +4,40 @@
 .ships {
   min-height: 50px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
-  // flex-wrap: wrap;
   position: relative;
-  width: $builder-table-col * 20 + 180px;
+  // width: $builder-table-col * 20 + 180px;
   margin: 50px auto 0px;
+  color: #fff;
+
+  .ships-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: $builder-table-col * 6 + 40;
+    &:first-child {
+      height: $builder-table-col * 3;
+    }
+    &:nth-child(2) {
+      height: $builder-table-col * 3;
+    }
+    &:nth-child(3) {
+      height: $builder-table-col * 3;
+    }
+    &:nth-child(4) {
+      height: $builder-table-col * 2;
+    }
+  }
 
   .ship {
     min-height: $builder-table-col;
     min-width: $builder-table-col;
-    margin-right: 20px;
-    // background: blue;
+    // margin-right: 20px;
     cursor: pointer;
-    // background-image: url('../../../public/images/board/ship.png');
-    // background-repeat: repeat;
     @include svg-color($builder-ship-color);
-    // div {
-    //   height: 100%;
-    //   width: auto;
-    //   path {
-    //     fill: red;
-    //   }
-    // }
-
     &:last-child {
       margin: 0px;
     }
@@ -61,14 +70,6 @@
         width: $builder-table-col * 4;
         @include svg-size($builder-table-col, $builder-table-col * 4);
       }
-
-      // &.selected {
-      //   background: red;
-      // }
-
-      // &.seted {
-      //   opacity: 0.3;
-      // }
     }
 
     &.dir-y {
