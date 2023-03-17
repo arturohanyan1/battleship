@@ -3,11 +3,12 @@
 .board-builder {
   width: 100vw;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
   position: relative;
   padding: 40px 0px 0px;
+  gap: 20px;
 }
 
 .board-section {

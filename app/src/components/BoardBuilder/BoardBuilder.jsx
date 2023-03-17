@@ -116,6 +116,15 @@ const BoardBuilder = () => {
     <div className='board-builder'>
       {contextHolder}
       {!!hoverCoordinates && <div className='toaster'>{`X - ${hoverCoordinates.x} - Y - ${hoverCoordinates.y}`}</div>}
+      <div className="ships-section">
+        <BuilderShips
+          ships={ships}
+          setShips={setShips}
+          onDragEndHandler={onDragEndHandler}
+          selectedShip={selectedShip}
+          onDragStartHandler={onDragStartHandler}
+        />
+      </div>
       <div className="board-section">
         <div className="buttons">
           <button onClick={randomBoardBuilder}>random board</button>
@@ -138,15 +147,6 @@ const BoardBuilder = () => {
             {/* <img src="./images/gameAssets/radar.gif" alt="" /> */}
           </div>
         </div>
-      </div>
-      <div className="ships-section">
-        <BuilderShips
-          ships={ships}
-          setShips={setShips}
-          onDragEndHandler={onDragEndHandler}
-          selectedShip={selectedShip}
-          onDragStartHandler={onDragStartHandler}
-        />
       </div>
     </div>
   )
