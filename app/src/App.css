@@ -85,5 +85,7 @@ acronym {
 }
 
 body {
-  background-image: url('../public/images/layout/background-image.jpg');
+  /* background-image: url('../public/images/layout/background-image.jpg'); */
+  /* background-size: cover; */
+  background-color: #0B1C59;
 }
