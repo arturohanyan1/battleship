@@ -1,8 +1,17 @@
+// generate page
 $builder-table-col: 40px;
 $builder-ship-color: white;
 $builder-table-color: blue;
-$builder-disabled-coll-color: blue;
+$builder-disabled-coll-color: #368ada;
 
+// game page
 $game-table-col: 40px;
-$game-ship-color: blue;
-$game-table-color: blue;
+
+$game-ship-color: white;
+$game-table-color: #368ada;
+$game-table-disabled-color: #187204;
+
+$game-table-shot-size: $game-table-col / 2;
+$game-table-shot-color: red;
+$game-table-injured-color: yellow;
+$game-table-crashed-color: red;
