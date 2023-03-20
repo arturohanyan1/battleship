@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ReactSVG } from "react-svg";
 import './GameBoard.scss';
 
 const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
@@ -6,26 +7,26 @@ const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
   const [hoverCoordinates, setHoverCoordinates] = useState()
 
   const setClasses = (item, isPlayerBoard) => {
-    if (isPlayerBoard || gameOver) {
-      switch (item.body) {
-        case '1-1':
-        case '1-2':
-        case '1-3':
-        case '1-4':
-          return 'one'
-        case '2-1':
-        case '2-2':
-        case '2-3':
-          return 'two'
-        case '3-1':
-        case '3-2':
-          return 'three'
-        case '4-1':
-          return 'four'
-        default:
-          break;
-      }
-    }
+    // if (isPlayerBoard || gameOver) {
+    //   switch (item.body) {
+    //     case '1-1':
+    //     case '1-2':
+    //     case '1-3':
+    //     case '1-4':
+    //       return 'one'
+    //     case '2-1':
+    //     case '2-2':
+    //     case '2-3':
+    //       return 'two'
+    //     case '3-1':
+    //     case '3-2':
+    //       return 'three'
+    //     case '4-1':
+    //       return 'four'
+    //     default:
+    //       break;
+    //   }
+    // }
   }
 
   const setContentClasses = (item, isPlayerBoard) => {
@@ -47,6 +48,18 @@ const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
     // }
   }
 
+  const setShotSVGClasses = (item, isPlayerBoard) => {
+    if (!item.hasShipPart && !['injured', 'crashed'].includes(item.shipStatus)) {
+      return 'shoted-shot'
+    }
+    if (item.hasShipPart && item.shipStatus === 'injured') {
+      return 'injured-shot'
+    }
+    if (item.hasShipPart && item.shipStatus === 'crashed') {
+      return 'crashed-shot'
+    }
+  }
+
   return (
     <div className='board_container'>
       <table>
@@ -54,7 +67,6 @@ const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
           {board.map((row, x) => (
             <tr key={x}>{row.map((col, y) => (
               <td key={col.id}>
-                {/* <div className={`container ${hoverCoordinates?.x === x || hoverCoordinates?.y === y ? 'targeted' : null}`}> */}
                 <div
                   className={`content-wrapper ${setClasses(col, isPlayerBoard)} ${col.dir} ${!isPlayerBoard ? playerTurn ? 'enableShot' : 'disableShot' : ''}`}
                   onClick={(e) => onClick(x, y, isPlayerBoard, col.shipId)}
@@ -62,12 +74,31 @@ const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
                   onMouseOut={() => setHoverCoordinates(null)}
                 >
                   <div className={`content ${setContentClasses(col, isPlayerBoard)}`}>
-                    <div className={`container ${hoverCoordinates?.x === x || hoverCoordinates?.y === y ? 'targeted' : null}`}>
-
+                    <div className={`container ${(hoverCoordinates?.x === x || hoverCoordinates?.y === y) && !isPlayerBoard ? 'targeted' : null}`}>
+                      {((col.hasShipPart && col.shipStatus === 'crashed') || gameOver || isPlayerBoard) && col.hasShipImg && (
+                        <ReactSVG
+                          src={`./images/ships/ship-${col.body}-${col.dir}.svg`}
+                          alt=""
+                          className={`seted-ship ship-${col.body} dir-${col.dir}`}
+                        />
+                      )}
+                      {/* {(col.hasShipPart && col.shipStatus === 'injured') && (
+                        <img
+                          src={`./images/gameAssets/dd.png`}
+                          alt=""
+                          className={`injured-ship`}
+                        />
+                      )} */}
+                      {col.shoted && (
+                        <ReactSVG
+                          src={`./images/board/ship.svg`}
+                          alt=""
+                          className={`shot-img ${setShotSVGClasses(col)}`}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
-                {/* </div> */}
               </td>))}
             </tr>))}
         </tbody>

@@ -26,7 +26,7 @@ const botWinMessage = {
 }
 
 const LEVELS = ['level1', 'level2', 'level3', 'level4', 'level5']
-const LEVEL = 'level3'
+const LEVEL = 'level4'
 
 const Game = () => {
   const dispatch = useDispatch()
@@ -243,7 +243,7 @@ const Game = () => {
               setPlayerShips(JSON.parse(JSON.stringify(newPlayerShips)))
             }
             setPlayerBoard(JSON.parse(JSON.stringify(newPlayerBoard)))
-          }, 500);
+          }, 1000);
         } else {
           alert('player turn')
           setPlayerTurn(true)
