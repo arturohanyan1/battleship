@@ -8,6 +8,10 @@ import { deletePlayerShips } from '../../store/actionCreators/playerShips';
 import { getBotBoard, getBotShips, getPlayerBoard, getPlayerShips } from '../../store/selectors';
 import GameBoard from '../GameBoard/GameBoard';
 import './Game.scss';
+import useSound from 'use-sound';
+import shotSound1 from '../../assets/sounds/game/shot1.mp3'
+// import shotSound2 from '../../assets/sounds/game/shot2.mp3'
+import boomSound1 from '../../assets/sounds/game/boom1.mp3'
 
 const alreadyShotedMessage = {
   type: 'info',
@@ -31,6 +35,9 @@ const LEVEL = 'level4'
 const Game = () => {
   const dispatch = useDispatch()
   const [messageApi, contextHolder] = message.useMessage();
+  const [shot1] = useSound(shotSound1);
+  // const [shot2] = useSound(shotSound2);
+  const [boom1] = useSound(boomSound1);
 
   const reduxPlayerBoard = useSelector(getPlayerBoard)
   const reduxBotBoard = useSelector(getBotBoard)
@@ -208,17 +215,18 @@ const Game = () => {
       setGameOver(true)
       messageApi.open(playerWinMessage)
     }
-  }, [botCrashedShips])
+  }, [botCrashedShips]);
 
   useEffect(() => {
     if (!playerTurn && playerBoard && !gameOver) {
       const shotCoords = getShotCoords(LEVEL, playerBoard, playerShips, playerInjuredShipCoords);
       // console.log('shotCoords', shotCoords)
-      if (!shotCoords) return alert('gameover')
+      if (!shotCoords) return console.log('gameover')
       if (Boolean(shotCoords)) {
         const { x, y } = shotCoords;
         if (!playerBoard[x][y].shoted) {
           setTimeout(() => {
+            shot1()
             const newPlayerBoard = JSON.parse(JSON.stringify(playerBoard))
             newPlayerBoard[x][y].shoted = true;
             if (!newPlayerBoard[x][y].hasShipPart) {
@@ -230,6 +238,7 @@ const Game = () => {
                 if (newPlayerBoard[x][y].shipId === ship.id) {
                   ship.shotedCount++
                   if (ship.shotedCount === ship.length) {
+                    boom1()
                     ship.crashed = true;
                     setPlayerInjuredShipCoords([])
                     handleCrashedBoard(ship, newPlayerBoard)
@@ -258,6 +267,7 @@ const Game = () => {
     if (!isPlayerBoard && playerTurn && !gameOver) {
       const newBotBoard = JSON.parse(JSON.stringify(botBoard))
       if (newBotBoard[x][y].shoted) return messageApi.open(alreadyShotedMessage)
+      shot1()
       newBotBoard[x][y].shoted = true
       if (!newBotBoard[x][y].hasShipPart) {
         setPlayerTurn(false)
@@ -268,6 +278,7 @@ const Game = () => {
           if (shipId === ship.id) {
             ship.shotedCount++
             if (ship.shotedCount === ship.length) {
+              boom1()
               ship.crashed = true
               // ship.shotedCount++
               handleCrashedBoard(ship, newBotBoard)
@@ -292,8 +303,8 @@ const Game = () => {
       {/* <h2>{JSON.stringify(playerInjuredShipCoords)}</h2> */}
       {/* <h2>{availablePlacesForShot.length}</h2> */}
       {/* <h2>{JSON.parse(JSON.stringify(botCrashedShips[0], null, 2))}</h2> */}
-      <h2 style={{color: 'white'}}>{playerCrashedShips.length}</h2>
-      <h2 style={{color: 'white'}}>{botCrashedShips.length}</h2>
+      <h2 style={{ color: 'white' }}>{playerCrashedShips.length}</h2>
+      <h2 style={{ color: 'white' }}>{botCrashedShips.length}</h2>
       {contextHolder}
       {/* <div className='game_container__header'>Game --- {playerName}</div> */}
       <button onClick={() => { dispatch(deletePlayerBoard()); dispatch(deleteBotBoard()); dispatch(deleteBotShips()); dispatch(deletePlayerShips()) }}>delete</button>
