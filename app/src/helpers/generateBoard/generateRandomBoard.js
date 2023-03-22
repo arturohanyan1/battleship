@@ -1,5 +1,5 @@
-import EMPTY_BOARD from "../constants/board";
-import SHIPS from "../constants/ships";
+import EMPTY_BOARD from "../../constants/board";
+import SHIPS from "../../constants/ships";
 import setRandomShip from "./setRandomShip";
 
 const randomBoard = () => {
