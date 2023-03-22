@@ -10,7 +10,7 @@ import GameBoard from '../GameBoard/GameBoard';
 import './Game.scss';
 import useSound from 'use-sound';
 import shotSound1 from '../../assets/sounds/game/shot1.mp3'
-// import shotSound2 from '../../assets/sounds/game/shot2.mp3'
+import musicSound1 from '../../assets/sounds/game/music1.mp3'
 import boomSound1 from '../../assets/sounds/game/boom1.mp3'
 
 const alreadyShotedMessage = {
@@ -38,6 +38,9 @@ const Game = () => {
   const [shot1] = useSound(shotSound1);
   // const [shot2] = useSound(shotSound2);
   const [boom1] = useSound(boomSound1);
+  const [playMusic1] = useSound(musicSound1, { volume: 0.2 });
+  const audio = new Audio(musicSound1);
+  audio.loop = true;
 
   const reduxPlayerBoard = useSelector(getPlayerBoard)
   const reduxBotBoard = useSelector(getBotBoard)
@@ -192,6 +195,12 @@ const Game = () => {
   }
 
 
+  useEffect (() => {
+    console.log(888)
+    // playMusic1()
+    audio.play()
+  }, [reduxPlayerBoard])
+
 
   // Effects
   useEffect(() => {
@@ -294,6 +303,11 @@ const Game = () => {
       setBotBoard(JSON.parse(JSON.stringify(newBotBoard)))
     }
   }
+
+  // useEffect(() => {
+  //   console.log(55555555555)
+  //   playMusic1()
+  // }, [])
 
   // console.log(botCrashedShips)
 
