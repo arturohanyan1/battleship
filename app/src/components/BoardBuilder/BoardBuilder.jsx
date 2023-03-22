@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import EMPTY_BOARD from "../../constants/board";
 import SHIPS from "../../constants/ships";
-import randomBoard from "../../helpers/generateRandomBoard";
+import randomBoard from "../../helpers/generateBoard/generateRandomBoard";
 import "./BoardBuilder.scss";
-import setShip from "../../helpers/setShip";
+import setShip from "../../helpers/generateBoard/setShip";
 import BuilderTable from "../BuilderTable/BuilderTable";
 import BuilderShips from "../BuilderShips/BuilderShips";
 import { message } from "antd";
@@ -12,22 +12,19 @@ import { setPlayerBoard } from "../../store/actionCreators/playerBoard";
 import { setBotBoard } from "../../store/actionCreators/botBoard";
 import { setBotShips } from "../../store/actionCreators/botShips";
 import { setPlayersShips } from "../../store/actionCreators/playerShips";
+import { NO_AVAILABLE_PLACE_MESSAGE } from "../../constants/constants";
 
 const BoardBuilder = () => {
   const dispatch = useDispatch();
 
   const [board, setBoard] = useState(JSON.parse(JSON.stringify(EMPTY_BOARD)));
-  const [prevBoard, setPrevBoard] = useState(
-    JSON.parse(JSON.stringify(EMPTY_BOARD))
-  );
+  const [prevBoard, setPrevBoard] = useState(JSON.parse(JSON.stringify(EMPTY_BOARD)));
   const [prevSelectedShip, setPrevSelectedShip] = useState({});
   const [hoverCoordinates, setHoverCoordinates] = useState();
   const [selectedShip, setSelectedShip] = useState({});
   const [playerShips, setPlayerShips] = useState([]);
   const [prevPlayerShips, setPrevPlayerShips] = useState([]);
-  const [ships, setShips] = useState(
-    JSON.parse(JSON.stringify(SHIPS.sort((a, b) => a.length - b.length)))
-  );
+  const [ships, setShips] = useState(JSON.parse(JSON.stringify(SHIPS.sort((a, b) => a.length - b.length))));
   const [messageApi, contextHolder] = message.useMessage();
 
   const randomBoardBuilder = () => {
@@ -42,9 +39,7 @@ const BoardBuilder = () => {
 
   const resetBoard = () => {
     setBoard(JSON.parse(JSON.stringify(EMPTY_BOARD)));
-    setShips(
-      JSON.parse(JSON.stringify(SHIPS.sort((a, b) => a.length - b.length)))
-    );
+    setShips(JSON.parse(JSON.stringify(SHIPS.sort((a, b) => a.length - b.length))));
     setPrevSelectedShip({});
     setSelectedShip({});
     setPlayerShips([]);
@@ -62,10 +57,7 @@ const BoardBuilder = () => {
   const cancelHandler = () => {
     setBoard(prevBoard);
     setPlayerShips(prevPlayerShips);
-    Object.keys(prevSelectedShip).length &&
-      setShips((prev) =>
-        [...prev, prevSelectedShip].sort((a, b) => a.length - b.length)
-      );
+    Object.keys(prevSelectedShip).length && setShips((prev) => [...prev, prevSelectedShip].sort((a, b) => a.length - b.length));
     setPrevSelectedShip({});
     setSelectedShip({});
     setPrevPlayerShips([]);
@@ -83,20 +75,12 @@ const BoardBuilder = () => {
     e.preventDefault();
     // console.log('over', e.target)
     setHoverCoordinates({ x, y });
-    e.target.classList.add(
-      "hover-state",
-      `length-${ship.length}`,
-      `dir-${ship.dir}`
-    );
+    e.target.classList.add("hover-state", `length-${ship.length}`, `dir-${ship.dir}`);
   };
   const onDragLeaveHandler = (e, ship) => {
     // console.log('leave', e.target)
     setHoverCoordinates(null);
-    e.target.classList.remove(
-      "hover-state",
-      `length-${ship.length}`,
-      `dir-${ship.dir}`
-    );
+    e.target.classList.remove("hover-state", `length-${ship.length}`, `dir-${ship.dir}`);
   };
   const onDropHandler = (e, board, ship, x, y) => {
     e.preventDefault();
@@ -110,11 +94,7 @@ const BoardBuilder = () => {
       setSelectedShip({});
       setPrevSelectedShip(ship);
     } else {
-      messageApi.open({
-        type: "error",
-        content: "place is not available",
-        duration: 2,
-      });
+      messageApi.open(NO_AVAILABLE_PLACE_MESSAGE);
     }
     e.target.classList.remove(
       "hover-state",

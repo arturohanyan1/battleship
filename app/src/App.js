@@ -4,8 +4,6 @@ import './App.css';
 import BoardBuilder from './components/BoardBuilder/BoardBuilder';
 import Game from './components/Game/Game';
 import NavBar from './components/NavBar/NavBar';
-import randomBoard from './helpers/generateRandomBoard';
-import { setBotBoard } from './store/actionCreators/botBoard';
 import { setPlayer } from './store/actionCreators/player';
 import { getPlayerBoard } from './store/selectors';
 
