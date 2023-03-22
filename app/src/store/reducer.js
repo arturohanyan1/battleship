@@ -74,3 +74,16 @@ export const botShips = (state = initialBotShips, action) => {
       return state
   }
 }
+
+const dialogsInitial = { open: false, dialogType: null }
+
+export const dialogs = (state = dialogsInitial, action) => {
+  switch (action.type) {
+    case actionTypes.OPEN_DIALOG:
+      return { open: true, dialogType: action.payload };
+    case actionTypes.CLOSE_DIALOG:
+      return { open: false, dialogType: null };
+    default:
+      return state;
+  }
+};

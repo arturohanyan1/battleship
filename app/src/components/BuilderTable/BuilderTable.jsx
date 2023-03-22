@@ -56,7 +56,6 @@ const BuilderTable = ({
                     {col.hasShipPart && col.hasShipImg && (
                       <ReactSVG
                         src={`./images/ships/ship-${col.body}-${col.dir}.svg`}
-                        alt=""
                         className={`seted-ship ship-${col.body} dir-${col.dir}`}
                       />
                     )}
