@@ -24,9 +24,9 @@ function App() {
 
   useEffect(() => {
     if (player) {
-      dispatch(closeDialog('AuthDialog'))
+      dispatch(closeDialog('UserProfileDialog'))
     } else {
-      dispatch(openDialog('AuthDialog'))
+      dispatch(openDialog('UserProfileDialog'))
     }
   }, [player])
 

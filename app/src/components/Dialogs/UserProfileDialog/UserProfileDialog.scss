@@ -1,0 +1,158 @@
+@import '../../../styles/mixins.scss';
+
+.user-profile-modal__content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 30px;
+    gap: 50px;
+
+    &--left-side,
+    &--right-side {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edit {
+        @include svg-size(20px, 20px);
+        @include svg-color(#fff);
+    }
+}
+
+.user-profile-modal__content--left-side {
+
+    .avatar-section {
+        position: relative;
+        margin-bottom: 40px;
+
+        &_image {
+            height: 150px;
+            width: 150px;
+            border: 4px solid #000514;
+            border-radius: 50%;
+            @include center;
+
+            img {
+                height: 142px;
+                width: 142px;
+                border-radius: 50%;
+            }
+        }
+
+        .edit-avatar {
+            position: absolute;
+            bottom: 1px;
+            right: 1px;
+            height: 35px;
+            width: 35px;
+            background-color: #000514;
+            @include center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+
+    .username-section {
+        @include center;
+        flex-direction: column;
+        width: 250px;
+
+        &--label {
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        &--input {
+            width: 100%;
+
+            input {
+                width: 100%;
+                background: #03184d;
+                height: 40px;
+                font-size: 20px;
+                padding: 0px 10px;
+                color: #fff;
+                border: 1px solid #fff;
+                border-radius: 4px;
+            }
+        }
+
+    }
+}
+
+.user-profile-modal__content--right-side {
+
+    .flag-section {
+        position: relative;
+        margin-bottom: 40px;
+
+        &_image {
+            height: 150px;
+            width: 220px;
+            border: 4px solid #000514;
+            border-radius: 34px;
+            @include center;
+
+            img {
+                height: 142px;
+                width: 212px;
+            }
+        }
+
+        .edit-avatar {
+            position: absolute;
+            bottom: 1px;
+            right: -5px;
+            height: 35px;
+            width: 35px;
+            background-color: #000514;
+            @include center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+
+    .game-result-section {
+        @include center;
+        flex-direction: column;
+        width: 250px;
+        color: #f3e116;
+
+        &--title {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        &--info {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            &-col {
+                width: 48%;
+                background: #03184d;
+                border: none;
+                height: 40px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 0px;
+                text-transform: uppercase;
+                border: 1px solid #fff;
+                border-radius: 4px;
+                @include center;
+            }
+        }
+    }
+
+}
