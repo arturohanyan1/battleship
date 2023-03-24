@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { getDialogs } from '../../store/selectors';
-import AuthDialog from './AuthDialog/AuthDialog';
+import UserProfileDialog from './UserProfileDialog/UserProfileDialog';
 
 const Dialogs = () => {
 
@@ -10,7 +10,7 @@ const Dialogs = () => {
   return (
     <>
       {!dialogs?.dialogType && null}
-      {dialogs?.dialogType === 'AuthDialog' && <AuthDialog />}
+      {dialogs?.dialogType === 'UserProfileDialog' && <UserProfileDialog />}
     </>
   )
 }

@@ -5,7 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { closeDialog } from '../../../store/actionCreators/dialodManager';
 import './Modal.scss';
 
-const Modal = ({ dialogType, onSubmit, closeWithoutSubmit = true, title, btnTitle = 'Click', children }) => {
+const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Click', children }) => {
 
     const dispatch = useDispatch();
 
@@ -18,12 +18,13 @@ const Modal = ({ dialogType, onSubmit, closeWithoutSubmit = true, title, btnTitl
             <div className='modal-wrapper'>
                 <div className='modal-content' onClick={e => e.stopPropagation()}>
                     <div className='modal-content__header'>
-                        {!closeWithoutSubmit &&
-                            <ReactSVG
-                                src={`./images/icons/close.svg`}
-                                className={`close-button`}
-                                onClick={closePopUp}
-                            />
+                        {closeIcon &&
+                            <div className={`close-button`} onClick={closePopUp}>
+                                <ReactSVG
+                                    src={`./images/icons/close.svg`}
+                                    className={`close-button--icon`}
+                                />
+                            </div>
                         }
                         <span className='modal-title'>{title}</span>
                     </div>
@@ -31,7 +32,7 @@ const Modal = ({ dialogType, onSubmit, closeWithoutSubmit = true, title, btnTitl
                         {children}
                     </div>
                     <div className='modal-content__footer'>
-                        {!!onSubmit && <button onClick={onSubmit}>{btnTitle}</button>}
+                        {Boolean(onSubmit) && <button className='submit-button' onClick={onSubmit}>{btnTitle}</button>}
                     </div>
                 </div>
             </div>
