@@ -5,7 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { closeDialog } from '../../../store/actionCreators/dialodManager';
 import './Modal.scss';
 
-const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Click', children }) => {
+const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Click', children, size }) => {
 
     const dispatch = useDispatch();
 
@@ -16,8 +16,9 @@ const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Clic
     return createPortal(
         <>
             <div className='modal-wrapper'>
-                <div className='modal-content' onClick={e => e.stopPropagation()}>
+                <div className={`modal-content ${size}`} onClick={e => e.stopPropagation()}>
                     <div className='modal-content__header'>
+                        <span className='modal-title'>{title}</span>
                         {closeIcon &&
                             <div className={`close-button`} onClick={closePopUp}>
                                 <ReactSVG
@@ -26,7 +27,6 @@ const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Clic
                                 />
                             </div>
                         }
-                        <span className='modal-title'>{title}</span>
                     </div>
                     <div className='modal-content__body'>
                         {children}

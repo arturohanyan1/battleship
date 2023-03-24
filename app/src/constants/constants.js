@@ -23,11 +23,14 @@ const NO_AVAILABLE_PLACE_MESSAGE = {
   duration: 2,
 };
 
+const AVATARS = ['avatar_1', 'avatar_2', 'avatar_3', 'avatar_4'];
+
 export {
   LEVELS,
   LEVEL,
   ALREADY_SHOTED_MESSAGE,
   PLAYER_WIN_MESSAGE,
   BOT_WIN_MESSAGE,
-  NO_AVAILABLE_PLACE_MESSAGE
+  NO_AVAILABLE_PLACE_MESSAGE,
+  AVATARS
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { ReactSVG } from 'react-svg';
+import { openDialog } from '../../../store/actionCreators/dialodManager';
 import { setPlayer } from '../../../store/actionCreators/player';
 import Modal from '../../commons/Modal';
 import './UserProfileDialog.scss'
@@ -13,6 +14,10 @@ const UserProfileDialog = () => {
     const handleChange = (e) => {
         e.preventDefault()
         setUserInputValue(e.target.value)
+    }
+
+    const openAvatarsDialog = () => {
+        dispatch(openDialog('AvatarsDialog'))
     }
 
     const onClickHandler = () => {
@@ -28,7 +33,7 @@ const UserProfileDialog = () => {
                             <div className='avatar-section_image'>
                                 <img src='./images/avatars/avatar_1.jpg' alt='pic' />
                             </div>
-                            <div onClick={() => alert(44)} className={'edit edit-avatar'}>
+                            <div onClick={openAvatarsDialog} className={'edit edit-avatar'}>
                                 <ReactSVG src={`./images/icons/edit.svg`} />
                             </div>
                         </div>
@@ -48,7 +53,7 @@ const UserProfileDialog = () => {
                             <div className='flag-section_image'>
                                 <img src='./images/flags/flag_1.png' alt='pic' />
                             </div>
-                            <div onClick={() => alert(44)} className={'edit edit-avatar'}>
+                            <div onClick={() => alert(44)} className={'edit edit-flag'}>
                                 <ReactSVG src={`./images/icons/edit.svg`} />
                             </div>
                         </div>
