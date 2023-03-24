@@ -20,6 +20,10 @@ const UserProfileDialog = () => {
         dispatch(openDialog('AvatarsDialog'))
     }
 
+    const openFlagsDialog = () => {
+        dispatch(openDialog('FlagsDialog'))
+    }
+
     const onClickHandler = () => {
         dispatch(setPlayer(userInputValue))
         // localStorage.setItem('player', userInputValue);
@@ -53,7 +57,7 @@ const UserProfileDialog = () => {
                             <div className='flag-section_image'>
                                 <img src='./images/flags/flag_1.png' alt='pic' />
                             </div>
-                            <div onClick={() => alert(44)} className={'edit edit-flag'}>
+                            <div onClick={openFlagsDialog} className={'edit edit-flag'}>
                                 <ReactSVG src={`./images/icons/edit.svg`} />
                             </div>
                         </div>
