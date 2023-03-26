@@ -24,6 +24,14 @@ const actionTypes = {
 
   OPEN_DIALOG: "OPEN_DIALOG",
   CLOSE_DIALOG: "CLOSE_DIALOG",
+
+  MUSIC_ON: "MUSIC_ON",
+  MUSIC_OFF: "MUSIC_OFF",
+
+  SOUND_ON: "SOUND_ON",
+  SOUND_OFF: "SOUND_OFF",
+
+  SET_LEVEL: "SET_LEVEL"
 };
 
 export default actionTypes;

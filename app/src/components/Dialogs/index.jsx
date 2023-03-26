@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { getDialogs } from '../../store/selectors';
 import AvatarsDialog from './AvatarsDialog/AvatarsDialog';
 import FlagsDialog from './FlagsDialog/FlagsDialog';
+import SettingsDialog from './SettingsDialog/SettingsDialog';
 import UserProfileDialog from './UserProfileDialog/UserProfileDialog';
 
 const Dialogs = () => {
@@ -15,6 +16,7 @@ const Dialogs = () => {
       {dialogs?.UserProfileDialog && <UserProfileDialog />}
       {dialogs?.AvatarsDialog && <AvatarsDialog />}
       {dialogs?.FlagsDialog && <FlagsDialog />}
+      {dialogs?.SettingsDialog && <SettingsDialog />}
     </>
   )
 }

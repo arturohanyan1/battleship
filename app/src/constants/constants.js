@@ -1,4 +1,10 @@
-const LEVELS = ['level1', 'level2', 'level3', 'level4', 'level5'];
+const LEVELS = [
+  { value: 'level1', label: 'level 1' },
+  { value: 'level2', label: 'level 2' },
+  { value: 'level3', label: 'level 3' },
+  { value: 'level4', label: 'level 4' },
+  { value: 'level5', label: 'level 5' }
+];
 const LEVEL = 'level4';
 
 const ALREADY_SHOTED_MESSAGE = {

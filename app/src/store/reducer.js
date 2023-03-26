@@ -103,3 +103,40 @@ export const dialogs = (state = dialogsInitial, action) => {
       return state;
   }
 };
+
+const musicInitial = false;
+
+export const music = (state = musicInitial, action) => {
+  switch (action.type) {
+    case actionTypes.MUSIC_ON:
+      return true;
+    case actionTypes.MUSIC_OFF:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const soundInitial = false;
+
+export const sound = (state = soundInitial, action) => {
+  switch (action.type) {
+    case actionTypes.SOUND_ON:
+      return true;
+    case actionTypes.SOUND_OFF:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const levelInitial = 'level3';
+
+export const level = (state = levelInitial, action) => {
+  switch (action.type) {
+    case actionTypes.SET_LEVEL:
+      return action.payload;
+    default:
+      return state;
+  }
+}
