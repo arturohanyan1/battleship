@@ -5,6 +5,11 @@ export const setPlayer = (payload) => ({
   payload: payload,
 });
 
+export const setPlayerName = (payload) => ({
+  type: actionTypes.SET_PLAYER_NAME,
+  payload: payload
+})
+
 export const setPlayerAvatar = (payload) => ({
   type: actionTypes.SET_PLAYER_AVATAR,
   payload: payload

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './NavBar.scss'
 import { getPlayerName } from '../../store/selectors';
+import { openDialog } from '../../store/actionCreators/dialodManager';
 
 const NAVITEMS = [
   { id: 1, path: '/', title: 'home' },
@@ -15,8 +16,14 @@ const NAVITEMS = [
 
 const NavBar = () => {
 
+  const dispatch = useDispatch();
+
   const [activItem, setActiveItem] = useState()
   const playerName = useSelector(getPlayerName)
+
+  const openUserProfileDialog = () => {
+    dispatch(openDialog('UserProfileDialog'))
+  }
 
   return (
     <>
@@ -31,7 +38,7 @@ const NavBar = () => {
             ))}
           </div>
           <div className='nav-bar__user'>
-            <span className='nav-bar__user--username'>{playerName}</span>
+            <span className='nav-bar__user--username' onClick={openUserProfileDialog}>{playerName}</span>
           </div>
         </div>
       </nav>

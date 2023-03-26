@@ -7,26 +7,24 @@ import Game from './components/Game/Game';
 import NavBar from './components/NavBar/NavBar';
 import { closeDialog, openDialog } from './store/actionCreators/dialodManager';
 import { setPlayer } from './store/actionCreators/player';
-import { getPlayerBoard, getPlayerName } from './store/selectors';
+import { getPlayer, getPlayerBoard } from './store/selectors';
 
 function App() {
 
   const dispatch = useDispatch();
 
   const playerBoard = useSelector(getPlayerBoard)
-  const player = useSelector(getPlayerName)
+  const player = useSelector(getPlayer)
 
   useEffect(() => {
-    if (Boolean(localStorage.getItem('player'))) {
-      dispatch(setPlayer(localStorage.getItem('player')))
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (player) {
-      dispatch(closeDialog('UserProfileDialog'))
+    if (player.playerName) {
+      localStorage.setItem('player', JSON.stringify(player))
     } else {
-      dispatch(openDialog('UserProfileDialog'))
+      if (Boolean(localStorage.getItem('player'))) {
+        dispatch(setPlayer(JSON.parse(localStorage.getItem('player'))))
+      } else {
+        dispatch(openDialog('UserProfileDialog'))
+      }
     }
   }, [player])
 
@@ -34,7 +32,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Dialogs />
-      {player ? (
+      {player.playerName ? (
         playerBoard.length ? <Game /> : <BoardBuilder />
       ) : (
         null

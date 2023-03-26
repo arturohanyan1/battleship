@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
-import { openDialog } from '../../../store/actionCreators/dialodManager';
-import { setPlayer } from '../../../store/actionCreators/player';
+import { closeDialog, openDialog } from '../../../store/actionCreators/dialodManager';
+import { setPlayerName } from '../../../store/actionCreators/player';
 import { getPlayer } from '../../../store/selectors';
 import Modal from '../../commons/Modal';
 import './UserProfileDialog.scss'
@@ -28,7 +28,8 @@ const UserProfileDialog = () => {
 
     const onClickHandler = () => {
         if (userInputValue) {
-            dispatch(setPlayer(userInputValue))
+            dispatch(setPlayerName(userInputValue));
+            dispatch(closeDialog('UserProfileDialog'));
         } else {
             alert('ddd')
         }

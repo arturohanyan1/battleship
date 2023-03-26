@@ -1,13 +1,17 @@
 import actionTypes from "./actionTypes";
 
-const initialPlayer = { playerName: null, avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
+const initialPlayer = { playerName: '', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
 
 export const player = (state = initialPlayer, action) => {
   switch (action.type) {
     case actionTypes.SET_PLAYER:
       return {
-        ...state, playerName: action.payload
+        ...state, ...action.payload
       };
+    case actionTypes.SET_PLAYER_NAME:
+      return {
+        ...state, playerName: action.payload
+      }
     case actionTypes.SET_PLAYER_AVATAR:
       return {
         ...state, avatar: action.payload
