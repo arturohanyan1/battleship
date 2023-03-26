@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ReactSVG } from 'react-svg'
 import { LEVELS } from '../../../constants/constants'
-import { openDialog } from '../../../store/actionCreators/dialodManager'
+import { closeDialog, openDialog } from '../../../store/actionCreators/dialodManager'
 import { setLevel, setMusicOff, setMusicOn, setSoundOff, setSoundOn } from '../../../store/actionCreators/settings'
 import { getLevel, getMusic, getSound } from '../../../store/selectors'
 import Modal from '../../commons/Modal'
@@ -39,8 +39,12 @@ const SettingsDialog = () => {
     dispatch(openDialog('UserProfileDialog'))
   }
 
+  const closeSettingsDialog = () => {
+    dispatch(closeDialog('SettingsDialog'))
+  }
+
   return (
-    <Modal dialogType={'SettingsDialog'} size='md' title={'settings'} btnTitle='ok' onSubmit={() => alert('ok')}>
+    <Modal dialogType={'SettingsDialog'} size='md' title={'settings'} btnTitle='ok' onSubmit={closeSettingsDialog}>
       <div className='settings-modal__content'>
         <div className='settings-item'>
           <div className='settings-item__name'>music</div>

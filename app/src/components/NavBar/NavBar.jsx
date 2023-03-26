@@ -25,6 +25,10 @@ const NavBar = () => {
     dispatch(openDialog('UserProfileDialog'))
   }
 
+  const openSettingsDialog = () => {
+    dispatch(openDialog('SettingsDialog'))
+  }
+
   return (
     <>
       <nav className='nav-bar'>
@@ -36,6 +40,7 @@ const NavBar = () => {
                 {item.title}
               </span>
             ))}
+            <span className={`nav-bar__item active`} onClick={openSettingsDialog}>settings</span>
           </div>
           <div className='nav-bar__user'>
             <span className='nav-bar__user--username' onClick={openUserProfileDialog}>{playerName}</span>
