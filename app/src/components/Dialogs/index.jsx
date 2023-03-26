@@ -11,10 +11,10 @@ const Dialogs = () => {
 
   return (
     <>
-      {!dialogs?.dialogType && null}
-      {dialogs?.dialogType === 'UserProfileDialog' && <UserProfileDialog />}
-      {dialogs?.dialogType === 'AvatarsDialog' && <AvatarsDialog />}
-      {dialogs?.dialogType === 'FlagsDialog' && <FlagsDialog />}
+      {!Object.keys(dialogs).length && null}
+      {dialogs?.UserProfileDialog && <UserProfileDialog />}
+      {dialogs?.AvatarsDialog && <AvatarsDialog />}
+      {dialogs?.FlagsDialog && <FlagsDialog />}
     </>
   )
 }

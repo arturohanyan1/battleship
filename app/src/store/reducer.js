@@ -1,6 +1,6 @@
 import actionTypes from "./actionTypes";
 
-const initialPlayer = { playerName: null }
+const initialPlayer = { playerName: null, avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
 
 export const player = (state = initialPlayer, action) => {
   switch (action.type) {
@@ -8,6 +8,22 @@ export const player = (state = initialPlayer, action) => {
       return {
         ...state, playerName: action.payload
       };
+    case actionTypes.SET_PLAYER_AVATAR:
+      return {
+        ...state, avatar: action.payload
+      }
+    case actionTypes.SET_PLAYER_FLAG:
+      return {
+        ...state, flag: action.payload
+      }
+    case actionTypes.SET_PLAYER_WIN_COUNT:
+      return {
+        ...state, win: state.win + 1
+      }
+    case actionTypes.SET_PLAYER_LOST_COUNT:
+      return {
+        ...state, win: state.lost + 1
+      }
     case actionTypes.RESET_PLAYER:
       return initialPlayer;
     default:
@@ -75,14 +91,14 @@ export const botShips = (state = initialBotShips, action) => {
   }
 }
 
-const dialogsInitial = { open: false, dialogType: null }
+const dialogsInitial = {};
 
 export const dialogs = (state = dialogsInitial, action) => {
   switch (action.type) {
     case actionTypes.OPEN_DIALOG:
-      return { open: true, dialogType: action.payload };
+      return { ...state, [action.payload]: action.payload }
     case actionTypes.CLOSE_DIALOG:
-      return { open: false, dialogType: null };
+      return { ...state, [action.payload]: null }
     default:
       return state;
   }
