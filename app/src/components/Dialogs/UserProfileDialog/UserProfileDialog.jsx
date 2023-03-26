@@ -5,16 +5,19 @@ import { closeDialog, openDialog } from '../../../store/actionCreators/dialodMan
 import { setPlayerName } from '../../../store/actionCreators/player';
 import { getPlayer } from '../../../store/selectors';
 import Modal from '../../commons/Modal';
+import { usernameValidationScheme } from './usernameValidationScheme';
 import './UserProfileDialog.scss'
 
 
 const UserProfileDialog = () => {
     const dispatch = useDispatch();
     const player = useSelector(getPlayer)
-    const [userInputValue, setUserInputValue] = useState('')
+    const [userInputValue, setUserInputValue] = useState('');
+    const [usernameError, setUserNameError] = useState('')
 
     const handleChange = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        setUserNameError(usernameValidationScheme(e.target.value))
         setUserInputValue(e.target.value)
     }
 
@@ -27,11 +30,11 @@ const UserProfileDialog = () => {
     }
 
     const onClickHandler = () => {
-        if (userInputValue) {
+        if (userInputValue && !usernameError) {
             dispatch(setPlayerName(userInputValue));
             dispatch(closeDialog('UserProfileDialog'));
         } else {
-            alert('ddd')
+            setUserNameError(usernameValidationScheme(userInputValue))
         }
     }
 
@@ -54,9 +57,10 @@ const UserProfileDialog = () => {
                         </div>
                         <div className='username-section'>
                             <div className='username-section--label'><span>username</span></div>
-                            <div className='username-section--input'>
+                            <div className={`username-section--input ${Boolean(usernameError) ? 'error' : ''}`}>
                                 <input type='text' value={userInputValue} onChange={(e) => handleChange(e)} />
                             </div>
+                            {Boolean(usernameError) && <div className='username-section--error'><span>{usernameError}</span></div>}
                         </div>
                     </div>
                     <div className='user-profile-modal__content--right-side'>
