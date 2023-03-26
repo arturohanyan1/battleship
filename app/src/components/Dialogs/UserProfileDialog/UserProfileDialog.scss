@@ -60,6 +60,7 @@
         @include center;
         flex-direction: column;
         width: 250px;
+        position: relative;
 
         &--label {
             color: #fff;
@@ -81,6 +82,28 @@
                 color: #fff;
                 border: 1px solid #fff;
                 border-radius: 4px;
+                outline: none !important;
+            }
+
+            &.error {
+                input {
+                    border: 1px solid red;
+                }
+            }
+        }
+
+        &--error {
+            position: absolute;
+            left: 0px;
+            bottom: -15px;
+            height: 15px;
+            @include center;
+
+            span {
+                font-size: 12px;
+                line-height: 0px;
+                color: red;
+                text-transform: capitalize;
             }
         }
 
