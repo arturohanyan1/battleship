@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import { openDialog } from '../../../store/actionCreators/dialodManager';
 import { setPlayer } from '../../../store/actionCreators/player';
+import { getPlayer } from '../../../store/selectors';
 import Modal from '../../commons/Modal';
 import './UserProfileDialog.scss'
 
 
 const UserProfileDialog = () => {
     const dispatch = useDispatch();
+    const player = useSelector(getPlayer)
     const [userInputValue, setUserInputValue] = useState('')
 
     const handleChange = (e) => {
@@ -25,17 +27,25 @@ const UserProfileDialog = () => {
     }
 
     const onClickHandler = () => {
-        dispatch(setPlayer(userInputValue))
-        // localStorage.setItem('player', userInputValue);
+        if (userInputValue) {
+            dispatch(setPlayer(userInputValue))
+        } else {
+            alert('ddd')
+        }
     }
+
+    useEffect(() => {
+        if (player.playerName) setUserInputValue(player.playerName)
+    }, [player])
+
     return (
         <div>
-            <Modal dialogType={'UserProfileDialog'} title={'User Profile'} btnTitle='complete' onSubmit={() => alert('ok')}>
+            <Modal dialogType={'UserProfileDialog'} closeIcon={player.playerName} title={'User Profile'} btnTitle='complete' onSubmit={onClickHandler}>
                 <div className='user-profile-modal__content'>
                     <div className='user-profile-modal__content--left-side'>
                         <div className='avatar-section'>
                             <div className='avatar-section_image'>
-                                <img src='./images/avatars/avatar_1.jpg' alt='pic' />
+                                <img src={`./images/avatars/${player.avatar}.jpg`} alt='pic' />
                             </div>
                             <div onClick={openAvatarsDialog} className={'edit edit-avatar'}>
                                 <ReactSVG src={`./images/icons/edit.svg`} />
@@ -47,15 +57,11 @@ const UserProfileDialog = () => {
                                 <input type='text' value={userInputValue} onChange={(e) => handleChange(e)} />
                             </div>
                         </div>
-                        {/* <div>
-                            <input type='text' value={userInputValue} onChange={(e) => handleChange(e)} />
-                            <button onClick={onClickHandler}>register</button>
-                        </div> */}
                     </div>
                     <div className='user-profile-modal__content--right-side'>
                         <div className='flag-section'>
                             <div className='flag-section_image'>
-                                <img src='./images/flags/flag_1.png' alt='pic' />
+                                <img src={`./images/flags/${player.flag}.png`} alt='pic' />
                             </div>
                             <div onClick={openFlagsDialog} className={'edit edit-flag'}>
                                 <ReactSVG src={`./images/icons/edit.svg`} />
@@ -65,10 +71,10 @@ const UserProfileDialog = () => {
                             <div className='game-result-section--title'><span>statistics</span></div>
                             <div className='game-result-section--info'>
                                 <div className='game-result-section--info-col'>
-                                    <span>won: 0</span>
+                                    <span>won: {player.won}</span>
                                 </div>
                                 <div className='game-result-section--info-col'>
-                                    <span>lost: 0</span>
+                                    <span>lost: {player.lost}</span>
                                 </div>
                             </div>
                         </div>

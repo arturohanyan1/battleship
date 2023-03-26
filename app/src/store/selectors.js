@@ -14,6 +14,7 @@ export const getPlayerName = cs(
   }
 )
 
+export const getPlayer = player;
 export const getPlayerBoard = playerBoard;
 export const getPlayerShips = playerShips;
 export const getBotBoard = botBoard;
