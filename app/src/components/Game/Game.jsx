@@ -5,7 +5,7 @@ import { deleteBotBoard } from '../../store/actionCreators/botBoard';
 import { deleteBotShips } from '../../store/actionCreators/botShips';
 import { deletePlayerBoard } from '../../store/actionCreators/playerBoard';
 import { deletePlayerShips } from '../../store/actionCreators/playerShips';
-import { getBotBoard, getBotShips, getPlayerBoard, getPlayerShips } from '../../store/selectors';
+import { getBotBoard, getBotShips, getPlayerBoard, getPlayerShips, getSound } from '../../store/selectors';
 import GameBoard from '../GameBoard/GameBoard';
 import './Game.scss';
 import useSound from 'use-sound';
@@ -31,6 +31,7 @@ const Game = () => {
   const reduxBotBoard = useSelector(getBotBoard)
   const reduxPlayerShips = useSelector(getPlayerShips)
   const reduxBotShips = useSelector(getBotShips)
+  const sound = useSelector(getSound);
 
   const [playerBoard, setPlayerBoard] = useState([])
   const [playerShips, setPlayerShips] = useState([])
@@ -74,7 +75,7 @@ const Game = () => {
         const { x, y } = shotCoords;
         if (!playerBoard[x][y].shoted) {
           setTimeout(() => {
-            shot1()
+            if (sound) shot1()
             const newPlayerBoard = JSON.parse(JSON.stringify(playerBoard))
             newPlayerBoard[x][y].shoted = true;
             if (!newPlayerBoard[x][y].hasShipPart) {
@@ -86,7 +87,7 @@ const Game = () => {
                 if (newPlayerBoard[x][y].shipId === ship.id) {
                   ship.shotedCount++
                   if (ship.shotedCount === ship.length) {
-                    boom1()
+                    if (sound) boom1()
                     ship.crashed = true;
                     setPlayerInjuredShipCoords([])
                     setCrashedShipOnBoard(ship, newPlayerBoard)
@@ -113,7 +114,7 @@ const Game = () => {
     if (!isPlayerBoard && playerTurn && !gameOver) {
       const newBotBoard = JSON.parse(JSON.stringify(botBoard))
       if (newBotBoard[x][y].shoted) return messageApi.open(ALREADY_SHOTED_MESSAGE)
-      shot1()
+      if (sound) shot1()
       newBotBoard[x][y].shoted = true
       if (!newBotBoard[x][y].hasShipPart) {
         setPlayerTurn(false)
@@ -124,7 +125,7 @@ const Game = () => {
           if (shipId === ship.id) {
             ship.shotedCount++
             if (ship.shotedCount === ship.length) {
-              boom1()
+              if (sound) boom1()
               ship.crashed = true
               setCrashedShipOnBoard(ship, newBotBoard)
               setBotCrashedShips(prev => [...prev, { ...ship }])
