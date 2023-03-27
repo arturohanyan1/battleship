@@ -32,6 +32,9 @@ const NO_AVAILABLE_PLACE_MESSAGE = {
 const AVATARS = ['avatar_1', 'avatar_2', 'avatar_3', 'avatar_4'];
 const FLAGS = ['flag_1', 'flag_2', 'flag_3', 'flag_4', 'flag_5', 'flag_6'];
 
+const BOARD_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const BOARD_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
 export {
   LEVELS,
   LEVEL,
@@ -40,5 +43,7 @@ export {
   BOT_WIN_MESSAGE,
   NO_AVAILABLE_PLACE_MESSAGE,
   AVATARS,
-  FLAGS
+  FLAGS,
+  BOARD_NUMBERS,
+  BOARD_LETTERS
 };

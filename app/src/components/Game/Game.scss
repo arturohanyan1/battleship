@@ -4,11 +4,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
+  position: relative;
 
-.game_container__header {
-  text-align: center;
-  margin-bottom: 50px;
+  .back-button {
+    position: absolute;
+    top: -30px;
+    left: 10px;
+  }
 }
 
 .game_container__game {
