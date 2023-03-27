@@ -15,8 +15,27 @@
 
 .game_container__game {
   width: 100%;
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.game-section {
+  height: 100%;
+  max-width: 48%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  gap: 20px;
+
+  .pnael-section {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 300px;
+  }
 }

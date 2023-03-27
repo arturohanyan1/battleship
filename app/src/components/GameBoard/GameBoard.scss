@@ -4,7 +4,6 @@
 .board_container {
   max-height: $game-table-col * 10 + 100px;
   max-width: $game-table-col * 10 + 100px;
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
