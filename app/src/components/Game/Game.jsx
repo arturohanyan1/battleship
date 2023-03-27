@@ -5,7 +5,7 @@ import { deleteBotBoard } from '../../store/actionCreators/botBoard';
 import { deleteBotShips } from '../../store/actionCreators/botShips';
 import { deletePlayerBoard } from '../../store/actionCreators/playerBoard';
 import { deletePlayerShips } from '../../store/actionCreators/playerShips';
-import { getBotBoard, getBotShips, getPlayerBoard, getPlayerShips, getSound } from '../../store/selectors';
+import { getBotBoard, getBotShips, getLevel, getPlayerBoard, getPlayerShips, getSound } from '../../store/selectors';
 import GameBoard from '../GameBoard/GameBoard';
 import './Game.scss';
 import useSound from 'use-sound';
@@ -32,6 +32,7 @@ const Game = () => {
   const reduxPlayerShips = useSelector(getPlayerShips)
   const reduxBotShips = useSelector(getBotShips)
   const sound = useSelector(getSound);
+  const level = useSelector(getLevel);
 
   const [playerBoard, setPlayerBoard] = useState([])
   const [playerShips, setPlayerShips] = useState([])
@@ -69,7 +70,7 @@ const Game = () => {
 
   useEffect(() => {
     if (!playerTurn && playerBoard && !gameOver) {
-      const shotCoords = getShotCoords(LEVEL, playerBoard, playerShips, playerInjuredShipCoords);
+      const shotCoords = getShotCoords(level, playerBoard, playerShips, playerInjuredShipCoords);
       if (!shotCoords) return console.log('gameover')
       if (Boolean(shotCoords)) {
         const { x, y } = shotCoords;
