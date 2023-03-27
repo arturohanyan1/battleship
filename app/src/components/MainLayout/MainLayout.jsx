@@ -8,19 +8,20 @@ import Dialogs from "../Dialogs";
 import Game from "../Game/Game";
 import NavBar from "../NavBar/NavBar";
 import musicSound1 from "../../assets/sounds/game/music1.mp3";
+import useSound from "use-sound";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
-  const audio = new Audio(musicSound1);
-  audio.loop = true;
 
   const playerBoard = useSelector(getPlayerBoard);
   const player = useSelector(getPlayer);
   const music = useSelector(getMusic);
 
+  const [playMusic1, {stop}] = useSound(musicSound1, { volume: 0.2 });
+  
   useEffect(() => {
-    music ? audio.play() : audio.pause();
-  }, [audio, music]);
+    music ? playMusic1() : stop();
+  }, [music]);
 
   useEffect(() => {
     if (player.playerName) {
