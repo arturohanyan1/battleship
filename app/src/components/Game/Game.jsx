@@ -14,6 +14,7 @@ import boomSound1 from '../../assets/sounds/game/boom1.mp3'
 import getShotCoords from '../../helpers/getShotCoords/gameShotCoords';
 import { ALREADY_SHOTED_MESSAGE, BOT_WIN_MESSAGE, PLAYER_WIN_MESSAGE } from '../../constants/constants';
 import setCrashedShipOnBoard from '../../helpers/setCrashedShipOnBoard';
+import PlayerInfoPanel from '../PlayerInfoPanel/PlayerInfoPanel';
 
 
 const Game = () => {
@@ -149,6 +150,9 @@ const Game = () => {
       <button className='back-button' onClick={backtoLobby}>back</button>
       <div className='game_container__game'>
         <div className='game-section player-section'>
+          <div className='pnael-section player-section-panel'>
+            <PlayerInfoPanel />
+          </div>
           <GameBoard
             board={playerBoard}
             isPlayerBoard={true}
@@ -165,6 +169,9 @@ const Game = () => {
             playerTurn={playerTurn}
             gameOver={gameOver}
           />
+          <div className='pnael-section bot-section-panel'>
+            <PlayerInfoPanel />
+          </div>
         </div>
       </div>
     </div>
