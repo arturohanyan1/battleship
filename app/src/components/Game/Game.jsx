@@ -10,10 +10,9 @@ import GameBoard from '../GameBoard/GameBoard';
 import './Game.scss';
 import useSound from 'use-sound';
 import shotSound1 from '../../assets/sounds/game/shot1.mp3'
-import musicSound1 from '../../assets/sounds/game/music1.mp3'
 import boomSound1 from '../../assets/sounds/game/boom1.mp3'
 import getShotCoords from '../../helpers/getShotCoords/gameShotCoords';
-import { ALREADY_SHOTED_MESSAGE, BOT_WIN_MESSAGE, LEVEL, PLAYER_WIN_MESSAGE } from '../../constants/constants';
+import { ALREADY_SHOTED_MESSAGE, BOT_WIN_MESSAGE, PLAYER_WIN_MESSAGE } from '../../constants/constants';
 import setCrashedShipOnBoard from '../../helpers/setCrashedShipOnBoard';
 
 
@@ -21,11 +20,7 @@ const Game = () => {
   const dispatch = useDispatch()
   const [messageApi, contextHolder] = message.useMessage();
   const [shot1] = useSound(shotSound1);
-  // const [shot2] = useSound(shotSound2);
   const [boom1] = useSound(boomSound1);
-  const [playMusic1] = useSound(musicSound1, { volume: 0.2 });
-  const audio = new Audio(musicSound1);
-  audio.loop = true;
 
   const reduxPlayerBoard = useSelector(getPlayerBoard)
   const reduxBotBoard = useSelector(getBotBoard)
@@ -43,6 +38,14 @@ const Game = () => {
   const [playerCrashedShips, setPlayerCrashedShips] = useState([])
   const [gameOver, setGameOver] = useState(false);
   const [playerInjuredShipCoords, setPlayerInjuredShipCoords] = useState([])
+
+  // Actions
+  const backtoLobby = () => {
+    dispatch(deletePlayerBoard());
+    dispatch(deleteBotBoard());
+    dispatch(deleteBotShips());
+    dispatch(deletePlayerShips())
+  }
 
   // Effects
   useEffect(() => {
@@ -142,28 +145,27 @@ const Game = () => {
 
   return (
     <div className='game_container'>
-      <h2 style={{ color: 'white' }}>{playerCrashedShips.length}</h2>
-      <h2 style={{ color: 'white' }}>{botCrashedShips.length}</h2>
       {contextHolder}
-      <button onClick={() => { dispatch(deletePlayerBoard()); dispatch(deleteBotBoard()); dispatch(deleteBotShips()); dispatch(deletePlayerShips()) }}>delete</button>
+      <button className='back-button' onClick={backtoLobby}>back</button>
       <div className='game_container__game'>
-        <GameBoard
-          board={playerBoard}
-          isPlayerBoard={true}
-          onClick={shotHandler}
-          playerTurn={playerTurn}
-          gameOver={gameOver}
-        />
-        <div>
-          {playerTurn ? '-->' : '<--'}
+        <div className='game-section player-section'>
+          <GameBoard
+            board={playerBoard}
+            isPlayerBoard={true}
+            onClick={shotHandler}
+            playerTurn={playerTurn}
+            gameOver={gameOver}
+          />
         </div>
-        <GameBoard
-          board={botBoard}
-          isPlayerBoard={false}
-          onClick={shotHandler}
-          playerTurn={playerTurn}
-          gameOver={gameOver}
-        />
+        <div className='game-section bot-section'>
+          <GameBoard
+            board={botBoard}
+            isPlayerBoard={false}
+            onClick={shotHandler}
+            playerTurn={playerTurn}
+            gameOver={gameOver}
+          />
+        </div>
       </div>
     </div>
   )

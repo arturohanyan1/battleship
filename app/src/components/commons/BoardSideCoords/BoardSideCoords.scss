@@ -1,0 +1,59 @@
+@import '../../../styles/constants.scss';
+
+.coords-info-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  &.horizontal {
+    &.game {
+      width: $game-table-col * 10 + 9;
+      height: $game-table-col;
+    }
+
+    &.builder {
+      width: $builder-table-col * 10 + 9;
+      height: $builder-table-col;
+    }
+  }
+
+  &.vertical {
+    flex-direction: column;
+
+    &.game {
+      height: $game-table-col * 10 + 9;
+      width: $game-table-col;
+    }
+
+    &.builder {
+      width: $builder-table-col;
+      height: $builder-table-col * 10 + 9;
+    }
+  }
+
+  &.game {
+    .coords-info-item {
+      height: $game-table-col;
+      width: $game-table-col;
+      color: white;
+    }
+  }
+
+  &.builder {
+    .coords-info-item {
+      height: $builder-table-col;
+      width: $builder-table-col;
+      color: white;
+    }
+  }
+
+  .coords-info-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 1px;
+  }
+}
