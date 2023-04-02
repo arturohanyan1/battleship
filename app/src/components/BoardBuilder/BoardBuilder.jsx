@@ -12,7 +12,9 @@ import { setPlayerBoard } from "../../store/actionCreators/playerBoard";
 import { setBotBoard } from "../../store/actionCreators/botBoard";
 import { setBotShips } from "../../store/actionCreators/botShips";
 import { setPlayersShips } from "../../store/actionCreators/playerShips";
-import { NO_AVAILABLE_PLACE_MESSAGE } from "../../constants/constants";
+import { AVATARS, FLAGS, NO_AVAILABLE_PLACE_MESSAGE } from "../../constants/constants";
+import { setBotAvatar, setBotFlag } from "../../store/actionCreators/bot";
+import getRandomItem from "../../helpers/getRandomItem";
 
 const BoardBuilder = () => {
   const dispatch = useDispatch();
@@ -109,6 +111,8 @@ const BoardBuilder = () => {
     const generatedBotBoard = randomBoard();
     dispatch(setBotBoard(JSON.parse(JSON.stringify(generatedBotBoard.board))));
     dispatch(setBotShips(JSON.parse(JSON.stringify(generatedBotBoard.ships))));
+    // dispatch(setBotAvatar(getRandomItem(AVATARS)));
+    // dispatch(setBotFlag(getRandomItem(FLAGS)));
   };
 
   return (

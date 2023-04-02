@@ -22,14 +22,50 @@ export const player = (state = initialPlayer, action) => {
       }
     case actionTypes.SET_PLAYER_WIN_COUNT:
       return {
-        ...state, win: state.win + 1
+        ...state, won: state.won + 1
       }
     case actionTypes.SET_PLAYER_LOST_COUNT:
       return {
-        ...state, win: state.lost + 1
+        ...state, lost: state.lost + 1
       }
     case actionTypes.RESET_PLAYER:
       return initialPlayer;
+    default:
+      return state
+  }
+}
+
+const initialBot = { botName: 'bot', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
+
+export const bot = (state = initialBot, action) => {
+  console.log('action', action)
+  switch (action.type) {
+    case actionTypes.SET_BOT:
+      return {
+        ...state, ...action.payload
+      };
+    case actionTypes.SET_BOT_NAME:
+      return {
+        ...state, botName: action.payload
+      }
+    case actionTypes.SET_BOT_AVATAR:
+      return {
+        ...state, avatar: action.payload
+      }
+    case actionTypes.SET_BOT_FLAG:
+      return {
+        ...state, flag: action.payload
+      }
+    case actionTypes.SET_BOT_WIN_COUNT:
+      return {
+        ...state, won: state.won + 1
+      }
+    case actionTypes.SET_BOT_LOST_COUNT:
+      return {
+        ...state, lost: state.lost + 1
+      }
+    case actionTypes.RESET_BOT:
+      return initialBot;
     default:
       return state
   }
