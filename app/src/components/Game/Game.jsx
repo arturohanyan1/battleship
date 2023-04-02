@@ -1,11 +1,11 @@
 import { message } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBotBoard } from '../../store/actionCreators/botBoard';
 import { deleteBotShips } from '../../store/actionCreators/botShips';
 import { deletePlayerBoard } from '../../store/actionCreators/playerBoard';
 import { deletePlayerShips } from '../../store/actionCreators/playerShips';
-import { getBotBoard, getBotShips, getLevel, getPlayerBoard, getPlayerShips, getSound } from '../../store/selectors';
+import { getBot, getBotBoard, getBotShips, getLevel, getPlayer, getPlayerBoard, getPlayerShips, getSound } from '../../store/selectors';
 import GameBoard from '../GameBoard/GameBoard';
 import './Game.scss';
 import useSound from 'use-sound';
@@ -15,6 +15,8 @@ import getShotCoords from '../../helpers/getShotCoords/gameShotCoords';
 import { ALREADY_SHOTED_MESSAGE, BOT_WIN_MESSAGE, PLAYER_WIN_MESSAGE } from '../../constants/constants';
 import setCrashedShipOnBoard from '../../helpers/setCrashedShipOnBoard';
 import PlayerInfoPanel from '../PlayerInfoPanel/PlayerInfoPanel';
+import { setPlayerlostCount, setPlayerWinCount } from '../../store/actionCreators/player';
+import { setBotlostCount, setBotWinCount } from '../../store/actionCreators/bot';
 
 
 const Game = () => {
@@ -29,6 +31,8 @@ const Game = () => {
   const reduxBotShips = useSelector(getBotShips)
   const sound = useSelector(getSound);
   const level = useSelector(getLevel);
+  const player = useSelector(getPlayer);
+  const bot = useSelector(getBot);
 
   const [playerBoard, setPlayerBoard] = useState([])
   const [playerShips, setPlayerShips] = useState([])
@@ -39,14 +43,49 @@ const Game = () => {
   const [playerCrashedShips, setPlayerCrashedShips] = useState([])
   const [gameOver, setGameOver] = useState(false);
   const [playerInjuredShipCoords, setPlayerInjuredShipCoords] = useState([])
+  const [playerShots, setPlayerShots] = useState(0);
+  const [playerExactShots, setPlayerExactShots] = useState(0);
+  const [playerPoints, setPlayerPoints] = useState(0);
+  const [botShots, setBotShots] = useState(0);
+  const [botExactShots, setBotExactShots] = useState(0);
+  const [botPoints, setBotPoints] = useState(0);
 
   // Actions
   const backtoLobby = () => {
     dispatch(deletePlayerBoard());
     dispatch(deleteBotBoard());
     dispatch(deleteBotShips());
-    dispatch(deletePlayerShips())
+    dispatch(deletePlayerShips());
   }
+
+  // memo datas
+  const playerInfoData = useMemo(() => {
+    return {
+      totalShots: playerShots,
+      exactShots: playerExactShots,
+      points: playerPoints,
+      username: player.playerName,
+      flag: player.flag,
+      avatar: player.avatar,
+      won: player.won,
+      lost: player.lost,
+      sunkenShips: botCrashedShips.length
+    }
+  }, [playerShots, playerExactShots, playerPoints, player, botCrashedShips])
+
+  const botInfoData = useMemo(() => {
+    return {
+      totalShots: botShots,
+      exactShots: botExactShots,
+      points: botPoints,
+      username: bot.botName,
+      flag: bot.flag,
+      avatar: bot.avatar,
+      won: bot.won,
+      lost: bot.lost,
+      sunkenShips: playerCrashedShips.length
+    }
+  }, [botShots, botExactShots, botPoints, bot, playerCrashedShips])
 
   // Effects
   useEffect(() => {
@@ -60,6 +99,8 @@ const Game = () => {
 
   useEffect(() => {
     if (playerCrashedShips.length === 10) {
+      dispatch(setBotWinCount())
+      dispatch(setPlayerlostCount())
       setGameOver(true)
       messageApi.open(BOT_WIN_MESSAGE)
     }
@@ -67,6 +108,8 @@ const Game = () => {
 
   useEffect(() => {
     if (botCrashedShips.length === 10) {
+      dispatch(setPlayerWinCount())
+      dispatch(setBotlostCount())
       setGameOver(true)
       messageApi.open(PLAYER_WIN_MESSAGE)
     }
@@ -79,14 +122,18 @@ const Game = () => {
       if (Boolean(shotCoords)) {
         const { x, y } = shotCoords;
         if (!playerBoard[x][y].shoted) {
+          let points = botPoints + 1;
           setTimeout(() => {
             if (sound) shot1()
             const newPlayerBoard = JSON.parse(JSON.stringify(playerBoard))
             newPlayerBoard[x][y].shoted = true;
+            setBotShots(prev => prev + 1)
             if (!newPlayerBoard[x][y].hasShipPart) {
               setPlayerTurn(true)
             } else if (Boolean(newPlayerBoard[x][y].shipId)) {
+              setBotExactShots(prev => prev + 1)
               newPlayerBoard[x][y].shipStatus = 'injured';
+              points = points + 2
               setPlayerInjuredShipCoords(prev => [...prev, { x, y }])
               const newPlayerShips = playerShips.map(ship => {
                 if (newPlayerBoard[x][y].shipId === ship.id) {
@@ -94,6 +141,7 @@ const Game = () => {
                   if (ship.shotedCount === ship.length) {
                     if (sound) boom1()
                     ship.crashed = true;
+                    points = points + (20 - ship.length);
                     setPlayerInjuredShipCoords([])
                     setCrashedShipOnBoard(ship, newPlayerBoard)
                     setPlayerCrashedShips(prev => [...prev, { ...ship }])
@@ -103,6 +151,7 @@ const Game = () => {
               })
               setPlayerShips(JSON.parse(JSON.stringify(newPlayerShips)))
             }
+            setBotPoints(points)
             setPlayerBoard(JSON.parse(JSON.stringify(newPlayerBoard)))
           }, 1000);
         } else {
@@ -121,17 +170,22 @@ const Game = () => {
       if (newBotBoard[x][y].shoted) return messageApi.open(ALREADY_SHOTED_MESSAGE)
       if (sound) shot1()
       newBotBoard[x][y].shoted = true
+      setPlayerShots(prev => prev + 1)
+      let points = playerPoints + 1;
       if (!newBotBoard[x][y].hasShipPart) {
         setPlayerTurn(false)
       }
       if (Boolean(shipId)) {
+        setPlayerExactShots(prev => prev + 1)
         newBotBoard[x][y].shipStatus = 'injured';
+        points = points + 2
         const newBotShips = botShips.map(ship => {
           if (shipId === ship.id) {
             ship.shotedCount++
             if (ship.shotedCount === ship.length) {
               if (sound) boom1()
               ship.crashed = true
+              points = points + (20 - ship.length);
               setCrashedShipOnBoard(ship, newBotBoard)
               setBotCrashedShips(prev => [...prev, { ...ship }])
             }
@@ -140,6 +194,7 @@ const Game = () => {
         })
         setBotShips(JSON.parse(JSON.stringify(newBotShips)))
       }
+      setPlayerPoints(points)
       setBotBoard(JSON.parse(JSON.stringify(newBotBoard)))
     }
   }
@@ -151,7 +206,7 @@ const Game = () => {
       <div className='game_container__game'>
         <div className='game-section player-section'>
           <div className='pnael-section player-section-panel'>
-            <PlayerInfoPanel />
+            <PlayerInfoPanel infoData={playerInfoData} />
           </div>
           <GameBoard
             board={playerBoard}
@@ -170,7 +225,7 @@ const Game = () => {
             gameOver={gameOver}
           />
           <div className='pnael-section bot-section-panel'>
-            <PlayerInfoPanel />
+            <PlayerInfoPanel infoData={botInfoData} />
           </div>
         </div>
       </div>

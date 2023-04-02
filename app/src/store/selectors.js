@@ -1,6 +1,7 @@
 import { createSelector as cs } from "reselect";
 
 const player = (state) => state.player;
+const bot = (state) => state.bot;
 const playerBoard = (state) => state.playerBoard;
 const playerShips = (state) => state.playerShips;
 const botBoard = (state) => state.botBoard;
@@ -18,6 +19,7 @@ export const getPlayerName = cs(
 )
 
 export const getPlayer = player;
+export const getBot = bot;
 export const getPlayerBoard = playerBoard;
 export const getPlayerShips = playerShips;
 export const getBotBoard = botBoard;
