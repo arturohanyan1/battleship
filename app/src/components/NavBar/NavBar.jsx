@@ -8,7 +8,7 @@ const NAVITEMS = [
   { id: 1, path: '/', title: 'home' },
   { id: 2, path: '/main', title: 'main page' },
   // { id: 3, path: '/user/:id', title: 'userpage' },
-  { id: 5, path: '/map', title: 'map' },
+  // { id: 5, path: '/map', title: 'map' },
   // { id: 6, path: '/tabs', title: 'tabs' },
   // { id: 7, path: '/inputs', title: 'inputs' },
   // { id: 8, path: '/social', title: 'social' },

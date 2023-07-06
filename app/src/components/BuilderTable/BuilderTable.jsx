@@ -1,6 +1,8 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 import "./BuilderTable.scss";
+import BoardSideCoords from "../commons/BoardSideCoords/BoardSideCoords";
+import { BOARD_LETTERS, BOARD_NUMBERS } from "../../constants/constants";
 
 const BuilderTable = ({
   board,
@@ -37,6 +39,8 @@ const BuilderTable = ({
 
   return (
     <div className="board-builder-table">
+      <div className='board-letters'><BoardSideCoords info={BOARD_LETTERS} horizontal builder /></div>
+      <div className='board-numbers'><BoardSideCoords info={BOARD_NUMBERS} vertical builder /></div>
       <table>
         <tbody>
           {board.map((row, x) => (
