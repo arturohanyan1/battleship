@@ -71,6 +71,19 @@ export const bot = (state = initialBot, action) => {
   }
 }
 
+const initialPlayerSavedBoard = []
+
+export const playerSavedBoard = (state = initialPlayerSavedBoard, action) => {
+  switch (action.type) {
+    case actionTypes.SET_PLAYER_SAVED_BOARD:
+      return action.payload;
+    case actionTypes.DELETE_PLAYER_SAVED_BOARD:
+      return [...initialPlayerSavedBoard];
+    default:
+      return state
+  }
+}
+
 const initialPlayerBoard = []
 
 export const playerBoard = (state = initialPlayerBoard, action) => {
@@ -81,6 +94,19 @@ export const playerBoard = (state = initialPlayerBoard, action) => {
       return [...state];
     case actionTypes.DELETE_PLAYER_BOARD:
       return [...initialPlayerBoard];
+    default:
+      return state
+  }
+}
+
+const initialPlayerSavedShips = []
+
+export const playerSavedShips = (state = initialPlayerSavedShips, action) => {
+  switch (action.type) {
+    case actionTypes.SET_PLAYER_SAVED_SHIPS:
+      return action.payload;
+    case actionTypes.DELETE_PLAYER_SAVED_SHIPS:
+      return [...initialPlayerSavedShips];
     default:
       return state
   }
