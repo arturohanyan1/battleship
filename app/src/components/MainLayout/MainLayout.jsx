@@ -9,6 +9,8 @@ import Game from "../Game/Game";
 import NavBar from "../NavBar/NavBar";
 import musicSound1 from "../../assets/sounds/game/music1.mp3";
 import useSound from "use-sound";
+import RandomBoardBuilder from "../RandomBoardBuilder/RandomBoardBuilder";
+import config from "../../configs/config";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -17,8 +19,8 @@ const MainLayout = () => {
   const player = useSelector(getPlayer);
   const music = useSelector(getMusic);
 
-  const [playMusic1, {stop}] = useSound(musicSound1, { volume: 0.2 });
-  
+  const [playMusic1, { stop }] = useSound(musicSound1, { volume: 0.2 });
+
   useEffect(() => {
     music ? playMusic1() : stop();
   }, [music]);
@@ -42,7 +44,7 @@ const MainLayout = () => {
         playerBoard.length ? (
           <Game />
         ) : (
-          <BoardBuilder />
+          config?.allowPlayerBuildBoard ? <BoardBuilder /> : <RandomBoardBuilder />
         )
       ) : null}
     </div>

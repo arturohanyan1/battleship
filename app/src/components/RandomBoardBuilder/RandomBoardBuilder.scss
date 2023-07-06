@@ -1,0 +1,56 @@
+@import "../../styles/constants.scss";
+
+.board-builder {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 40px 0px 0px;
+  gap: 100px;
+}
+
+.builder-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.board-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.board-table-wrapper {
+  position: relative;
+}
+
+.buttons {
+  width: 300px;
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  button {
+    margin-right: 50px;
+    background: #1b1d24;
+    border-radius: 8px;
+    border: 1px solid #313341;
+    padding: 8px 12px;
+    color: #fff;
+    white-space: nowrap;
+    text-transform: capitalize;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
