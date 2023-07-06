@@ -2,6 +2,26 @@
 @import "../../styles/constants.scss";
 
 .board-builder-table {
+  max-height: $builder-table-col * 10 + 100px;
+  max-width: $builder-table-col * 10 + 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: $builder-table-col;
+
+  .board-letters {
+    position: absolute;
+    top: 0px;
+    left: $builder-table-col + 1;
+  }
+
+  .board-numbers {
+    position: absolute;
+    top: $builder-table-col + 1;
+    left: 0px;
+  }
+
   table {
     border: 1px solid $builder-table-color;
     // background-image: url('../../../public/images/board/sea.jpg');
@@ -15,7 +35,7 @@
   td {
     border: 1px solid $builder-table-color;
 
-    & > div {
+    &>div {
       height: $builder-table-col;
       width: $builder-table-col;
       display: flex;
@@ -31,6 +51,7 @@
     }
 
     .disabled {
+
       // background-color: #187204;
       &::after {
         content: "";
@@ -60,41 +81,33 @@
     &.dir-x {
       &.length-1 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col,
-            $builder-table-col
-          );
+            $builder-table-col );
         }
       }
 
       &.length-2 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col,
-            $builder-table-col * 2
-          );
+            $builder-table-col * 2);
         }
       }
 
       &.length-3 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col,
-            $builder-table-col * 3
-          );
+            $builder-table-col * 3);
         }
       }
 
       &.length-4 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col,
-            $builder-table-col * 4
-          );
+            $builder-table-col * 4);
         }
       }
     }
@@ -102,41 +115,33 @@
     &.dir-y {
       &.length-1 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col,
-            $builder-table-col
-          );
+            $builder-table-col );
         }
       }
 
       &.length-2 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col * 2,
-            $builder-table-col
-          );
+            $builder-table-col );
         }
       }
 
       &.length-3 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col * 3,
-            $builder-table-col
-          );
+            $builder-table-col );
         }
       }
 
       &.length-4 {
         &::after {
-          @include shipShadow(
-            rgb(22, 222, 22),
+          @include shipShadow(rgb(22, 222, 22),
             $builder-table-col * 4,
-            $builder-table-col
-          );
+            $builder-table-col );
         }
       }
     }
@@ -152,6 +157,7 @@
   @include svg-color($builder-ship-color);
 
   &.dir-x {
+
     &.ship-1-1,
     &.ship-1-2,
     &.ship-1-3,
@@ -176,6 +182,7 @@
   }
 
   &.dir-y {
+
     &.ship-1-1,
     &.ship-1-2,
     &.ship-1-3,
