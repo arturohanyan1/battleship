@@ -8,13 +8,11 @@ import BuilderTable from "../BuilderTable/BuilderTable";
 import BuilderShips from "../BuilderShips/BuilderShips";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
-import { setPlayerBoard } from "../../store/actionCreators/playerBoard";
+import { setPlayerBoard, setPlayerSavedBoard } from "../../store/actionCreators/playerBoard";
 import { setBotBoard } from "../../store/actionCreators/botBoard";
 import { setBotShips } from "../../store/actionCreators/botShips";
-import { setPlayersShips } from "../../store/actionCreators/playerShips";
-import { AVATARS, FLAGS, NO_AVAILABLE_PLACE_MESSAGE } from "../../constants/constants";
-import { setBotAvatar, setBotFlag } from "../../store/actionCreators/bot";
-import getRandomItem from "../../helpers/getRandomItem";
+import { setPlayerSavedShips, setPlayersShips } from "../../store/actionCreators/playerShips";
+import { NO_AVAILABLE_PLACE_MESSAGE } from "../../constants/constants";
 
 const BoardBuilder = () => {
   const dispatch = useDispatch();
@@ -108,11 +106,11 @@ const BoardBuilder = () => {
   const savePlayerBoard = (board) => {
     dispatch(setPlayerBoard(JSON.parse(JSON.stringify(board))));
     dispatch(setPlayersShips(JSON.parse(JSON.stringify(playerShips))));
+    dispatch(setPlayerSavedBoard(JSON.parse(JSON.stringify(board))));
+    dispatch(setPlayerSavedShips(JSON.parse(JSON.stringify(playerShips))));
     const generatedBotBoard = randomBoard();
     dispatch(setBotBoard(JSON.parse(JSON.stringify(generatedBotBoard.board))));
     dispatch(setBotShips(JSON.parse(JSON.stringify(generatedBotBoard.ships))));
-    // dispatch(setBotAvatar(getRandomItem(AVATARS)));
-    // dispatch(setBotFlag(getRandomItem(FLAGS)));
   };
 
   return (
