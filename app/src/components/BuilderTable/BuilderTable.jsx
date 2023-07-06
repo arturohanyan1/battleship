@@ -3,6 +3,7 @@ import { ReactSVG } from "react-svg";
 import "./BuilderTable.scss";
 import BoardSideCoords from "../commons/BoardSideCoords/BoardSideCoords";
 import { BOARD_LETTERS, BOARD_NUMBERS } from "../../constants/constants";
+import setBoardTableClasses from "../../helpers/classNames/setBoardTableClasses";
 
 const BuilderTable = ({
   board,
@@ -14,28 +15,6 @@ const BuilderTable = ({
   selectedShip,
   hoverCoordinates,
 }) => {
-  const setClasses = (item) => {
-    switch (item.body) {
-      case "+":
-        return "disabled";
-      case "1-1":
-      case "1-2":
-      case "1-3":
-      case "1-4":
-        return "one";
-      case "2-1":
-      case "2-2":
-      case "2-3":
-        return "two";
-      case "3-1":
-      case "3-2":
-        return "three";
-      case "4-1":
-        return "four";
-      default:
-        break;
-    }
-  };
 
   return (
     <div className="board-builder-table">
@@ -48,7 +27,7 @@ const BuilderTable = ({
               {row.map((col, y) => (
                 <td key={col.id}>
                   <div
-                    className={`${setClasses(col)} ${col.dir}`}
+                    className={`${setBoardTableClasses(col)} ${col.dir}`}
                     onMouseOver={() => setHoverCoordinates({ x, y })}
                     onMouseOut={() => setHoverCoordinates(null)}
                     onClick={() => onClickHandler(x, y)}
