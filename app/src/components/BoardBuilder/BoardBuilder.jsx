@@ -147,14 +147,14 @@ const BoardBuilder = () => {
           </div>
         </div>
       </div>
-      <div className="buttons">
+      <div className="board_buttons">
         <button onClick={randomBoardBuilder}>random board</button>
         <button onClick={resetBoard}>manually</button>
         {!!Object.keys(prevSelectedShip).length && (
-          <button onClick={cancelHandler}>cancel</button>
+          <button className="board_button" onClick={cancelHandler}>cancel</button>
         )}
         {!ships.length && (
-          <button onClick={() => savePlayerBoard(board)}>ready</button>
+          <button className="board_button" onClick={() => savePlayerBoard(board)}>ready</button>
         )}
       </div>
     </div>

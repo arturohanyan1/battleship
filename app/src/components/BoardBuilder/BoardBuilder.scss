@@ -53,7 +53,7 @@
   align-items: center;
 }
 
-.buttons {
+.board_buttons {
   width: 300px;
   display: flex;
   // flex-direction: column;
@@ -61,7 +61,7 @@
   align-items: center;
   margin-bottom: 20px;
 
-  button {
+  .board_button {
     margin-right: 50px;
     background: #1b1d24;
     border-radius: 8px;

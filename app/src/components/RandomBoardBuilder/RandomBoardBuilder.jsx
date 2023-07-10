@@ -9,6 +9,7 @@ import { setBotBoard } from '../../store/actionCreators/botBoard';
 import { setBotShips } from '../../store/actionCreators/botShips';
 import './RandomBoardBuilder.scss';
 import { getPlayerSavedBoard, getPlayerSavedShips } from '../../store/selectors';
+import { ReactSVG } from 'react-svg';
 
 const RandomBoardBuilder = () => {
 
@@ -50,18 +51,22 @@ const RandomBoardBuilder = () => {
   }, [savedPlayerBoard, savedPlayerShips])
 
   return (
-    <div className="board-builder">
-      <div className="builder-section">
-        <div className="board-section">
-          <div className="board-table-wrapper">
+    <div className="random_board-builder">
+      <div className="random_board-builder-section">
+        <div className="random_board-section">
+          <div className="random_board-table-wrapper">
             <RandomBoardTable board={board} />
           </div>
         </div>
       </div>
-      <div className="buttons">
-        <button onClick={randomBoardBuilder}>random board</button>
+      <div className="random_board-buttons">
+        <button className="random_board-button" onClick={randomBoardBuilder}>
+          <ReactSVG src="./images/icons/refresh.svg" className="button_icon" />
+        </button>
         {Boolean(playerShips.length && board.length) && (
-          <button onClick={() => savePlayerBoard(board)}>ready</button>
+          <button className="random_board-button" onClick={() => savePlayerBoard(board)}>
+            <ReactSVG src="./images/icons/play.svg" className="button_icon" />
+          </button>
         )}
       </div>
     </div>
