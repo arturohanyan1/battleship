@@ -1,6 +1,7 @@
 @import "../../styles/constants.scss";
+@import "../../styles/mixins.scss";
 
-.board-builder {
+.random_board-builder {
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -8,10 +9,9 @@
   align-items: center;
   position: relative;
   padding: 40px 0px 0px;
-  gap: 100px;
 }
 
-.builder-section {
+.random_board-builder-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,38 +19,54 @@
   gap: 50px;
 }
 
-.board-section {
+.random_board-section {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.board-table-wrapper {
+.random_board-table-wrapper {
   position: relative;
 }
 
-.buttons {
+.random_board-buttons {
   width: 300px;
   display: flex;
-  // flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
 
   button {
-    margin-right: 50px;
-    background: #1b1d24;
-    border-radius: 8px;
-    border: 1px solid #313341;
-    padding: 8px 12px;
-    color: #fff;
-    white-space: nowrap;
-    text-transform: capitalize;
+    border: none;
+    border-radius: 2px;
+    border: 2px solid #f3e116;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
     cursor: pointer;
+    background: transparent;
 
-    &:last-child {
-      margin-right: 0px;
+    .button_icon {
+      @include svg-color(#f3e116);
+      @include svg-size(30px, 30px);
+
+      &.spin {
+        animation: spin-the-thing 0.3s infinite;
+
+        @keyframes spin-the-thing {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+
     }
   }
 }
