@@ -2,19 +2,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openDialog } from "../../store/actionCreators/dialodManager";
 import { setPlayer } from "../../store/actionCreators/player";
-import { getMusic, getPlayer, getPlayerBoard } from "../../store/selectors";
-import BoardBuilder from "../BoardBuilder/BoardBuilder";
+import { getMusic, getPlayer } from "../../store/selectors";
 import Dialogs from "../Dialogs";
-import Game from "../Game/Game";
 import NavBar from "../NavBar/NavBar";
 import musicSound1 from "../../assets/sounds/game/music1.mp3";
 import useSound from "use-sound";
-import config from "../../configs/config";
+import Routing from "../Routing/Routing";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
 
-  const playerBoard = useSelector(getPlayerBoard);
   const player = useSelector(getPlayer);
   const music = useSelector(getMusic);
 
@@ -34,21 +31,12 @@ const MainLayout = () => {
         dispatch(openDialog("UserProfileDialog"));
       }
     }
-    if (!playerBoard.length) {
-      dispatch(openDialog("RandomBoardBuilderDialog"));
-    }
   }, [player]);
   return (
     <div>
       <NavBar />
       <Dialogs />
-      {player.playerName ? (
-        playerBoard.length ? (
-          <Game />
-        ) : config?.allowPlayerBuildBoard ? (
-          <BoardBuilder />
-        ) : null
-      ) : null}
+      <Routing />
     </div>
   );
 };
