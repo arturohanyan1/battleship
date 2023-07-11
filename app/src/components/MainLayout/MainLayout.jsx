@@ -9,7 +9,6 @@ import Game from "../Game/Game";
 import NavBar from "../NavBar/NavBar";
 import musicSound1 from "../../assets/sounds/game/music1.mp3";
 import useSound from "use-sound";
-import RandomBoardBuilder from "../RandomBoardBuilder/RandomBoardBuilder";
 import config from "../../configs/config";
 
 const MainLayout = () => {
@@ -35,6 +34,9 @@ const MainLayout = () => {
         dispatch(openDialog("UserProfileDialog"));
       }
     }
+    if (!playerBoard.length) {
+      dispatch(openDialog("RandomBoardBuilderDialog"));
+    }
   }, [player]);
   return (
     <div>
@@ -43,9 +45,9 @@ const MainLayout = () => {
       {player.playerName ? (
         playerBoard.length ? (
           <Game />
-        ) : (
-          config?.allowPlayerBuildBoard ? <BoardBuilder /> : <RandomBoardBuilder />
-        )
+        ) : config?.allowPlayerBuildBoard ? (
+          <BoardBuilder />
+        ) : null
       ) : null}
     </div>
   );

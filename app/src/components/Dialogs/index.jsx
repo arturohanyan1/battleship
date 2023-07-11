@@ -1,13 +1,13 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { getDialogs } from '../../store/selectors';
-import AvatarsDialog from './AvatarsDialog/AvatarsDialog';
-import FlagsDialog from './FlagsDialog/FlagsDialog';
-import SettingsDialog from './SettingsDialog/SettingsDialog';
-import UserProfileDialog from './UserProfileDialog/UserProfileDialog';
+import React from "react";
+import { useSelector } from "react-redux";
+import { getDialogs } from "../../store/selectors";
+import AvatarsDialog from "./AvatarsDialog/AvatarsDialog";
+import FlagsDialog from "./FlagsDialog/FlagsDialog";
+import SettingsDialog from "./SettingsDialog/SettingsDialog";
+import UserProfileDialog from "./UserProfileDialog/UserProfileDialog";
+import RandomBoardBuilderDialog from "./RandomBoardBuilderDialog/RandomBoardBuilderDialog";
 
 const Dialogs = () => {
-
   const dialogs = useSelector(getDialogs);
 
   return (
@@ -17,8 +17,9 @@ const Dialogs = () => {
       {dialogs?.AvatarsDialog && <AvatarsDialog />}
       {dialogs?.FlagsDialog && <FlagsDialog />}
       {dialogs?.SettingsDialog && <SettingsDialog />}
+      {dialogs?.RandomBoardBuilderDialog && <RandomBoardBuilderDialog />}
     </>
-  )
-}
+  );
+};
 
-export default Dialogs
+export default Dialogs;

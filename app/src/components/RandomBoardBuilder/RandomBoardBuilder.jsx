@@ -1,26 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import RandomBoardTable from '../RandomBoardTable/RandomBoardTable'
-import EMPTY_BOARD from '../../constants/board';
-import { useDispatch, useSelector } from 'react-redux';
-import { setPlayerBoard, setPlayerSavedBoard } from '../../store/actionCreators/playerBoard';
-import { setPlayerSavedShips, setPlayersShips } from '../../store/actionCreators/playerShips';
-import randomBoard from '../../helpers/generateBoard/generateRandomBoard';
-import { setBotBoard } from '../../store/actionCreators/botBoard';
-import { setBotShips } from '../../store/actionCreators/botShips';
-import './RandomBoardBuilder.scss';
-import { getPlayerSavedBoard, getPlayerSavedShips } from '../../store/selectors';
-import { ReactSVG } from 'react-svg';
+import React, { useEffect, useState } from "react";
+import RandomBoardTable from "../RandomBoardTable/RandomBoardTable";
+import EMPTY_BOARD from "../../constants/board";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setPlayerBoard,
+  setPlayerSavedBoard,
+} from "../../store/actionCreators/playerBoard";
+import {
+  setPlayerSavedShips,
+  setPlayersShips,
+} from "../../store/actionCreators/playerShips";
+import randomBoard from "../../helpers/generateBoard/generateRandomBoard";
+import { setBotBoard } from "../../store/actionCreators/botBoard";
+import { setBotShips } from "../../store/actionCreators/botShips";
+import "./RandomBoardBuilder.scss";
+import {
+  getPlayerSavedBoard,
+  getPlayerSavedShips,
+} from "../../store/selectors";
+import { ReactSVG } from "react-svg";
+import { closeDialog } from "../../store/actionCreators/dialodManager";
+import parseObj from "../../helpers/parseObj";
 
 const RandomBoardBuilder = () => {
-
   const dispatch = useDispatch();
 
   //Selectors
-  const savedPlayerBoard = useSelector(getPlayerSavedBoard)
-  const savedPlayerShips = useSelector(getPlayerSavedShips)
+  const savedPlayerBoard = useSelector(getPlayerSavedBoard);
+  const savedPlayerShips = useSelector(getPlayerSavedShips);
 
   // States
-  const [board, setBoard] = useState(JSON.parse(JSON.stringify(EMPTY_BOARD)));
+  const [board, setBoard] = useState(parseObj(EMPTY_BOARD));
   const [playerShips, setPlayerShips] = useState([]);
 
   //Actions
@@ -31,13 +41,14 @@ const RandomBoardBuilder = () => {
   };
 
   const savePlayerBoard = (board) => {
-    dispatch(setPlayerBoard(JSON.parse(JSON.stringify(board))));
-    dispatch(setPlayersShips(JSON.parse(JSON.stringify(playerShips))));
-    dispatch(setPlayerSavedBoard(JSON.parse(JSON.stringify(board))));
-    dispatch(setPlayerSavedShips(JSON.parse(JSON.stringify(playerShips))));
+    dispatch(setPlayerBoard(parseObj(board)));
+    dispatch(setPlayersShips(parseObj(playerShips)));
+    dispatch(setPlayerSavedBoard(parseObj(board)));
+    dispatch(setPlayerSavedShips(parseObj(playerShips)));
     const generatedBotBoard = randomBoard();
-    dispatch(setBotBoard(JSON.parse(JSON.stringify(generatedBotBoard.board))));
-    dispatch(setBotShips(JSON.parse(JSON.stringify(generatedBotBoard.ships))));
+    dispatch(setBotBoard(parseObj(generatedBotBoard.board)));
+    dispatch(setBotShips(parseObj(generatedBotBoard.ships)));
+    dispatch(closeDialog("RandomBoardBuilderDialog"));
   };
 
   //Effects
@@ -46,9 +57,9 @@ const RandomBoardBuilder = () => {
       setBoard(savedPlayerBoard);
       setPlayerShips(savedPlayerShips);
     } else {
-      randomBoardBuilder()
+      randomBoardBuilder();
     }
-  }, [savedPlayerBoard, savedPlayerShips])
+  }, [savedPlayerBoard, savedPlayerShips]);
 
   return (
     <div className="random_board-builder">
@@ -64,13 +75,16 @@ const RandomBoardBuilder = () => {
           <ReactSVG src="./images/icons/refresh.svg" className="button_icon" />
         </button>
         {Boolean(playerShips.length && board.length) && (
-          <button className="random_board-button" onClick={() => savePlayerBoard(board)}>
+          <button
+            className="random_board-button"
+            onClick={() => savePlayerBoard(board)}
+          >
             <ReactSVG src="./images/icons/play.svg" className="button_icon" />
           </button>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RandomBoardBuilder
+export default RandomBoardBuilder;
