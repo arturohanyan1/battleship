@@ -23,6 +23,7 @@ import { ReactSVG } from "react-svg";
 import { closeDialog } from "../../store/actionCreators/dialodManager";
 import parseObj from "../../helpers/parseObj";
 import { message } from "antd";
+import Button from "../commons/Button/Button";
 
 const RandomBoardBuilder = () => {
   const dispatch = useDispatch();
@@ -91,23 +92,11 @@ const RandomBoardBuilder = () => {
         </div>
       </div>
       <div className="random_board-buttons">
-        <button className="random_board-button" onClick={randomBoardBuilder}>
-          <ReactSVG src="./images/icons/refresh.svg" className="button_icon" />
-        </button>
+        <Button icon={'refresh'} onClick={randomBoardBuilder} />
         {Boolean(playerShips.length && board.length) && (
           <>
-            <button
-              className="random_board-button"
-              onClick={() => playGame(board, playerShips)}
-            >
-              <ReactSVG src="./images/icons/play.svg" className="button_icon" />
-            </button>
-            <button
-              className="random_board-button"
-              onClick={() => savePlayerBoard(board, playerShips)}
-            >
-              <ReactSVG src="./images/icons/save.svg" className="button_icon" />
-            </button>
+            <Button icon={'play'} onClick={() => playGame(board, playerShips)} />
+            <Button icon={'save'} onClick={() => savePlayerBoard(board, playerShips)} />
           </>
         )}
       </div>

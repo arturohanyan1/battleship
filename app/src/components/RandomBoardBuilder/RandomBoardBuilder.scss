@@ -38,35 +38,35 @@
   align-items: center;
   margin-bottom: 20px;
 
-  button {
-    border: none;
-    border-radius: 2px;
-    border: 2px solid #f3e116;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    background: transparent;
+  // button {
+  //   border: none;
+  //   border-radius: 2px;
+  //   border: 2px solid #f3e116;
+  //   padding: 10px;
+  //   font-size: 18px;
+  //   font-weight: 700;
+  //   text-transform: uppercase;
+  //   cursor: pointer;
+  //   background: transparent;
 
-    .button_icon {
-      @include svg-color(#f3e116);
-      @include svg-size(30px, 30px);
+  //   .button_icon {
+  //     @include svg-color(#f3e116);
+  //     @include svg-size(30px, 30px);
 
-      &.spin {
-        animation: spin-the-thing 0.3s infinite;
+  //     &.spin {
+  //       animation: spin-the-thing 0.3s infinite;
 
-        @keyframes spin-the-thing {
-          from {
-            transform: rotate(0deg);
-          }
+  //       @keyframes spin-the-thing {
+  //         from {
+  //           transform: rotate(0deg);
+  //         }
 
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      }
+  //         to {
+  //           transform: rotate(360deg);
+  //         }
+  //       }
+  //     }
 
-    }
-  }
+  //   }
+  // }
 }

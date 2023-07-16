@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { openDialog } from "../../store/actionCreators/dialodManager";
+import Button from "../commons/Button/Button";
+import './MainPage.scss';
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -14,9 +16,11 @@ const MainPage = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => handlePlay("computer")}>play vs computer</button>
-      <button onClick={() => handlePlay("player")}>play vs friend</button>
+    <div className="main_page">
+      <div className="main_page--buttons">
+        <Button icon={'computer'} name={'play vs computer'} onClick={() => handlePlay("computer")} />
+        <Button icon={'friends'} name={'play vs friends'} onClick={() => handlePlay("player")} />
+      </div>
     </div>
   );
 };

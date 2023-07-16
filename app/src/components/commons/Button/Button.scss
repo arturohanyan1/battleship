@@ -1,0 +1,44 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/constants.scss';
+
+.button {
+  border: none;
+  border-radius: 2px;
+  border: 2px solid #f3e116;
+  padding: 0px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+
+  .button_name {
+    color: #f3e116;
+  }
+
+  .button_icon {
+    @include svg-color(#f3e116);
+    @include svg-size(20px, 20px);
+
+    &.spin {
+      animation: spin-the-thing 0.3s infinite;
+
+      @keyframes spin-the-thing {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+  }
+}
