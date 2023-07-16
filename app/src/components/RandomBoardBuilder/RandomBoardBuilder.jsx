@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 import RandomBoardTable from "../RandomBoardTable/RandomBoardTable";
 import EMPTY_BOARD from "../../constants/board";
-import { useDispatch, useSelector } from "react-redux";
 import {
   setPlayerBoard,
   setPlayerSavedBoard,
@@ -21,9 +22,11 @@ import {
 import { ReactSVG } from "react-svg";
 import { closeDialog } from "../../store/actionCreators/dialodManager";
 import parseObj from "../../helpers/parseObj";
+import { message } from "antd";
 
 const RandomBoardBuilder = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //Selectors
   const savedPlayerBoard = useSelector(getPlayerSavedBoard);
@@ -40,15 +43,32 @@ const RandomBoardBuilder = () => {
     setPlayerShips(generatedRandomBoard.ships);
   };
 
-  const savePlayerBoard = (board) => {
-    dispatch(setPlayerBoard(parseObj(board)));
-    dispatch(setPlayersShips(parseObj(playerShips)));
-    dispatch(setPlayerSavedBoard(parseObj(board)));
+  const savePlayerBoard = (playerBoard, playerShips) => {
+    dispatch(setPlayerSavedBoard(parseObj(playerBoard)));
     dispatch(setPlayerSavedShips(parseObj(playerShips)));
+    message.info('Saved');
+  }
+
+  const setPlayerBoardHandler = (playerBoard, playerShips) => {
+    dispatch(setPlayerBoard(parseObj(playerBoard)));
+    dispatch(setPlayersShips(parseObj(playerShips)));
+  }
+
+  const setBotBoardHandler = () => {
     const generatedBotBoard = randomBoard();
     dispatch(setBotBoard(parseObj(generatedBotBoard.board)));
     dispatch(setBotShips(parseObj(generatedBotBoard.ships)));
+  }
+
+  const playGame = (board, ships) => {
+    setPlayerBoardHandler(board, ships);
+    setBotBoardHandler();
+    // Must be checked
+    if (!savedPlayerBoard.length && !savedPlayerShips.length) {
+      savePlayerBoard(board, ships);
+    }
     dispatch(closeDialog("RandomBoardBuilderDialog"));
+    navigate('/game');
   };
 
   //Effects
@@ -75,12 +95,20 @@ const RandomBoardBuilder = () => {
           <ReactSVG src="./images/icons/refresh.svg" className="button_icon" />
         </button>
         {Boolean(playerShips.length && board.length) && (
-          <button
-            className="random_board-button"
-            onClick={() => savePlayerBoard(board)}
-          >
-            <ReactSVG src="./images/icons/play.svg" className="button_icon" />
-          </button>
+          <>
+            <button
+              className="random_board-button"
+              onClick={() => playGame(board, playerShips)}
+            >
+              <ReactSVG src="./images/icons/play.svg" className="button_icon" />
+            </button>
+            <button
+              className="random_board-button"
+              onClick={() => savePlayerBoard(board, playerShips)}
+            >
+              <ReactSVG src="./images/icons/save.svg" className="button_icon" />
+            </button>
+          </>
         )}
       </div>
     </div>
