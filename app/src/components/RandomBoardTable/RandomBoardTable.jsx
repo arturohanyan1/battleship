@@ -8,9 +8,9 @@ import './RandomBoardTable.scss'
 const RandomBoardTable = ({ board }) => {
 
   return (
-    <div className="board-builder-table">
-      <div className='board-letters'><BoardSideCoords info={BOARD_LETTERS} horizontal builder /></div>
-      <div className='board-numbers'><BoardSideCoords info={BOARD_NUMBERS} vertical builder /></div>
+    <div className="random_board-builder-table">
+      <div className='random_board-letters'><BoardSideCoords info={BOARD_LETTERS} horizontal builder /></div>
+      <div className='random_board-numbers'><BoardSideCoords info={BOARD_NUMBERS} vertical builder /></div>
       <table>
         <tbody>
           {board.map((row, x) => (
