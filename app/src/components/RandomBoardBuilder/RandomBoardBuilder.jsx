@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import RandomBoardTable from "../RandomBoardTable/RandomBoardTable";
 import EMPTY_BOARD from "../../constants/board";
@@ -19,7 +19,6 @@ import {
   getPlayerSavedBoard,
   getPlayerSavedShips,
 } from "../../store/selectors";
-import { ReactSVG } from "react-svg";
 import { closeDialog } from "../../store/actionCreators/dialodManager";
 import parseObj from "../../helpers/parseObj";
 import { message } from "antd";
@@ -47,19 +46,19 @@ const RandomBoardBuilder = () => {
   const savePlayerBoard = (playerBoard, playerShips) => {
     dispatch(setPlayerSavedBoard(parseObj(playerBoard)));
     dispatch(setPlayerSavedShips(parseObj(playerShips)));
-    message.info('Saved');
-  }
+    message.info("Saved");
+  };
 
   const setPlayerBoardHandler = (playerBoard, playerShips) => {
     dispatch(setPlayerBoard(parseObj(playerBoard)));
     dispatch(setPlayersShips(parseObj(playerShips)));
-  }
+  };
 
   const setBotBoardHandler = () => {
     const generatedBotBoard = randomBoard();
     dispatch(setBotBoard(parseObj(generatedBotBoard.board)));
     dispatch(setBotShips(parseObj(generatedBotBoard.ships)));
-  }
+  };
 
   const playGame = (board, ships) => {
     setPlayerBoardHandler(board, ships);
@@ -69,7 +68,7 @@ const RandomBoardBuilder = () => {
       savePlayerBoard(board, ships);
     }
     dispatch(closeDialog("RandomBoardBuilderDialog"));
-    navigate('/game');
+    navigate("/game");
   };
 
   //Effects
@@ -92,11 +91,17 @@ const RandomBoardBuilder = () => {
         </div>
       </div>
       <div className="random_board-buttons">
-        <Button icon={'refresh'} onClick={randomBoardBuilder} />
+        <Button icon={"refresh"} onClick={randomBoardBuilder} />
         {Boolean(playerShips.length && board.length) && (
           <>
-            <Button icon={'play'} onClick={() => playGame(board, playerShips)} />
-            <Button icon={'save'} onClick={() => savePlayerBoard(board, playerShips)} />
+            <Button
+              icon={"play"}
+              onClick={() => playGame(board, playerShips)}
+            />
+            <Button
+              icon={"save"}
+              onClick={() => savePlayerBoard(board, playerShips)}
+            />
           </>
         )}
       </div>

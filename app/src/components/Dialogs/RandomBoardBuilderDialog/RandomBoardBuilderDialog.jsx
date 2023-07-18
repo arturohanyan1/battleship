@@ -10,7 +10,6 @@ const RandomBoardBuilderDialog = () => {
       size="lg"
       title={"Set your board"}
       btnTitle="done"
-      // onSubmit={onSubmitHandler}
     >
       <div className="random_board__content">
         <RandomBoardBuilder />
