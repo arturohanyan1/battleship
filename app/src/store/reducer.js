@@ -29,6 +29,7 @@ export const player = (state = initialPlayer, action) => {
         ...state, lost: state.lost + 1
       }
     case actionTypes.RESET_PLAYER:
+    case actionTypes.LOG_OUT:
       return initialPlayer;
     default:
       return state
@@ -64,6 +65,7 @@ export const bot = (state = initialBot, action) => {
         ...state, lost: state.lost + 1
       }
     case actionTypes.RESET_BOT:
+    case actionTypes.LOG_OUT:
       return initialBot;
     default:
       return state
@@ -77,6 +79,7 @@ export const playerSavedBoard = (state = initialPlayerSavedBoard, action) => {
     case actionTypes.SET_PLAYER_SAVED_BOARD:
       return action.payload;
     case actionTypes.DELETE_PLAYER_SAVED_BOARD:
+    case actionTypes.LOG_OUT:
       return [...initialPlayerSavedBoard];
     default:
       return state
@@ -92,6 +95,7 @@ export const playerBoard = (state = initialPlayerBoard, action) => {
     case actionTypes.UPDATE_PLAYER_BOARD:
       return [...state];
     case actionTypes.DELETE_PLAYER_BOARD:
+    case actionTypes.LOG_OUT:
       return [...initialPlayerBoard];
     default:
       return state
@@ -105,6 +109,7 @@ export const playerSavedShips = (state = initialPlayerSavedShips, action) => {
     case actionTypes.SET_PLAYER_SAVED_SHIPS:
       return action.payload;
     case actionTypes.DELETE_PLAYER_SAVED_SHIPS:
+    case actionTypes.LOG_OUT:
       return [...initialPlayerSavedShips];
     default:
       return state
@@ -120,6 +125,7 @@ export const playerShips = (state = initialPlayerShips, action) => {
     case actionTypes.UPDATE_PLAYER_SHIPS:
       return [...state];
     case actionTypes.DELETE_PLAYER_SHIPS:
+    case actionTypes.LOG_OUT:
       return [...initialPlayerShips];
     default:
       return state
@@ -135,6 +141,7 @@ export const botBoard = (state = initialBotBoard, action) => {
     case actionTypes.UPDATE_BOT_BOARD:
       return [...state];
     case actionTypes.DELETE_BOT_BOARD:
+    case actionTypes.LOG_OUT:
       return [...initialBotBoard];
     default:
       return state
@@ -150,6 +157,7 @@ export const botShips = (state = initialBotShips, action) => {
     case actionTypes.UPDATE_BOT_SHIPS:
       return [...state];
     case actionTypes.DELETE_BOT_SHIPS:
+    case actionTypes.LOG_OUT:
       return [...initialBotShips];
     default:
       return state
@@ -163,6 +171,7 @@ export const dialogs = (state = dialogsInitial, action) => {
     case actionTypes.OPEN_DIALOG:
       return { ...state, [action.payload.dialogType]: action.payload }
     case actionTypes.CLOSE_DIALOG:
+    case actionTypes.LOG_OUT:
       return { ...state, [action.payload]: null }
     default:
       return state;
@@ -176,6 +185,7 @@ export const music = (state = musicInitial, action) => {
     case actionTypes.MUSIC_ON:
       return true;
     case actionTypes.MUSIC_OFF:
+    case actionTypes.LOG_OUT:
       return false;
     default:
       return state;
@@ -189,6 +199,7 @@ export const sound = (state = soundInitial, action) => {
     case actionTypes.SOUND_ON:
       return true;
     case actionTypes.SOUND_OFF:
+    case actionTypes.LOG_OUT:
       return false;
     default:
       return state;
@@ -201,6 +212,8 @@ export const level = (state = levelInitial, action) => {
   switch (action.type) {
     case actionTypes.SET_LEVEL:
       return action.payload;
+    case actionTypes.LOG_OUT:
+      return levelInitial
     default:
       return state;
   }
