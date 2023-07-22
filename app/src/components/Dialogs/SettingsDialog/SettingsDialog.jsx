@@ -7,8 +7,11 @@ import { setLevel, setMusicOff, setMusicOn, setSoundOff, setSoundOn } from '../.
 import { getLevel, getMusic, getSound } from '../../../store/selectors'
 import Modal from '../../commons/Modal'
 import './SettingsDialog.scss'
+import { useLocation } from 'react-router'
 
 const SettingsDialog = () => {
+
+  const { pathname } = useLocation();
 
   const dispatch = useDispatch();
   const music = useSelector(getMusic);
@@ -64,18 +67,20 @@ const SettingsDialog = () => {
             />
           </div>
         </div>
-        <div className='settings-item'>
-          <div className='settings-item__name'>level</div>
-          <div className='settings-item__value'>
-            <select className='settings-item__select' value={level} onChange={selectLevel}>
-              {LEVELS.map(el => (
-                <option className='settings-item__option' key={el.value} value={el.value}>
-                  {el.label}
-                </option>
-              ))}
-            </select>
+        {!pathname.includes('game') && (
+          <div className='settings-item'>
+            <div className='settings-item__name'>level</div>
+            <div className='settings-item__value'>
+              <select className='settings-item__select' value={level} onChange={selectLevel}>
+                {LEVELS.map(el => (
+                  <option className='settings-item__option' key={el.value} value={el.value}>
+                    {el.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
+        )}
         <div className='settings-item'>
           <div className='settings-item__name'>profile</div>
           <div className='settings-item__value' onClick={openUserProfileDialog}>

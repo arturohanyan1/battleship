@@ -5,7 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { closeDialog } from '../../../store/actionCreators/dialodManager';
 import './Modal.scss';
 
-const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Click', children, size }) => {
+const Modal = ({ dialogType, onSubmit, onSecondSubmit, closeIcon = true, title, btnTitle, secondBtnTitle, children, size }) => {
 
     const dispatch = useDispatch();
 
@@ -32,7 +32,8 @@ const Modal = ({ dialogType, onSubmit, closeIcon = true, title, btnTitle = 'Clic
                         {children}
                     </div>
                     <div className='modal-content__footer'>
-                        {Boolean(onSubmit) && <button className='submit-button' onClick={onSubmit}>{btnTitle}</button>}
+                        {Boolean(btnTitle) && <button className='submit-button' onClick={onSubmit}>{btnTitle ?? 'confirm'}</button>}
+                        {Boolean(secondBtnTitle) && <button className='submit-button' onClick={onSecondSubmit}>{secondBtnTitle ?? 'cancel'}</button>}
                     </div>
                 </div>
             </div>

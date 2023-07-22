@@ -38,7 +38,6 @@ export const player = (state = initialPlayer, action) => {
 const initialBot = { botName: 'bot', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
 
 export const bot = (state = initialBot, action) => {
-  console.log('action', action)
   switch (action.type) {
     case actionTypes.SET_BOT:
       return {
@@ -162,7 +161,7 @@ const dialogsInitial = {};
 export const dialogs = (state = dialogsInitial, action) => {
   switch (action.type) {
     case actionTypes.OPEN_DIALOG:
-      return { ...state, [action.payload]: action.payload }
+      return { ...state, [action.payload.dialogType]: action.payload }
     case actionTypes.CLOSE_DIALOG:
       return { ...state, [action.payload]: null }
     default:

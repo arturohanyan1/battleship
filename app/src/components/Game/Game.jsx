@@ -36,9 +36,12 @@ import {
   setBotlostCount,
   setBotWinCount,
 } from "../../store/actionCreators/bot";
+import { openDialog } from "../../store/actionCreators/dialodManager";
+import { useNavigate } from "react-router";
 
 const Game = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const [shot1] = useSound(shotSound1);
   const [boom1] = useSound(boomSound1);
@@ -95,6 +98,7 @@ const Game = () => {
     dispatch(deleteBotBoard());
     dispatch(deleteBotShips());
     dispatch(deletePlayerShips());
+    navigate('/')
   };
 
   const shotHandler = (x, y, isPlayerBoard, shipId) => {
@@ -139,6 +143,8 @@ const Game = () => {
       setPlayerShips(reduxPlayerShips);
       setBotBoard(reduxBotBoard);
       setBotShips(reduxBotShips);
+    } else {
+      navigate('/')
     }
   }, [reduxPlayerBoard, reduxPlayerShips, reduxBotBoard, reduxBotShips]);
 
@@ -148,6 +154,7 @@ const Game = () => {
       dispatch(setPlayerlostCount());
       setGameOver(true);
       messageApi.open(BOT_WIN_MESSAGE);
+      dispatch(openDialog('GameOverDialog', { winner: 'bot' }))
     }
   }, [playerCrashedShips]);
 
@@ -156,6 +163,7 @@ const Game = () => {
       dispatch(setPlayerWinCount());
       dispatch(setBotlostCount());
       setGameOver(true);
+      dispatch(openDialog('GameOverDialog', { winner: player.playerName }))
       messageApi.open(PLAYER_WIN_MESSAGE);
     }
   }, [botCrashedShips]);
@@ -207,11 +215,6 @@ const Game = () => {
       }
     }
   }, [playerTurn, playerBoard]);
-
-  // UnMount Effects
-  useEffect(() => {
-    return () => backtoLobby();
-  }, []);
 
   return (
     <div className="game_container">

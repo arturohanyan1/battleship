@@ -9,7 +9,6 @@ const RandomBoardBuilderDialog = () => {
       dialogType={"RandomBoardBuilderDialog"}
       size="lg"
       title={"Set your board"}
-      btnTitle="done"
     >
       <div className="random_board__content">
         <RandomBoardBuilder />

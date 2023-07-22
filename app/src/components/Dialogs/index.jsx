@@ -6,6 +6,7 @@ import FlagsDialog from "./FlagsDialog/FlagsDialog";
 import SettingsDialog from "./SettingsDialog/SettingsDialog";
 import UserProfileDialog from "./UserProfileDialog/UserProfileDialog";
 import RandomBoardBuilderDialog from "./RandomBoardBuilderDialog/RandomBoardBuilderDialog";
+import GameOverDialog from "./GameOverDialog/GameOverDialog";
 
 const Dialogs = () => {
   const dialogs = useSelector(getDialogs);
@@ -18,6 +19,7 @@ const Dialogs = () => {
       {dialogs?.FlagsDialog && <FlagsDialog />}
       {dialogs?.SettingsDialog && <SettingsDialog />}
       {dialogs?.RandomBoardBuilderDialog && <RandomBoardBuilderDialog />}
+      {dialogs?.GameOverDialog && <GameOverDialog data={dialogs.GameOverDialog.data} />}
     </>
   );
 };
