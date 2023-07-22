@@ -8,19 +8,22 @@ import Modal from '../../commons/Modal';
 import './FlagsDialog.scss';
 
 const FlagsDialog = () => {
+  // Hooks
   const diaspatch = useDispatch();
-  const player = useSelector(getPlayer)
+
+  // Selectors
+  const player = useSelector(getPlayer);
+
+  // States
   const [selectedFlag, setselectedFlag] = useState();
 
-  const selectAvatar = (flag) => {
-    setselectedFlag(flag)
-  }
-
+  // Actions
   const onSubmitHandler = () => {
     diaspatch(setPlayerFlag(selectedFlag))
     diaspatch(closeDialog('FlagsDialog'))
   }
 
+  // Effects
   useEffect(() => {
     setselectedFlag(player.flag)
   }, [player])
@@ -29,7 +32,7 @@ const FlagsDialog = () => {
     <Modal dialogType={'FlagsDialog'} size='md' title={'select flag'} btnTitle='done' onSubmit={onSubmitHandler}>
       <div className='flags-modal__content'>
         {FLAGS.map(el => (
-          <div key={el} onClick={() => selectAvatar(el)} className={`flag-img-wrapper ${selectedFlag === el ? 'selected' : 'active'}`}>
+          <div key={el} onClick={() => setselectedFlag(el)} className={`flag-img-wrapper ${selectedFlag === el ? 'selected' : 'active'}`}>
             <img src={`./images/flags/${el}.png`} alt="jpg" className='flag-img' />
           </div>
         ))}

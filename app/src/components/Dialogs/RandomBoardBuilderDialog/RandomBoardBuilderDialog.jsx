@@ -5,11 +5,7 @@ import "./RandomBoardBuilderDialog.scss";
 
 const RandomBoardBuilderDialog = () => {
   return (
-    <Modal
-      dialogType={"RandomBoardBuilderDialog"}
-      size="lg"
-      title={"Set your board"}
-    >
+    <Modal dialogType={"RandomBoardBuilderDialog"} size="lg" title={"Set your board"}>
       <div className="random_board__content">
         <RandomBoardBuilder />
       </div>

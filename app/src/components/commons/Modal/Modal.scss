@@ -1,113 +1,113 @@
 @import '../../../styles/mixins.scss';
 
 .modal-wrapper {
-    color: #000;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
+  color: #000;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 
 .modal-content {
-    border: 3px solid #3281bd;
-    background-color: #01317d;
+  border: 3px solid #3281bd;
+  background-color: #01317d;
+  min-height: 260px;
+  min-width: 500px;
+  z-index: 100;
+
+  &__header {
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000514;
+    width: 100%;
+    padding: 0px 10px;
+
+    .close-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0px;
+      height: 60px;
+      width: 60px;
+      cursor: pointer;
+      background: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include svg-color(#fff);
+      @include svg-size(25px, 25px)
+    }
+
+    .modal-title {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  &__body {
+    min-height: 200px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+
+    .submit-button {
+      border: none;
+      border-radius: 2px;
+      background: #f3e116;
+      padding: 10px 30px;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+
+  &.md {
     min-height: 260px;
-    min-width: 500px;
-    z-index: 100;
+    min-width: 300px;
 
-    &__header {
-        height: 60px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #000514;
-        width: 100%;
-        padding: 0px 10px;
+    .modal-content__header {
+      height: 40px;
+      padding: 0px 40px;
 
-        .close-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 0px;
-            height: 60px;
-            width: 60px;
-            cursor: pointer;
-            background: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            @include svg-color(#fff);
-            @include svg-size(25px, 25px)
-        }
+      .close-button {
+        height: 40px;
+        width: 40px;
+        @include svg-size(20px, 20px)
+      }
 
-        .modal-title {
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 28px;
-            font-weight: bold;
-            text-align: center;
-        }
+      .modal-title {
+        font-size: 16px;
+      }
     }
 
-    &__body {
-        min-height: 200px;
+    .modal-content__body {
+      min-height: 200px;
     }
 
-    &__footer {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 10px;
+    .modal-content__footer {
+      padding: 8px;
 
-        .submit-button {
-            border: none;
-            border-radius: 2px;
-            background: #f3e116;
-            padding: 10px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
+      .submit-button {
+        padding: 8px 25px;
+        font-size: 16px;
+      }
     }
-
-    &.md {
-        min-height: 260px;
-        min-width: 300px;
-
-        .modal-content__header {
-            height: 40px;
-            padding: 0px 40px;
-
-            .close-button {
-                height: 40px;
-                width: 40px;
-                @include svg-size(20px, 20px)
-            }
-
-            .modal-title {
-                font-size: 16px;
-            }
-        }
-
-        .modal-content__body {
-            min-height: 200px;
-        }
-
-        .modal-content__footer {
-            padding: 8px;
-
-            .submit-button {
-                padding: 8px 25px;
-                font-size: 16px;
-            }
-        }
-    }
+  }
 }

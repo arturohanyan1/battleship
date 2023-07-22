@@ -10,16 +10,18 @@ import useSound from "use-sound";
 import Routing from "../Routing/Routing";
 
 const MainLayout = () => {
+  // Hooks
+  const [playMusic1, { stop }] = useSound(musicSound1, { volume: 0.2, loop: true });
   const dispatch = useDispatch();
 
+  // Selectors
   const player = useSelector(getPlayer);
   const music = useSelector(getMusic);
 
-  const [playMusic1, { stop }] = useSound(musicSound1, { volume: 0.2, loop: true });
-
+  // Effects
   useEffect(() => {
     music ? playMusic1() : stop();
-  }, [music]);
+  }, [music, playMusic1, stop]);
 
   useEffect(() => {
     if (player.playerName) {
@@ -32,6 +34,7 @@ const MainLayout = () => {
       }
     }
   }, [player]);
+
   return (
     <div>
       <NavBar />

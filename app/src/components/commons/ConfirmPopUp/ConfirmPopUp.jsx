@@ -3,6 +3,7 @@ import React from 'react'
 import './ConfirmPopUp.scss'
 
 const ConfirmPopUp = ({ title, description, onConfirm, onCancel, okText, cancelText, children }) => {
+
   return (
     <Popconfirm
       title={title}

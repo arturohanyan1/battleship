@@ -8,19 +8,22 @@ import Modal from '../../commons/Modal';
 import './AvatarsDialog.scss';
 
 const AvatarsDialog = () => {
+  // Hooks
   const diaspatch = useDispatch();
-  const player = useSelector(getPlayer)
+
+  // Selectors
+  const player = useSelector(getPlayer);
+
+  // States
   const [selectedAvatar, setSelectedAvatar] = useState('');
 
-  const selectAvatar = (avatar) => {
-    setSelectedAvatar(avatar)
-  }
-
+  // Actions
   const onSubmitHandler = () => {
     diaspatch(setPlayerAvatar(selectedAvatar))
     diaspatch(closeDialog('AvatarsDialog'))
   }
 
+  // Effects
   useEffect(() => {
     setSelectedAvatar(player.avatar)
   }, [player])
@@ -29,7 +32,7 @@ const AvatarsDialog = () => {
     <Modal dialogType={'AvatarsDialog'} size='md' title={'select your profile picture'} btnTitle='done' onSubmit={onSubmitHandler}>
       <div className='avatars-modal__content'>
         {AVATARS.map(el => (
-          <div key={el} onClick={() => selectAvatar(el)} className={`avatar-img-wrapper ${selectedAvatar === el ? 'selected' : 'active'}`}>
+          <div key={el} onClick={() => setSelectedAvatar(el)} className={`avatar-img-wrapper ${selectedAvatar === el ? 'selected' : 'active'}`}>
             <img src={`./images/avatars/${el}.jpg`} alt="jpg" className='avatar-img' />
           </div>
         ))}

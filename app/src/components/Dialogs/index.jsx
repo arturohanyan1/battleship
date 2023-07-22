@@ -9,6 +9,7 @@ import RandomBoardBuilderDialog from "./RandomBoardBuilderDialog/RandomBoardBuil
 import GameOverDialog from "./GameOverDialog/GameOverDialog";
 
 const Dialogs = () => {
+  // Selectors
   const dialogs = useSelector(getDialogs);
 
   return (
