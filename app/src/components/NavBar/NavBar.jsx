@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import './NavBar.scss'
 import { getPlayerName } from '../../store/selectors';
 import { openDialog } from '../../store/actionCreators/dialodManager';
+import ConfirmPopUp from '../commons/ConfirmPopUp/ConfirmPopUp';
+import { logout } from '../../store/actionCreators/auth';
 
 const NAVITEMS = [
   // { id: 1, path: '/', title: 'home' },
@@ -29,6 +31,11 @@ const NavBar = () => {
     dispatch(openDialog('SettingsDialog'))
   }
 
+  const logOutHandler = () => {
+    localStorage.removeItem("player");
+    dispatch(logout())
+  }
+
   return (
     <>
       <nav className='nav-bar'>
@@ -44,6 +51,11 @@ const NavBar = () => {
           </div>
           <div className='nav-bar__user'>
             <span className='nav-bar__user--username' onClick={openUserProfileDialog}>{playerName}</span>
+          </div>
+          <div className='nav-bar__user'>
+            <ConfirmPopUp title={'Log out'} description={'Are you sure you want to exit?'} onConfirm={logOutHandler}>
+              <span className='nav-bar__user--username'>log out</span>
+            </ConfirmPopUp>
           </div>
         </div>
       </nav>

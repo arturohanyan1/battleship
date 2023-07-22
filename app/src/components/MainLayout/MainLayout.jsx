@@ -15,7 +15,7 @@ const MainLayout = () => {
   const player = useSelector(getPlayer);
   const music = useSelector(getMusic);
 
-  const [playMusic1, { stop, }] = useSound(musicSound1, { volume: 0.2, loop: true });
+  const [playMusic1, { stop }] = useSound(musicSound1, { volume: 0.2, loop: true });
 
   useEffect(() => {
     music ? playMusic1() : stop();
