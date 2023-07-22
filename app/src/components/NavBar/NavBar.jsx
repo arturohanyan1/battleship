@@ -5,8 +5,8 @@ import { getPlayerName } from '../../store/selectors';
 import { openDialog } from '../../store/actionCreators/dialodManager';
 
 const NAVITEMS = [
-  { id: 1, path: '/', title: 'home' },
-  { id: 2, path: '/main', title: 'main page' },
+  // { id: 1, path: '/', title: 'home' },
+  // { id: 2, path: '/main', title: 'main page' },
   // { id: 3, path: '/user/:id', title: 'userpage' },
   // { id: 5, path: '/map', title: 'map' },
   // { id: 6, path: '/tabs', title: 'tabs' },
