@@ -3,15 +3,18 @@ import { useDispatch } from "react-redux";
 import { openDialog } from "../../store/actionCreators/dialodManager";
 import Button from "../commons/Button/Button";
 import './MainPage.scss';
+import config from "../../configs/config";
+import { useNavigate } from "react-router";
 
 const MainPage = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const handlePlay = (mode) => {
     if (mode === "computer") {
-      dispatch(openDialog("RandomBoardBuilderDialog"));
+      config.allowPlayerBuildBoard ? navigate('/board-builder') : dispatch(openDialog("RandomBoardBuilderDialog"));
     } else if (mode === "player") {
-      alert("comming soon");
+      config.allowPlayerBuildBoard ? alert("comming soon") : alert("comming soon");
     }
   };
 
