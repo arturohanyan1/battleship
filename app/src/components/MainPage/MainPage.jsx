@@ -7,9 +7,11 @@ import config from "../../configs/config";
 import { useNavigate } from "react-router";
 
 const MainPage = () => {
+  // Hooks
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
+  // Actions
   const handlePlay = (mode) => {
     if (mode === "computer") {
       config.allowPlayerBuildBoard ? navigate('/board-builder') : dispatch(openDialog("RandomBoardBuilderDialog"));

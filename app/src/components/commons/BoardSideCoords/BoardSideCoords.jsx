@@ -6,6 +6,7 @@ const BoardSideCoords = ({ info, horizontal, vertical, game, builder }) => {
 
   if (!info) return null;
 
+  // Actions
   const boardSideCoordsClasses = classNames('coords-info-wrapper', {
     'horizontal': horizontal,
     'vertical': vertical,

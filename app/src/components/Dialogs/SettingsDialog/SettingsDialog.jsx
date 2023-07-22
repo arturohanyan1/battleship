@@ -11,13 +11,16 @@ import { useLocation } from 'react-router'
 
 const SettingsDialog = () => {
 
+  // Hooks
   const { pathname } = useLocation();
-
   const dispatch = useDispatch();
+
+  // Selectors
   const music = useSelector(getMusic);
   const sound = useSelector(getSound);
   const level = useSelector(getLevel);
 
+  // Actions
   const toggleMusic = () => {
     if (music) {
       dispatch(setMusicOff())

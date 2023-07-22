@@ -11,10 +11,11 @@ import { closeDialog, openDialog } from '../../../store/actionCreators/dialodMan
 
 const GameOverDialog = ({ data }) => {
 
+  // Hooks
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //Actions
+  // Actions
   const clearDatas = () => {
     dispatch(deletePlayerBoard());
     dispatch(deleteBotBoard());
