@@ -88,7 +88,7 @@
         0% {
           background-image: url('../../../public/images/gameAssets/boom.gif');
           background-size: cover;
-          z-index: 111;
+          z-index: 3;
         }
 
         100% {
@@ -114,7 +114,7 @@
         0% {
           background-image: url('../../../public/images/gameAssets/boom.gif');
           background-size: cover;
-          z-index: 111;
+          z-index: 3;
         }
 
         100% {
@@ -132,7 +132,7 @@
   position: relative;
 
   // &.targeted.container {
-    // background: rgba($color: #dcd4d4, $alpha: 0.3);
+  // background: rgba($color: #dcd4d4, $alpha: 0.3);
   // }
 
   .seted-ship {
@@ -200,7 +200,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 22;
+  z-index: 2;
   @include svg-size($game-table-shot-size, $game-table-shot-size);
 
   &.shoted-shot {

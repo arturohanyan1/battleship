@@ -43,8 +43,8 @@ const Game = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-  const [shot1] = useSound(shotSound1);
-  const [boom1] = useSound(boomSound1);
+  const [shot1] = useSound(shotSound1, { volume: 0.2 });
+  const [boom1] = useSound(boomSound1, { volume: 0.2 });
 
   const reduxPlayerBoard = useSelector(getPlayerBoard);
   const reduxBotBoard = useSelector(getBotBoard);
@@ -64,12 +64,6 @@ const Game = () => {
   const [playerCrashedShips, setPlayerCrashedShips] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [playerInjuredShipCoords, setPlayerInjuredShipCoords] = useState([]);
-  // const [playerShots, setPlayerShots] = useState(0);
-  // const [playerExactShots, setPlayerExactShots] = useState(0);
-  // const [playerPoints, setPlayerPoints] = useState(0);
-  // const [botShots, setBotShots] = useState(0);
-  // const [botExactShots, setBotExactShots] = useState(0);
-  // const [botPoints, setBotPoints] = useState(0);
 
   // Memo Datas
   const playerInfoData = useMemo(() => {
