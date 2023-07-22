@@ -1,8 +1,8 @@
 import types from '../actionTypes';
 
-export const openDialog = (dialogType) => ({
+export const openDialog = (dialogType, data = null) => ({
     type: types.OPEN_DIALOG,
-    payload: dialogType
+    payload: { dialogType, data: data }
 });
 
 export const closeDialog = (dialogType) => ({
