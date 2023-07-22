@@ -13,9 +13,11 @@ import { setBotBoard } from "../../store/actionCreators/botBoard";
 import { setBotShips } from "../../store/actionCreators/botShips";
 import { setPlayerSavedShips, setPlayersShips } from "../../store/actionCreators/playerShips";
 import { NO_AVAILABLE_PLACE_MESSAGE } from "../../constants/constants";
+import { useNavigate } from "react-router";
 
 const BoardBuilder = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const [board, setBoard] = useState(JSON.parse(JSON.stringify(EMPTY_BOARD)));
   const [prevBoard, setPrevBoard] = useState(JSON.parse(JSON.stringify(EMPTY_BOARD)));
@@ -111,6 +113,7 @@ const BoardBuilder = () => {
     const generatedBotBoard = randomBoard();
     dispatch(setBotBoard(JSON.parse(JSON.stringify(generatedBotBoard.board))));
     dispatch(setBotShips(JSON.parse(JSON.stringify(generatedBotBoard.ships))));
+    navigate("/game");
   };
 
   return (
