@@ -1,0 +1,64 @@
+@import '../../../styles/mixins.scss';
+
+.fleet-status-wrapper {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .fleet-status--title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f3e116;
+
+  }
+
+  .fleet-status {
+    max-width: 140px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .fleet-ship-item {
+    padding: 0px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    &.crashed {
+      .fleet-ship-square {
+        background-color: red;
+      }
+    }
+  }
+
+  .fleet-ship {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2px;
+    padding: 0px 2px;
+  }
+
+  .fleet-ship-square {
+    height: 16px;
+    width: 16px;
+    background-color: orange;
+    border: 1px solid gray;
+    border-radius: 2px;
+  }
+
+  .fleet-ship-status {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+}

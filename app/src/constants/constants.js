@@ -70,6 +70,13 @@ const FLAGS = [
 const BOARD_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const BOARD_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
+const FLEET_STATUS_SHIPS = [
+  { length: 1, count: 4 },
+  { length: 2, count: 3 },
+  { length: 3, count: 2 },
+  { length: 4, count: 1 },
+]
+
 export {
   LEVELS,
   LEVEL,
@@ -80,5 +87,6 @@ export {
   AVATARS,
   FLAGS,
   BOARD_NUMBERS,
-  BOARD_LETTERS
+  BOARD_LETTERS,
+  FLEET_STATUS_SHIPS
 };

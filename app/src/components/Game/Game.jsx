@@ -1,5 +1,5 @@
 import { message } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBot, getBotBoard, getBotShips, getLevel, getPlayer, getPlayerBoard, getPlayerShips, getSound } from "../../store/selectors";
 import GameBoard from "../GameBoard/GameBoard";
@@ -41,17 +41,6 @@ const Game = () => {
   const [playerCrashedShips, setPlayerCrashedShips] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [playerInjuredShipCoords, setPlayerInjuredShipCoords] = useState([]);
-
-  // Memo Datas
-  const playerInfoData = useMemo(() => {
-    return {
-      username: player.playerName, flag: player.flag, avatar: player.avatar, won: player.won, lost: player.lost
-    };
-  }, [player]);
-
-  const botInfoData = useMemo(() => {
-    return { username: bot.botName, flag: bot.flag, avatar: bot.avatar, won: bot.won, lost: bot.lost };
-  }, [bot]);
 
   // Actions
   const backtoLobby = () => {
@@ -106,7 +95,7 @@ const Game = () => {
       dispatch(setPlayerlostCount());
       setGameOver(true);
       messageApi.open(BOT_WIN_MESSAGE);
-      dispatch(openDialog('GameOverDialog', { winner: 'bot' }))
+      dispatch(openDialog('GameOverDialog', { winner: bot.username }))
     }
   }, [playerCrashedShips]);
 
@@ -115,7 +104,7 @@ const Game = () => {
       dispatch(setPlayerWinCount());
       dispatch(setBotlostCount());
       setGameOver(true);
-      dispatch(openDialog('GameOverDialog', { winner: player.playerName }))
+      dispatch(openDialog('GameOverDialog', { winner: player.username }))
       messageApi.open(PLAYER_WIN_MESSAGE);
     }
   }, [botCrashedShips]);
@@ -177,7 +166,7 @@ const Game = () => {
       <div className="game_container__game">
         <div className="game-section player-section">
           <div className="pnael-section player-section-panel">
-            <PlayerInfoPanel infoData={playerInfoData} />
+            <PlayerInfoPanel infoData={{ ...player, crashedShips: playerCrashedShips }} />
           </div>
           <GameBoard
             board={playerBoard}
@@ -196,7 +185,7 @@ const Game = () => {
             gameOver={gameOver}
           />
           <div className="pnael-section bot-section-panel">
-            <PlayerInfoPanel infoData={botInfoData} />
+            <PlayerInfoPanel infoData={{ ...bot, crashedShips: botCrashedShips }} />
           </div>
         </div>
       </div>

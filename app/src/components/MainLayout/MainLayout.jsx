@@ -24,7 +24,7 @@ const MainLayout = () => {
   }, [music, playMusic1, stop]);
 
   useEffect(() => {
-    if (player.playerName) {
+    if (player.username) {
       localStorage.setItem("player", JSON.stringify(player));
     } else {
       if (Boolean(localStorage.getItem("player"))) {

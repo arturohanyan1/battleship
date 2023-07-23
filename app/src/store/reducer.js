@@ -1,6 +1,6 @@
 import actionTypes from "./actionTypes";
 
-const initialPlayer = { playerName: '', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
+const initialPlayer = { username: '', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
 
 export const player = (state = initialPlayer, action) => {
   switch (action.type) {
@@ -10,7 +10,7 @@ export const player = (state = initialPlayer, action) => {
       };
     case actionTypes.SET_PLAYER_NAME:
       return {
-        ...state, playerName: action.payload
+        ...state, username: action.payload
       }
     case actionTypes.SET_PLAYER_AVATAR:
       return {
@@ -36,7 +36,7 @@ export const player = (state = initialPlayer, action) => {
   }
 }
 
-const initialBot = { botName: 'bot', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
+const initialBot = { username: 'bot', avatar: 'avatar_1', flag: 'flag_1', won: 0, lost: 0 }
 
 export const bot = (state = initialBot, action) => {
   switch (action.type) {
@@ -46,7 +46,7 @@ export const bot = (state = initialBot, action) => {
       };
     case actionTypes.SET_BOT_NAME:
       return {
-        ...state, botName: action.payload
+        ...state, username: action.payload
       }
     case actionTypes.SET_BOT_AVATAR:
       return {
