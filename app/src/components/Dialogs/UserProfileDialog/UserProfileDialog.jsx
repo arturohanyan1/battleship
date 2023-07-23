@@ -61,7 +61,7 @@ const UserProfileDialog = () => {
             <div className='username-section'>
               <div className='username-section--label'><span>username</span></div>
               <div className={`username-section--input ${Boolean(usernameError) ? 'error' : ''}`}>
-                <input type='text' value={userInputValue} onChange={(e) => handleChange(e)} />
+                <input disabled={player.username} type='text' value={userInputValue} onChange={(e) => handleChange(e)} />
               </div>
               {Boolean(usernameError) && <div className='username-section--error'><span>{usernameError}</span></div>}
             </div>
