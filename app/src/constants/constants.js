@@ -47,7 +47,25 @@ const AVATARS = [
   'avatar_15',
 ];
 
-const FLAGS = ['flag_1', 'flag_2', 'flag_3', 'flag_4', 'flag_5', 'flag_6'];
+const FLAGS = [
+  'flag_1',
+  'flag_2',
+  'flag_3',
+  'flag_4',
+  'flag_5',
+  'flag_6',
+  'flag_7',
+  'flag_8',
+  'flag_9',
+  'flag_10',
+  'flag_11',
+  'flag_12',
+  'flag_13',
+  'flag_14',
+  'flag_15',
+  'flag_16',
+
+];
 
 const BOARD_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const BOARD_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
