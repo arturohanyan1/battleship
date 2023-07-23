@@ -29,7 +29,24 @@ const NO_AVAILABLE_PLACE_MESSAGE = {
   duration: 2,
 };
 
-const AVATARS = ['avatar_1', 'avatar_2', 'avatar_3', 'avatar_4'];
+const AVATARS = [
+  'avatar_1',
+  'avatar_2',
+  'avatar_3',
+  'avatar_4',
+  'avatar_5',
+  'avatar_6',
+  'avatar_7',
+  'avatar_8',
+  'avatar_9',
+  'avatar_10',
+  'avatar_11',
+  'avatar_12',
+  'avatar_13',
+  'avatar_14',
+  'avatar_15',
+];
+
 const FLAGS = ['flag_1', 'flag_2', 'flag_3', 'flag_4', 'flag_5', 'flag_6'];
 
 const BOARD_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
