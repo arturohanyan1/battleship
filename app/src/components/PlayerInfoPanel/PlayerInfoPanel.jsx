@@ -1,6 +1,7 @@
 import React from "react";
 import "./PlayerInfoPanel.scss";
 import FleetStatus from "../commons/FleetStatus/FleetStatus";
+import Statistics from "../commons/Statistics/Statistics";
 
 const PlayerInfoPanel = ({ infoData }) => {
   if (!infoData) return null;
@@ -17,17 +18,7 @@ const PlayerInfoPanel = ({ infoData }) => {
         <FleetStatus data={infoData.crashedShips} />
       </div>
       <div className="player-info-panel__statistics-row">
-        <div className="statistics--title">
-          <span>statistics</span>
-        </div>
-        <div className="statistics--info">
-          <div className="statistics--info-col">
-            <span>won: {infoData.won}</span>
-          </div>
-          <div className="statistics--info-col lost">
-            <span>lost: {infoData.lost}</span>
-          </div>
-        </div>
+        <Statistics data={infoData} />
       </div>
       <div className="player-info-panel__flag-row">
         <img src={`./images/flags/${infoData.flag}.png`} alt="" />

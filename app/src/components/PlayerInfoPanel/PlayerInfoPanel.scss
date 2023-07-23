@@ -36,98 +36,13 @@
   margin-bottom: 12px;
 }
 
-.player-info-panel__shots-row {
-  @include center;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-
-  .shots-count {
-    margin-left: 12px;
-    color: #f3e116;
-  }
-}
-
-.player-info-panel__exact-shots-row {
-  @include center;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-
-  .exact-shots-count {
-    margin-left: 12px;
-    color: #f3e116;
-  }
-}
-
-.player-info-panel__points-row {
-  @include center;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-
-  .points-count {
-    margin-left: 12px;
-    color: #f3e116;
-  }
-}
-
-.player-info-panel__sunken-ships-row {
-  @include center;
-  font-size: 22px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-
-  .sunken-ships-count {
-    margin-left: 12px;
-    color: #f3e116;
-  }
-}
-
-.player-info-panel__statistics-row {
-  @include center;
-  flex-direction: column;
-  width: 200px;
-  color: #f3e116;
+.player-info-panel__statistics-row,
+.player-info-panel__fleet-row {
   margin-bottom: 25px;
-
-  .statistics--title {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .statistics--info {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    &-col {
-      width: 48%;
-      background: #03184d;
-      border: none;
-      height: 40px;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 0px;
-      text-transform: uppercase;
-      border: 1px solid #fff;
-      border-radius: 4px;
-      @include center;
-      color: green;
-
-      &.lost {
-        color: red;
-      }
-    }
-  }
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player-info-panel__flag-row {
@@ -141,11 +56,4 @@
     height: 92px;
     width: 147px;
   }
-}
-
-.player-info-panel__fleet-row {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
