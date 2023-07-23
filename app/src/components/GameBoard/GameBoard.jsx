@@ -8,12 +8,13 @@ import './GameBoard.scss';
 
 const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
 
+  // States
   const [hoverCoordinates, setHoverCoordinates] = useState();
 
   return (
     <div className='board_container'>
-      <div className='board-letters'><BoardSideCoords info={BOARD_LETTERS} horizontal game  /></div>
-      <div className='board-numbers'><BoardSideCoords info={BOARD_NUMBERS} vertical game  /></div>
+      <div className='board-letters'><BoardSideCoords info={BOARD_LETTERS} horizontal game /></div>
+      <div className='board-numbers'><BoardSideCoords info={BOARD_NUMBERS} vertical game /></div>
       <table>
         <tbody>
           {board.map((row, x) => (

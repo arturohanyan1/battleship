@@ -63,7 +63,6 @@ const RandomBoardBuilder = () => {
   const playGame = (board, ships) => {
     setPlayerBoardHandler(board, ships);
     setBotBoardHandler();
-    // Must be checked
     if (!savedPlayerBoard.length && !savedPlayerShips.length) {
       savePlayerBoard(board, ships);
     }
