@@ -94,7 +94,6 @@ const Game = () => {
       dispatch(setBotWinCount());
       dispatch(setPlayerlostCount());
       setGameOver(true);
-      messageApi.open(BOT_WIN_MESSAGE);
       dispatch(openDialog('GameOverDialog', { winner: bot.username }))
     }
   }, [playerCrashedShips]);
@@ -105,7 +104,6 @@ const Game = () => {
       dispatch(setBotlostCount());
       setGameOver(true);
       dispatch(openDialog('GameOverDialog', { winner: player.username }))
-      messageApi.open(PLAYER_WIN_MESSAGE);
     }
   }, [botCrashedShips]);
 
