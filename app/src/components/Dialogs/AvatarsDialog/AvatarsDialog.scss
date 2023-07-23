@@ -1,12 +1,21 @@
+@import '../../../styles/mixins.scss';
+
+.avatars-modal__wrapper {
+  padding: 20px 10px 10px;
+}
+
 .avatars-modal__content {
-  width: 100%;
-  padding: 20px 20px 0px;
-  width: 380px;
+  width: 360px;
+  padding: 0px 10px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  height: 340px;
+  overflow: auto;
+
+  @include custom-scroll-bar;
 
   .avatar-img-wrapper {
     width: 100px;
