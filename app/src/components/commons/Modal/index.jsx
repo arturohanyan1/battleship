@@ -14,6 +14,10 @@ const Modal = ({ dialogType, onSubmit, onSecondSubmit, closeIcon = true, title, 
     dispatch(closeDialog(dialogType))
   }
 
+  const onSecondButton = () => {
+    onSecondSubmit ? onSecondSubmit() : closePopUp()
+  }
+
   return createPortal(
     <>
       <div className='modal-wrapper'>
@@ -31,7 +35,9 @@ const Modal = ({ dialogType, onSubmit, onSecondSubmit, closeIcon = true, title, 
           </div>
           <div className='modal-content__footer'>
             {Boolean(btnTitle) && <button className='submit-button' onClick={onSubmit}>{btnTitle ?? 'confirm'}</button>}
-            {Boolean(secondBtnTitle) && <button className='submit-button' onClick={onSecondSubmit}>{secondBtnTitle ?? 'cancel'}</button>}
+            {Boolean(secondBtnTitle) && (
+              <button className='submit-button' onClick={onSecondButton}>{secondBtnTitle ?? 'cancel'}</button>
+            )}
           </div>
         </div>
       </div>

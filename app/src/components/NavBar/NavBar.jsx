@@ -28,6 +28,10 @@ const NavBar = () => {
     dispatch(logout())
   }
 
+  const openLogoutDialog = () => {
+    dispatch(openDialog('LogOutDialog'))
+  }
+
   return (
     <>
       <nav className='nav-bar'>
@@ -36,12 +40,13 @@ const NavBar = () => {
           <div className='nav-bar__items'>
             <span className={`nav-bar__item active`} onClick={openSettingsDialog}>settings</span>
             <span className={`nav-bar__item active`} onClick={openUserProfileDialog}>{playerName}</span>
+            <span className={`nav-bar__item active`} onClick={openLogoutDialog}>logout</span>
           </div>
-          <div className='nav-bar__item active'>
+          {/* <div className='nav-bar__item active'>
             <ConfirmPopUp title={'Log out'} description={'Are you sure you want to exit?'} onConfirm={logOutHandler}>
               <span className='nav-bar__user--username'>log out</span>
             </ConfirmPopUp>
-          </div>
+          </div> */}
         </div>
       </nav>
     </>
