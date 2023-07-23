@@ -4,9 +4,10 @@ import { ReactSVG } from "react-svg";
 
 const BuilderShips = ({ ships, setShips, onDragEndHandler, selectedShip, onDragStartHandler }) => {
 
+  // States
   const [convertedShips, setConvertedShips] = useState([]);
 
-  // actions
+  // Actions
   const rotateShip = (id) => {
     const rotatedShip = ships.map((el) =>
       el.id === id
