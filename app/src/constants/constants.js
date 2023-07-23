@@ -45,6 +45,10 @@ const AVATARS = [
   'avatar_13',
   'avatar_14',
   'avatar_15',
+  'avatar_16',
+  'avatar_17',
+  'avatar_18',
+  'avatar_19',
 ];
 
 const FLAGS = [
