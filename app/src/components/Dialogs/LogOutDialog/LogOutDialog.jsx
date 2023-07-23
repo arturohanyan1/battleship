@@ -25,6 +25,7 @@ const LogOutDialog = () => {
       btnTitle='logout'
       onSubmit={onConfirm}
       secondBtnTitle='cancel'
+      size={"md"}
     >
       <div className='log_out_dialog--description'>Are you sure you want to log out?</div>
     </Modal>
