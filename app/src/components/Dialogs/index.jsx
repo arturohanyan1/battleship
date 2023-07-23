@@ -7,6 +7,7 @@ import SettingsDialog from "./SettingsDialog/SettingsDialog";
 import UserProfileDialog from "./UserProfileDialog/UserProfileDialog";
 import RandomBoardBuilderDialog from "./RandomBoardBuilderDialog/RandomBoardBuilderDialog";
 import GameOverDialog from "./GameOverDialog/GameOverDialog";
+import LogOutDialog from "./LogOutDialog/LogOutDialog";
 
 const Dialogs = () => {
   // Selectors
@@ -21,6 +22,7 @@ const Dialogs = () => {
       {dialogs?.SettingsDialog && <SettingsDialog />}
       {dialogs?.RandomBoardBuilderDialog && <RandomBoardBuilderDialog />}
       {dialogs?.GameOverDialog && <GameOverDialog data={dialogs.GameOverDialog.data} />}
+      {dialogs?.LogOutDialog && <LogOutDialog />}
     </>
   );
 };
