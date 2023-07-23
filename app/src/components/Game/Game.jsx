@@ -1,41 +1,18 @@
 import { message } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteBotBoard } from "../../store/actionCreators/botBoard";
-import { deleteBotShips } from "../../store/actionCreators/botShips";
-import { deletePlayerBoard } from "../../store/actionCreators/playerBoard";
-import { deletePlayerShips } from "../../store/actionCreators/playerShips";
-import {
-  getBot,
-  getBotBoard,
-  getBotShips,
-  getLevel,
-  getPlayer,
-  getPlayerBoard,
-  getPlayerShips,
-  getSound,
-} from "../../store/selectors";
+import { getBot, getBotBoard, getBotShips, getLevel, getPlayer, getPlayerBoard, getPlayerShips, getSound } from "../../store/selectors";
 import GameBoard from "../GameBoard/GameBoard";
 import "./Game.scss";
 import useSound from "use-sound";
 import shotSound1 from "../../assets/sounds/game/shot1.mp3";
 import boomSound1 from "../../assets/sounds/game/boom1.mp3";
 import getShotCoords from "../../helpers/getShotCoords/gameShotCoords";
-import {
-  ALREADY_SHOTED_MESSAGE,
-  BOT_WIN_MESSAGE,
-  PLAYER_WIN_MESSAGE,
-} from "../../constants/constants";
+import { ALREADY_SHOTED_MESSAGE, BOT_WIN_MESSAGE, PLAYER_WIN_MESSAGE } from "../../constants/constants";
 import setCrashedShipOnBoard from "../../helpers/setCrashedShipOnBoard";
 import PlayerInfoPanel from "../PlayerInfoPanel/PlayerInfoPanel";
-import {
-  setPlayerlostCount,
-  setPlayerWinCount,
-} from "../../store/actionCreators/player";
-import {
-  setBotlostCount,
-  setBotWinCount,
-} from "../../store/actionCreators/bot";
+import { setPlayerlostCount, setPlayerWinCount } from "../../store/actionCreators/player";
+import { setBotlostCount, setBotWinCount } from "../../store/actionCreators/bot";
 import { openDialog } from "../../store/actionCreators/dialodManager";
 import { useNavigate } from "react-router";
 
@@ -68,31 +45,17 @@ const Game = () => {
   // Memo Datas
   const playerInfoData = useMemo(() => {
     return {
-      username: player.playerName,
-      flag: player.flag,
-      avatar: player.avatar,
-      won: player.won,
-      lost: player.lost,
+      username: player.playerName, flag: player.flag, avatar: player.avatar, won: player.won, lost: player.lost
     };
   }, [player]);
 
   const botInfoData = useMemo(() => {
-    return {
-      username: bot.botName,
-      flag: bot.flag,
-      avatar: bot.avatar,
-      won: bot.won,
-      lost: bot.lost,
-    };
+    return { username: bot.botName, flag: bot.flag, avatar: bot.avatar, won: bot.won, lost: bot.lost };
   }, [bot]);
 
   // Actions
   const backtoLobby = () => {
-    dispatch(deletePlayerBoard());
-    dispatch(deleteBotBoard());
-    dispatch(deleteBotShips());
-    dispatch(deletePlayerShips());
-    navigate('/')
+    dispatch(openDialog('CloseGameDialog'));
   };
 
   const shotHandler = (x, y, isPlayerBoard, shipId) => {
@@ -127,12 +90,7 @@ const Game = () => {
 
   // Effects
   useEffect(() => {
-    if (
-      reduxPlayerBoard.length &&
-      reduxPlayerShips.length &&
-      reduxBotBoard.length &&
-      reduxBotShips.length
-    ) {
+    if (reduxPlayerBoard.length && reduxPlayerShips.length && reduxBotBoard.length && reduxBotShips.length) {
       setPlayerBoard(reduxPlayerBoard);
       setPlayerShips(reduxPlayerShips);
       setBotBoard(reduxBotBoard);
