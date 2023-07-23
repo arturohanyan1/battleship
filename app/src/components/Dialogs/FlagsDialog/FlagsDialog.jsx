@@ -30,12 +30,14 @@ const FlagsDialog = () => {
 
   return (
     <Modal dialogType={'FlagsDialog'} size='md' title={'select flag'} btnTitle='done' onSubmit={onSubmitHandler}>
-      <div className='flags-modal__content'>
-        {FLAGS.map(el => (
-          <div key={el} onClick={() => setselectedFlag(el)} className={`flag-img-wrapper ${selectedFlag === el ? 'selected' : 'active'}`}>
-            <img src={`./images/flags/${el}.png`} alt="jpg" className='flag-img' />
-          </div>
-        ))}
+      <div className='flags-modal__wrapper'>
+        <div className='flags-modal__content'>
+          {FLAGS.map(el => (
+            <div key={el} onClick={() => setselectedFlag(el)} className={`flag-img-wrapper ${selectedFlag === el ? 'selected' : 'active'}`}>
+              <img src={`./images/flags/${el}.png`} alt="jpg" className='flag-img' />
+            </div>
+          ))}
+        </div>
       </div>
     </Modal>
   )

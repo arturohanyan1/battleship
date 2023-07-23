@@ -35,7 +35,16 @@ const GameOverDialog = ({ data }) => {
   };
 
   return (
-    <Modal dialogType={'GameOverDialog'} closeIcon={true} title={'Game Over'} btnTitle='play again' onSubmit={playAgain} secondBtnTitle='back to main page' onSecondSubmit={backtoLobby}>
+    <Modal
+      dialogType={'GameOverDialog'}
+      closeIcon={true}
+      title={'Game Over'}
+      btnTitle='play again'
+      onSubmit={playAgain}
+      secondBtnTitle='exit game'
+      onSecondSubmit={backtoLobby}
+      size='md'
+    >
       <div className='game_over_dialog--description'>{data.winner} wins!</div>
     </Modal>
   )

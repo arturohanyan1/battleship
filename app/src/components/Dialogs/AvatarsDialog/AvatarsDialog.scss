@@ -14,7 +14,6 @@
   flex-wrap: wrap;
   height: 340px;
   overflow: auto;
-
   @include custom-scroll-bar;
 
   .avatar-img-wrapper {

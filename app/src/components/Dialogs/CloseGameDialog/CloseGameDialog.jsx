@@ -28,6 +28,7 @@ const CloseGameDialog = () => {
     <Modal
       dialogType={'CloseGameDialog'}
       closeIcon={true}
+      size='md'
       title={'Close Game'}
       btnTitle='back to menu'
       onSubmit={backtoLobby}
