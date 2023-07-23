@@ -16,7 +16,7 @@ const level = (state) => state.level;
 export const getPlayerName = cs(
   player,
   (p) => {
-    return p.playerName
+    return p.username
   }
 )
 

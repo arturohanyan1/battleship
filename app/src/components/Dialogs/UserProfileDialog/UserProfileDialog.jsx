@@ -42,12 +42,12 @@ const UserProfileDialog = () => {
 
   // Effects
   useEffect(() => {
-    if (player.playerName) setUserInputValue(player.playerName)
+    if (player.username) setUserInputValue(player.username)
   }, [player])
 
   return (
     <div>
-      <Modal dialogType={'UserProfileDialog'} closeIcon={player.playerName} title={'User Profile'} btnTitle='complete' onSubmit={onClickHandler}>
+      <Modal dialogType={'UserProfileDialog'} closeIcon={player.username} title={'User Profile'} btnTitle='complete' onSubmit={onClickHandler}>
         <div className='user-profile-modal__content'>
           <div className='user-profile-modal__content--left-side'>
             <div className='avatar-section'>

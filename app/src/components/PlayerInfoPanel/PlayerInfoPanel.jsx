@@ -1,5 +1,6 @@
 import React from "react";
 import "./PlayerInfoPanel.scss";
+import FleetStatus from "../commons/FleetStatus/FleetStatus";
 
 const PlayerInfoPanel = ({ infoData }) => {
   if (!infoData) return null;
@@ -11,6 +12,9 @@ const PlayerInfoPanel = ({ infoData }) => {
       </div>
       <div className="player-info-panel__username-row">
         <span>{infoData.username}</span>
+      </div>
+      <div className="player-info-panel__fleet-row">
+        <FleetStatus data={infoData.crashedShips} />
       </div>
       <div className="player-info-panel__statistics-row">
         <div className="statistics--title">
