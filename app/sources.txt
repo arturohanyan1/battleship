@@ -1,2 +1,3 @@
 https://lexica.art/
 https://www.countryflags.com/
+https://winitpro.ru/index.php/2019/10/25/ustanovka-nastrojka-postgresql-v-windows/ - psql
