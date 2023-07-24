@@ -21,8 +21,9 @@ const MainPage = () => {
     }
   };
 
+  // !API AND EFFECTS
   useEffect(() => {
-    axios.get('http://localhost:3001/test', { id: 55 })
+    axios.get(`http://192.168.69.61:3001/test`, { params: { id: 2 } })
       .then((res) => {
         console.log(res)
       }).catch(er => console.log(er));
