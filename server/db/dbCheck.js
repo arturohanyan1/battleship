@@ -3,8 +3,8 @@ const { sequelize } = require('./models');
 module.exports = async () => {
   try {
     await sequelize.authenticate();
-    console.log('База данных успешно подключена! :)');
+    console.log('Database connected successfully! :)');
   } catch (error) {
-    console.error('База данных не подключена:', error.message);
+    console.error('Database not connected:', error.message);
   }
 };
