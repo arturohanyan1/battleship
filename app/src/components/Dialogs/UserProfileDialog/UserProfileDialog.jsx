@@ -33,7 +33,9 @@ const UserProfileDialog = () => {
   }
 
   const onClickHandler = () => {
-    if (formValues.username && formValues.password && !Object.values(formErrors).filter(el => el).length) {
+    if (player.username) {
+      dispatch(closeDialog('UserProfileDialog'));
+    } else if (formValues.username && formValues.password && !Object.values(formErrors).filter(el => el).length) {
       dispatch(setPlayerName(formValues.username));
       dispatch(closeDialog('UserProfileDialog'));
     } else {
