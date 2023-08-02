@@ -4,7 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const coockieParser = require("cookie-parser");
 
-// Импортируем созданный в отдельный файлах рутеры.
 const dbCheck = require('./db/dbCheck');
 const errormiddleware = require("./middleware/error-middleware");
 const testRouter = require("./routes/testRoutes.js");
@@ -13,7 +12,6 @@ const app = express();
 dbCheck();
 
 app.use(express.urlencoded({ extended: true }));
-// Подключаем middleware, которое позволяет читать переменные JavaScript, сохранённые в формате JSON в body HTTP-запроса.
 app.use(express.json());
 app.use(coockieParser());
 app.use(

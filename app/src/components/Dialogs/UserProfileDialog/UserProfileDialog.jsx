@@ -5,7 +5,7 @@ import { closeDialog, openDialog } from '../../../store/actionCreators/dialodMan
 import { setPlayerName } from '../../../store/actionCreators/player';
 import { getPlayer } from '../../../store/selectors';
 import Modal from '../../commons/Modal';
-import { usernameValidationScheme } from './usernameValidationScheme';
+import { validationScheme } from './validationScheme';
 import './UserProfileDialog.scss'
 
 
@@ -17,14 +17,15 @@ const UserProfileDialog = () => {
   const player = useSelector(getPlayer);
 
   // States
-  const [userInputValue, setUserInputValue] = useState('');
-  const [usernameError, setUserNameError] = useState('')
+  const [formValues, setFormValues] = useState({ username: '', password: '' });
+  const [formErrors, setFormErrors] = useState({ username: '', password: '' })
 
   // Actions
   const handleChange = (e) => {
     e.preventDefault();
-    setUserNameError(usernameValidationScheme(e.target.value))
-    setUserInputValue(e.target.value)
+    const { name, value } = e.target;
+    setFormErrors(prev => ({ ...prev, [name]: validationScheme(value) }))
+    setFormValues(prev => ({ ...prev, [name]: value }))
   }
 
   const openDialogHandler = (dialogName) => () => {
@@ -32,17 +33,17 @@ const UserProfileDialog = () => {
   }
 
   const onClickHandler = () => {
-    if (userInputValue && !usernameError) {
-      dispatch(setPlayerName(userInputValue));
+    if (formValues.username && formValues.password && !Object.values(formErrors).filter(el => el).length) {
+      dispatch(setPlayerName(formValues.username));
       dispatch(closeDialog('UserProfileDialog'));
     } else {
-      setUserNameError(usernameValidationScheme(userInputValue))
+      Object.keys(formErrors).forEach(el => setFormErrors(prev => ({ ...prev, [el]: validationScheme(formValues[el]) })))
     }
   }
 
   // Effects
   useEffect(() => {
-    if (player.username) setUserInputValue(player.username)
+    if (player.username) setFormValues(prev => ({ ...prev, username: player.username }));
   }, [player])
 
   return (
@@ -60,10 +61,10 @@ const UserProfileDialog = () => {
             </div>
             <div className='username-section'>
               <div className='username-section--label'><span>username</span></div>
-              <div className={`username-section--input ${Boolean(usernameError) ? 'error' : ''}`}>
-                <input disabled={player.username} type='text' value={userInputValue} onChange={(e) => handleChange(e)} />
+              <div className={`username-section--input ${Boolean(formErrors.username) ? 'error' : ''}`}>
+                <input name='username' disabled={player.username} type='text' value={formValues.username} onChange={(e) => handleChange(e)} />
               </div>
-              {Boolean(usernameError) && <div className='username-section--error'><span>{usernameError}</span></div>}
+              {Boolean(formErrors.username) && <div className='username-section--error'><span>{formErrors.username}</span></div>}
             </div>
           </div>
           <div className='user-profile-modal__content--right-side'>
@@ -75,17 +76,27 @@ const UserProfileDialog = () => {
                 <ReactSVG src={`./images/icons/edit.svg`} />
               </div>
             </div>
-            <div className='game-result-section'>
-              <div className='game-result-section--title'><span>statistics</span></div>
-              <div className='game-result-section--info'>
-                <div className='game-result-section--info-col'>
-                  <span>won: {player.won}</span>
-                </div>
-                <div className='game-result-section--info-col'>
-                  <span>lost: {player.lost}</span>
+            {player.username ? (
+              <div className='game-result-section'>
+                <div className='game-result-section--title'><span>statistics</span></div>
+                <div className='game-result-section--info'>
+                  <div className='game-result-section--info-col'>
+                    <span>won: {player.won}</span>
+                  </div>
+                  <div className='game-result-section--info-col'>
+                    <span>lost: {player.lost}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className='password-section'>
+                <div className='password-section--label'><span>password</span></div>
+                <div className={`password-section--input ${Boolean(formErrors.password) ? 'error' : ''}`}>
+                  <input name='password' type='text' value={formValues.password} onChange={(e) => handleChange(e)} />
+                </div>
+                {Boolean(formErrors.password) && <div className='username-section--error'><span>{formErrors.password}</span></div>}
+              </div>
+            )}
           </div>
         </div>
       </Modal>
