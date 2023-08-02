@@ -1,4 +1,4 @@
-export const usernameValidationScheme = (value) => {
+export const validationScheme = (value) => {
   if (value.length) {
     if (value.length < 5) {
       return 'Too Short!'
@@ -6,6 +6,6 @@ export const usernameValidationScheme = (value) => {
       return 'Too Long!'
     }
   } else {
-    return 'Username is required!'
+    return 'Field is required!'
   }
 };
