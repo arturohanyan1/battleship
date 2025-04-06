@@ -9,7 +9,7 @@ const PlayerInfoPanel = ({ infoData }) => {
   return (
     <div className="player-info-panel-wrapper">
       <div className="player-info-panel__avatar-row">
-        <img src={`./images/avatars/${infoData.avatar}.jpg`} alt="" />
+        <img src={`./images/avatars/${infoData.avatar}.jpg`} alt="avatar" />
       </div>
       <div className="player-info-panel__username-row">
         <span>{infoData.username}</span>

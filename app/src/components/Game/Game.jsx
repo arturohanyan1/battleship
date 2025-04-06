@@ -163,7 +163,7 @@ const Game = () => {
       </button>
       <div className="game_container__game">
         <div className="game-section player-section">
-          <div className="pnael-section player-section-panel">
+          <div className="panel-section player-section-panel">
             <PlayerInfoPanel infoData={{ ...player, crashedShips: playerCrashedShips }} />
           </div>
           <GameBoard
@@ -182,7 +182,7 @@ const Game = () => {
             playerTurn={playerTurn}
             gameOver={gameOver}
           />
-          <div className="pnael-section bot-section-panel">
+          <div className="panel-section bot-section-panel">
             <PlayerInfoPanel infoData={{ ...bot, crashedShips: botCrashedShips }} />
           </div>
         </div>

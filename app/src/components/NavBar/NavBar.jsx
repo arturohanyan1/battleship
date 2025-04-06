@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import './NavBar.scss'
-import { getPlayerName } from '../../store/selectors';
+import { getPlayer, getPlayerName } from '../../store/selectors';
 import { openDialog } from '../../store/actionCreators/dialodManager';
 import ConfirmPopUp from '../commons/ConfirmPopUp/ConfirmPopUp';
 import { logout } from '../../store/actionCreators/auth';
@@ -12,7 +12,10 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   // Selectors
-  const playerName = useSelector(getPlayerName)
+  const player = useSelector(getPlayer);
+
+  // States
+  const [isOpen, setIsOpen] = useState(false);
 
   //Actions
   const openUserProfileDialog = () => {
@@ -37,16 +40,14 @@ const NavBar = () => {
       <nav className='nav-bar'>
         <div className='nav-bar__wrapper'>
           <span to='/' className='nav-bar__logo'><span>Battleship</span></span>
-          <div className='nav-bar__items'>
-            <span className={`nav-bar__item active`} onClick={openSettingsDialog}>settings</span>
-            <span className={`nav-bar__item active`} onClick={openUserProfileDialog}>{playerName}</span>
-            <span className={`nav-bar__item active`} onClick={openLogoutDialog}>logout</span>
-          </div>
-          {/* <div className='nav-bar__item active'>
-            <ConfirmPopUp title={'Log out'} description={'Are you sure you want to exit?'} onConfirm={logOutHandler}>
-              <span className='nav-bar__user--username'>log out</span>
-            </ConfirmPopUp>
-          </div> */}
+          {player?.username && (
+            <button className='nav-bar__settings' onClick={openSettingsDialog}>
+              <span className='nav-bar__username'>{player.username}</span>
+              <div className='nav-bar__avatar'>
+                <img src={`./images/avatars/${player.avatar}.jpg`} alt="avatar" />
+              </div>
+            </button>
+          )}
         </div>
       </nav>
     </>

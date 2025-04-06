@@ -1,13 +1,13 @@
-@import '../../../styles/mixins.scss';
+@import "../../../styles/mixins.scss";
+@import "../../../styles/breakpoints.scss";
 
 .user-profile-modal__content {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
   padding: 20px 30px;
-  gap: 50px;
 
   &--left-side,
   &--right-side {
@@ -23,11 +23,22 @@
   }
 }
 
-.user-profile-modal__content--left-side {
+.user-profile-modal__content--first-row {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 50px;
+
+  &-col {
+    @include center;
+    width: 300px;
+  }
 
   .avatar-section {
     position: relative;
-    margin-bottom: 40px;
 
     &_image {
       height: 150px;
@@ -55,67 +66,9 @@
       cursor: pointer;
     }
   }
-}
-
-.username-section,
-.password-section {
-  @include center;
-  flex-direction: column;
-  width: 250px;
-  position: relative;
-
-  &--label {
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  &--input {
-    width: 100%;
-
-    input {
-      width: 100%;
-      background: #03184d;
-      height: 40px;
-      font-size: 20px;
-      padding: 0px 10px;
-      color: #fff;
-      border: 1px solid #fff;
-      border-radius: 4px;
-      outline: none !important;
-    }
-
-    &.error {
-      input {
-        border: 1px solid red;
-      }
-    }
-  }
-
-  &--error {
-    position: absolute;
-    left: 0px;
-    bottom: -15px;
-    height: 15px;
-    @include center;
-
-    span {
-      font-size: 12px;
-      line-height: 0px;
-      color: red;
-      text-transform: capitalize;
-    }
-  }
-
-}
-
-.user-profile-modal__content--right-side {
 
   .flag-section {
     position: relative;
-    margin-bottom: 40px;
 
     &_image {
       height: 150px;
@@ -140,6 +93,73 @@
       @include center;
       border-radius: 50%;
       cursor: pointer;
+    }
+  }
+}
+
+.user-profile-modal__content--second-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 50px;
+  .user-profile-modal__content--second-row-col {
+    @include center;
+    width: 300px;
+  }
+
+  .username-section,
+  .password-section {
+    @include center;
+    flex-direction: column;
+    width: 250px;
+    position: relative;
+
+    &--label {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    &--input {
+      width: 100%;
+
+      input {
+        width: 100%;
+        background: #03184d;
+        height: 40px;
+        font-size: 20px;
+        padding: 0px 10px;
+        color: #fff;
+        border: 2px solid #000514;
+        border-radius: 4px;
+        outline: none !important;
+      }
+
+      &.error {
+        input {
+          border: 1px solid red;
+        }
+      }
+    }
+
+    &--error {
+      position: absolute;
+      left: 0px;
+      bottom: -15px;
+      height: 15px;
+      @include center;
+
+      span {
+        font-size: 12px;
+        line-height: 0px;
+        color: red;
+        text-transform: capitalize;
+      }
     }
   }
 
@@ -172,10 +192,91 @@
         font-weight: 700;
         line-height: 0px;
         text-transform: uppercase;
-        border: 1px solid #fff;
+        border: 2px solid #000514;
         border-radius: 4px;
         @include center;
       }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-down-sm) {
+  .user-profile-modal__content {
+    gap: 12px;
+    padding: 20px 24px;
+
+    .user-profile-modal__content--second-row {
+      width: 100%;
+      gap: 12px;
+      .username-section,
+      .game-result-section {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-down-xs) {
+  .user-profile-modal {
+    width: 100%;
+  }
+  .user-profile-modal__content {
+    padding: 20px 16px;
+    gap: 12px;
+
+    .user-profile-modal__content--first-row {
+      width: 100%;
+      gap: 12px;
+      .avatar-section {
+        &_image {
+          height: 120px;
+          width: 120px;
+          img {
+            height: 114px;
+            width: 114px;
+          }
+        }
+        .edit-avatar {
+          bottom: 0px;
+          right: 2px;
+          height: 30px;
+          width: 30px;
+          .edit-avatar--icon {
+            @include svg-size(16px, 16px);
+          }
+        }
+      }
+      .flag-section {
+        &_image {
+          height: 120px;
+          width: 140px;
+          border-radius: 26px;
+          overflow: hidden;
+          img {
+            height: 114px;
+            width: 134px;
+          }
+        }
+
+        .edit-flag {
+          bottom: 0px;
+          right: -6px;
+          height: 30px;
+          width: 30px;
+          .edit-flag--icon {
+            @include svg-size(16px, 16px);
+          }
+        }
+      }
+    }
+  }
+
+  .user-profile-modal__content--second-row {
+    width: 100%;
+    gap: 12px;
+    flex-direction: column-reverse;
+    .user-profile-modal__content--second-row-col {
+      width: 100%;
     }
   }
 }

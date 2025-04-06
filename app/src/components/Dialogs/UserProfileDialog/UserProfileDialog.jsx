@@ -17,7 +17,7 @@ const UserProfileDialog = () => {
   const player = useSelector(getPlayer);
 
   // States
-  const [formValues, setFormValues] = useState({ username: '', password: '' });
+  const [formValues, setFormValues] = useState({ username: '', password: 'password' });
   const [formErrors, setFormErrors] = useState({ username: '', password: '' })
 
   // Actions
@@ -35,7 +35,7 @@ const UserProfileDialog = () => {
   const onClickHandler = () => {
     if (player.username) {
       dispatch(closeDialog('UserProfileDialog'));
-    } else if (formValues.username && formValues.password && !Object.values(formErrors).filter(el => el).length) {
+    } else if (formValues.username && !Object.values(formErrors).filter(el => el).length) {
       dispatch(setPlayerName(formValues.username));
       dispatch(closeDialog('UserProfileDialog'));
     } else {
@@ -50,53 +50,53 @@ const UserProfileDialog = () => {
 
   return (
     <div>
-      <Modal dialogType={'UserProfileDialog'} closeIcon={player.username} title={'User Profile'} btnTitle='complete' onSubmit={onClickHandler}>
+      <Modal classname="user-profile-modal" dialogType={'UserProfileDialog'} closeIcon={player.username} title={player.username ? 'User Profile' : 'Login'} btnTitle={player.username ? 'complete' : 'Login'} onSubmit={onClickHandler}>
         <div className='user-profile-modal__content'>
-          <div className='user-profile-modal__content--left-side'>
-            <div className='avatar-section'>
-              <div className='avatar-section_image'>
-                <img src={`./images/avatars/${player.avatar}.jpg`} alt='pic' />
-              </div>
-              <div onClick={openDialogHandler('AvatarsDialog')} className={'edit edit-avatar'}>
-                <ReactSVG src={`./images/icons/edit.svg`} />
+          <div className='user-profile-modal__content--first-row'>
+            <div className='user-profile-modal__content--first-row-col'>
+              <div className='avatar-section'>
+                <div className='avatar-section_image'>
+                  <img src={`./images/avatars/${player.avatar}.jpg`} alt='pic' />
+                </div>
+                <div onClick={openDialogHandler('AvatarsDialog')} className={'edit edit-avatar'}>
+                  <ReactSVG src={`./images/icons/edit.svg`} className='edit-avatar--icon' />
+                </div>
               </div>
             </div>
-            <div className='username-section'>
-              <div className='username-section--label'><span>username</span></div>
-              <div className={`username-section--input ${Boolean(formErrors.username) ? 'error' : ''}`}>
-                <input name='username' disabled={player.username} type='text' value={formValues.username} onChange={(e) => handleChange(e)} />
+            <div className='user-profile-modal__content--first-row-col'>
+              <div className='flag-section'>
+                <div className='flag-section_image'>
+                  <img src={`./images/flags/${player.flag}.png`} alt='pic' />
+                </div>
+                <div onClick={openDialogHandler('FlagsDialog')} className={'edit edit-flag'}>
+                  <ReactSVG src={`./images/icons/edit.svg`} className='edit-flag--icon' />
+                </div>
               </div>
-              {Boolean(formErrors.username) && <div className='username-section--error'><span>{formErrors.username}</span></div>}
             </div>
           </div>
-          <div className='user-profile-modal__content--right-side'>
-            <div className='flag-section'>
-              <div className='flag-section_image'>
-                <img src={`./images/flags/${player.flag}.png`} alt='pic' />
-              </div>
-              <div onClick={openDialogHandler('FlagsDialog')} className={'edit edit-flag'}>
-                <ReactSVG src={`./images/icons/edit.svg`} />
+          <div className='user-profile-modal__content--second-row'>
+            <div className='user-profile-modal__content--second-row-col'>
+              <div className='username-section'>
+                <div className='username-section--label'><span>username</span></div>
+                <div className={`username-section--input ${Boolean(formErrors.username) ? 'error' : ''}`}>
+                  <input name='username' disabled={player.username} type='text' value={formValues.username} onChange={(e) => handleChange(e)} />
+                </div>
+                {Boolean(formErrors.username) && <div className='username-section--error'><span>{formErrors.username}</span></div>}
               </div>
             </div>
-            {player.username ? (
-              <div className='game-result-section'>
-                <div className='game-result-section--title'><span>statistics</span></div>
-                <div className='game-result-section--info'>
-                  <div className='game-result-section--info-col'>
-                    <span>won: {player.won}</span>
-                  </div>
-                  <div className='game-result-section--info-col'>
-                    <span>lost: {player.lost}</span>
+            {player.username && (
+              <div className='user-profile-modal__content--second-row-col'>
+                <div className='game-result-section'>
+                  <div className='game-result-section--title'><span>statistics</span></div>
+                  <div className='game-result-section--info'>
+                    <div className='game-result-section--info-col'>
+                      <span>won: {player.won}</span>
+                    </div>
+                    <div className='game-result-section--info-col'>
+                      <span>lost: {player.lost}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className='password-section'>
-                <div className='password-section--label'><span>password</span></div>
-                <div className={`password-section--input ${Boolean(formErrors.password) ? 'error' : ''}`}>
-                  <input name='password' type='text' value={formValues.password} onChange={(e) => handleChange(e)} />
-                </div>
-                {Boolean(formErrors.password) && <div className='username-section--error'><span>{formErrors.password}</span></div>}
               </div>
             )}
           </div>

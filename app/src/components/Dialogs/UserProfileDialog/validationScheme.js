@@ -1,8 +1,8 @@
 export const validationScheme = (value) => {
   if (value.length) {
-    if (value.length < 5) {
+    if (value.length < 2) {
       return 'Too Short!'
-    } else if (value.length > 12) {
+    } else if (value.length > 15) {
       return 'Too Long!'
     }
   } else {

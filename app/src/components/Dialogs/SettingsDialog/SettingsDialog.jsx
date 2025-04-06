@@ -49,8 +49,16 @@ const SettingsDialog = () => {
     dispatch(closeDialog('SettingsDialog'))
   }
 
+  const openLogoutDialog = () => {
+    dispatch(openDialog('LogOutDialog'))
+  }
+
+  const backtoLobby = () => {
+    dispatch(openDialog('CloseGameDialog'));
+  };
+
   return (
-    <Modal dialogType={'SettingsDialog'} size='md' title={'settings'} btnTitle='ok' onSubmit={closeSettingsDialog}>
+    <Modal classname='settings-modal' dialogType={'SettingsDialog'} size='md' title={'settings'} btnTitle='ok' onSubmit={closeSettingsDialog} withanimation={true} footerClassname="settings-modal__footer">
       <div className='settings-modal__content'>
         <div className='settings-item'>
           <div className='settings-item__name'>music</div>
@@ -87,6 +95,26 @@ const SettingsDialog = () => {
         <div className='settings-item'>
           <div className='settings-item__name'>profile</div>
           <div className='settings-item__value' onClick={openUserProfileDialog}>
+            <ReactSVG
+              src={`./images/icons/profile-settings.svg`}
+              className={`settings-item__icon active`}
+            />
+          </div>
+        </div>
+        {pathname.includes('game') && (
+          <div className='settings-item'>
+            <div className='settings-item__name'>exit game</div>
+            <div className='settings-item__value' onClick={backtoLobby}>
+              <ReactSVG
+                src={`./images/icons/profile-settings.svg`}
+                className={`settings-item__icon active`}
+              />
+            </div>
+          </div>
+        )}
+        <div className='settings-item'>
+          <div className='settings-item__name'>logout</div>
+          <div className='settings-item__value' onClick={openLogoutDialog}>
             <ReactSVG
               src={`./images/icons/profile-settings.svg`}
               className={`settings-item__icon active`}

@@ -5,7 +5,20 @@ import { ReactSVG } from 'react-svg';
 import { closeDialog } from '../../../store/actionCreators/dialodManager';
 import './Modal.scss';
 
-const Modal = ({ dialogType, onSubmit, onSecondSubmit, closeIcon = true, title, btnTitle, secondBtnTitle, children, size }) => {
+const Modal = ({
+  dialogType,
+  onSubmit,
+  onSecondSubmit,
+  closeIcon = true,
+  title,
+  btnTitle,
+  secondBtnTitle,
+  children,
+  size,
+  classname,
+  footerClassname,
+  withanimation
+}) => {
   //Hooks
   const dispatch = useDispatch();
 
@@ -21,7 +34,7 @@ const Modal = ({ dialogType, onSubmit, onSecondSubmit, closeIcon = true, title, 
   return createPortal(
     <>
       <div className='modal-wrapper'>
-        <div className={`modal-content ${size}`} onClick={e => e.stopPropagation()}>
+        <div className={`modal-content ${size} ${classname} ${withanimation ? 'with-animation' : ''}`} onClick={e => e.stopPropagation()}>
           <div className='modal-content__header'>
             <span className='modal-title'>{title}</span>
             {closeIcon &&
@@ -33,7 +46,7 @@ const Modal = ({ dialogType, onSubmit, onSecondSubmit, closeIcon = true, title, 
           <div className='modal-content__body'>
             {children}
           </div>
-          <div className='modal-content__footer'>
+          <div className={`modal-content__footer ${footerClassname}`}>
             {Boolean(btnTitle) && <button className='submit-button' onClick={onSubmit}>{btnTitle ?? 'confirm'}</button>}
             {Boolean(secondBtnTitle) && (
               <button className='submit-button' onClick={onSecondButton}>{secondBtnTitle ?? 'cancel'}</button>
