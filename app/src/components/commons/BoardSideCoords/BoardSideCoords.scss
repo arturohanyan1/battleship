@@ -1,4 +1,5 @@
 @import '../../../styles/constants.scss';
+@import '../../../styles/breakpoints.scss';
 
 .coords-info-wrapper {
   display: flex;
@@ -55,5 +56,102 @@
     font-size: 14px;
     font-weight: 600;
     margin: 1px;
+  }
+}
+
+// MOBILE
+@media (max-width: $breakpoint-down-xs) {
+  .coords-info-wrapper {
+  
+    &.horizontal {
+      // &.game {
+      //   width: $game-table-col * 10 + 9;
+      //   height: $game-table-col;
+      // }
+  
+      &.builder {
+        width: $builder-xs-table-col * 10 + 9;
+        height: $builder-xs-table-col;
+      }
+    }
+  
+    &.vertical {
+  
+      // &.game {
+      //   height: $game-table-col * 10 + 9;
+      //   width: $game-table-col;
+      // }
+  
+      &.builder {
+        width: $builder-xs-table-col;
+        height: $builder-xs-table-col * 10 + 9;
+      }
+    }
+  
+    // &.game {
+    //   .coords-info-item {
+    //     height: $game-table-col;
+    //     width: $game-table-col;
+    //     color: white;
+    //   }
+    // }
+  
+    &.builder {
+      .coords-info-item {
+        height: $builder-xs-table-col;
+        width: $builder-xs-table-col;
+      }
+    }
+  
+    .coords-info-item {
+      font-size: 10px;
+      font-weight: 600;
+    }
+  }
+}
+
+// MOBILE
+@media (max-width: $breakpoint-down-xxs) {
+  .coords-info-wrapper {
+  
+    &.horizontal {
+      // &.game {
+      //   width: $game-table-col * 10 + 9;
+      //   height: $game-table-col;
+      // }
+  
+      &.builder {
+        width: $builder-xxs-table-col * 10 + 9;
+        height: $builder-xxs-table-col;
+      }
+    }
+  
+    &.vertical {
+  
+      // &.game {
+      //   height: $game-table-col * 10 + 9;
+      //   width: $game-table-col;
+      // }
+  
+      &.builder {
+        width: $builder-xxs-table-col;
+        height: $builder-xxs-table-col * 10 + 9;
+      }
+    }
+  
+    // &.game {
+    //   .coords-info-item {
+    //     height: $game-table-col;
+    //     width: $game-table-col;
+    //     color: white;
+    //   }
+    // }
+  
+    &.builder {
+      .coords-info-item {
+        height: $builder-xxs-table-col;
+        width: $builder-xxs-table-col;
+      }
+    }
   }
 }

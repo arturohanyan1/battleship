@@ -1,5 +1,6 @@
 @import "../../styles/constants.scss";
 @import "../../styles/mixins.scss";
+@import "../../styles/breakpoints.scss";
 
 .random_board-builder {
   width: 100%;
@@ -16,7 +17,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  gap: 50px;
+  gap: 12px;
 }
 
 .random_board-section {
@@ -37,4 +38,10 @@
   justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
+}
+
+@media (max-width: $breakpoint-down-xs) {
+  .random_board-builder {
+    padding: 24px 0px 0px;
+  }
 }
