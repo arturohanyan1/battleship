@@ -32,16 +32,31 @@
 }
 
 .random_board-buttons {
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  width: 100%;
+  max-width: $builder-table-col * 10 + 10;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin-bottom: 20px;
 }
 
+// MOBILE
 @media (max-width: $breakpoint-down-xs) {
   .random_board-builder {
     padding: 24px 0px 0px;
+
+    .random_board-buttons {
+      margin-top: 12px;
+      max-width: $builder-xs-table-col * 10 + 10;
+    }
+  }
+}
+
+// MOBILE XXS
+@media (max-width: $breakpoint-down-xxs) {
+  .random_board-builder {
+    .random_board-buttons {
+      max-width: $builder-xxs-table-col * 10 + 10;
+    }
   }
 }
