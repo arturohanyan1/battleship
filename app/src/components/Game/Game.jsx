@@ -8,7 +8,7 @@ import useSound from "use-sound";
 import shotSound1 from "../../assets/sounds/game/shot1.mp3";
 import boomSound1 from "../../assets/sounds/game/boom1.mp3";
 import getShotCoords from "../../helpers/getShotCoords/gameShotCoords";
-import { ALREADY_SHOTED_MESSAGE, BOT_WIN_MESSAGE, PLAYER_WIN_MESSAGE } from "../../constants/constants";
+import { ALREADY_SHOTED_MESSAGE } from "../../constants/constants";
 import setCrashedShipOnBoard from "../../helpers/setCrashedShipOnBoard";
 import PlayerInfoPanel from "../PlayerInfoPanel/PlayerInfoPanel";
 import { setPlayerlostCount, setPlayerWinCount } from "../../store/actionCreators/player";
@@ -43,10 +43,6 @@ const Game = () => {
   const [playerInjuredShipCoords, setPlayerInjuredShipCoords] = useState([]);
 
   // Actions
-  const backtoLobby = () => {
-    dispatch(openDialog('CloseGameDialog'));
-  };
-
   const shotHandler = (x, y, isPlayerBoard, shipId) => {
     if (!isPlayerBoard && playerTurn && !gameOver) {
       const newBotBoard = JSON.parse(JSON.stringify(botBoard));
@@ -158,9 +154,6 @@ const Game = () => {
   return (
     <div className="game_container">
       {contextHolder}
-      <button className="back-button" onClick={backtoLobby}>
-        back
-      </button>
       <div className="game_container__game">
         <div className="game-section player-section">
           <div className="panel-section player-section-panel">

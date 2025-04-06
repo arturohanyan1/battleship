@@ -6,23 +6,41 @@ $header-mobile-height: 50px;
 
 // generate page
 $builder-table-col: 40px;
+$builder-xxl-table-col: 40px;
+$builder-xl-table-col: 40px;
+$builder-lg-table-col: 40px;
+$builder-md-table-col: 40px;
+$builder-sm-table-col: 40px;
 $builder-xs-table-col: 28px;
 $builder-xxs-table-col: 24px;
+
 $builder-ship-color: white;
 $builder-table-color: blue;
 $builder-disabled-coll-color: #368ada;
 
 // game page
 $game-table-col: 40px;
-
-$game-side-bar-width: 300px;
-$game-side-bar-width: 200px;
+$game-xxl-table-col: 36px;
+$game-xl-table-col: 34px;
+$game-lg-table-col: 40px;
+$game-md-table-col: 40px;
+$game-sm-table-col: 40px;
+$game-xs-table-col: 40px;
+$game-xxs-table-col: 40px;
 
 $game-ship-color: white;
 $game-table-color: #368ada;
 $game-table-disabled-color: #187204;
 
 $game-table-shot-size: $game-table-col / 2;
+$game-xxl-table-shot-size: $game-xxl-table-col / 2;
+$game-xl-table-shot-size: $game-xl-table-col / 2;
+$game-lg-table-shot-size: $game-lg-table-col / 2;
+$game-md-table-shot-size: $game-md-table-col / 2;
+$game-sm-table-shot-size: $game-sm-table-col / 2;
+$game-xs-table-shot-size: $game-xs-table-col / 2;
+$game-xxs-table-shot-size: $game-xxs-table-col / 2;
+
 $game-table-shot-color: red;
 $game-table-injured-color: yellow;
 $game-table-crashed-color: red;

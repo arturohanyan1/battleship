@@ -1,5 +1,5 @@
-@import '../../../styles/constants.scss';
-@import '../../../styles/breakpoints.scss';
+@import "../../../styles/constants.scss";
+@import "../../../styles/breakpoints.scss";
 
 .coords-info-wrapper {
   display: flex;
@@ -59,94 +59,263 @@
   }
 }
 
-// MOBILE
+// XXL
+@media (max-width: $breakpoint-down-xxl) {
+  .coords-info-wrapper {
+    &.horizontal {
+      &.game {
+        width: $game-xxl-table-col * 10 + 9;
+        height: $game-xxl-table-col;
+      }
+      &.builder {
+        width: $builder-xxl-table-col * 10 + 9;
+        height: $builder-xxl-table-col;
+      }
+    }
+    &.vertical {
+      &.game {
+        height: $game-xxl-table-col * 10 + 9;
+        width: $game-xxl-table-col;
+      }
+      &.builder {
+        width: $builder-xxl-table-col;
+        height: $builder-xxl-table-col * 10 + 9;
+      }
+    }
+    &.game {
+      .coords-info-item {
+        height: $game-xxl-table-col;
+        width: $game-xxl-table-col;
+      }
+    }
+    &.builder {
+      .coords-info-item {
+        height: $builder-xxl-table-col;
+        width: $builder-xxl-table-col;
+      }
+    }
+  }
+}
+
+// XL
+@media (max-width: $breakpoint-down-xl) {
+  .coords-info-wrapper {
+    &.horizontal {
+      &.game {
+        width: $game-xl-table-col * 10 + 9;
+        height: $game-xl-table-col;
+      }
+      &.builder {
+        width: $builder-xl-table-col * 10 + 9;
+        height: $builder-xl-table-col;
+      }
+    }
+    &.vertical {
+      &.game {
+        height: $game-xl-table-col * 10 + 9;
+        width: $game-xl-table-col;
+      }
+      &.builder {
+        width: $builder-xl-table-col;
+        height: $builder-xl-table-col * 10 + 9;
+      }
+    }
+    &.game {
+      .coords-info-item {
+        height: $game-xl-table-col;
+        width: $game-xl-table-col;
+      }
+    }
+    &.builder {
+      .coords-info-item {
+        height: $builder-xl-table-col;
+        width: $builder-xl-table-col;
+      }
+    }
+  }
+}
+
+// LG
+@media (max-width: $breakpoint-down-lg) {
+  .coords-info-wrapper {
+    &.horizontal {
+      &.game {
+        width: $game-lg-table-col * 10 + 9;
+        height: $game-lg-table-col;
+      }
+      &.builder {
+        width: $builder-lg-table-col * 10 + 9;
+        height: $builder-lg-table-col;
+      }
+    }
+    &.vertical {
+      &.game {
+        height: $game-lg-table-col * 10 + 9;
+        width: $game-lg-table-col;
+      }
+      &.builder {
+        width: $builder-lg-table-col;
+        height: $builder-lg-table-col * 10 + 9;
+      }
+    }
+    &.game {
+      .coords-info-item {
+        height: $game-lg-table-col;
+        width: $game-lg-table-col;
+      }
+    }
+    &.builder {
+      .coords-info-item {
+        height: $builder-lg-table-col;
+        width: $builder-lg-table-col;
+      }
+    }
+  }
+}
+
+// MD
+@media (max-width: $breakpoint-down-md) {
+  .coords-info-wrapper {
+    &.horizontal {
+      &.game {
+        width: $game-md-table-col * 10 + 9;
+        height: $game-md-table-col;
+      }
+      &.builder {
+        width: $builder-md-table-col * 10 + 9;
+        height: $builder-md-table-col;
+      }
+    }
+    &.vertical {
+      &.game {
+        height: $game-md-table-col * 10 + 9;
+        width: $game-md-table-col;
+      }
+      &.builder {
+        width: $builder-md-table-col;
+        height: $builder-md-table-col * 10 + 9;
+      }
+    }
+    &.game {
+      .coords-info-item {
+        height: $game-md-table-col;
+        width: $game-md-table-col;
+      }
+    }
+    &.builder {
+      .coords-info-item {
+        height: $builder-md-table-col;
+        width: $builder-md-table-col;
+      }
+    }
+  }
+}
+
+// SM
+@media (max-width: $breakpoint-down-sm) {
+  .coords-info-wrapper {
+    &.horizontal {
+      &.game {
+        width: $game-sm-table-col * 10 + 9;
+        height: $game-sm-table-col;
+      }
+      &.builder {
+        width: $builder-sm-table-col * 10 + 9;
+        height: $builder-sm-table-col;
+      }
+    }
+    &.vertical {
+      &.game {
+        height: $game-sm-table-col * 10 + 9;
+        width: $game-sm-table-col;
+      }
+      &.builder {
+        width: $builder-sm-table-col;
+        height: $builder-sm-table-col * 10 + 9;
+      }
+    }
+    &.game {
+      .coords-info-item {
+        height: $game-sm-table-col;
+        width: $game-sm-table-col;
+      }
+    }
+    &.builder {
+      .coords-info-item {
+        height: $builder-sm-table-col;
+        width: $builder-sm-table-col;
+      }
+    }
+  }
+}
+
+// XS
 @media (max-width: $breakpoint-down-xs) {
   .coords-info-wrapper {
-  
     &.horizontal {
-      // &.game {
-      //   width: $game-table-col * 10 + 9;
-      //   height: $game-table-col;
-      // }
-  
+      &.game {
+        width: $game-xs-table-col * 10 + 9;
+        height: $game-xs-table-col;
+      }
       &.builder {
         width: $builder-xs-table-col * 10 + 9;
         height: $builder-xs-table-col;
       }
     }
-  
     &.vertical {
-  
-      // &.game {
-      //   height: $game-table-col * 10 + 9;
-      //   width: $game-table-col;
-      // }
-  
+      &.game {
+        height: $game-xs-table-col * 10 + 9;
+        width: $game-xs-table-col;
+      }
       &.builder {
         width: $builder-xs-table-col;
         height: $builder-xs-table-col * 10 + 9;
       }
     }
-  
-    // &.game {
-    //   .coords-info-item {
-    //     height: $game-table-col;
-    //     width: $game-table-col;
-    //     color: white;
-    //   }
-    // }
-  
+    &.game {
+      .coords-info-item {
+        height: $game-xs-table-col;
+        width: $game-xs-table-col;
+      }
+    }
     &.builder {
       .coords-info-item {
         height: $builder-xs-table-col;
         width: $builder-xs-table-col;
       }
     }
-  
-    .coords-info-item {
-      font-size: 10px;
-      font-weight: 600;
-    }
   }
 }
 
-// MOBILE
+// XXS
 @media (max-width: $breakpoint-down-xxs) {
   .coords-info-wrapper {
-  
     &.horizontal {
-      // &.game {
-      //   width: $game-table-col * 10 + 9;
-      //   height: $game-table-col;
-      // }
-  
+      &.game {
+        width: $game-xxs-table-col * 10 + 9;
+        height: $game-xxs-table-col;
+      }
       &.builder {
         width: $builder-xxs-table-col * 10 + 9;
         height: $builder-xxs-table-col;
       }
     }
-  
     &.vertical {
-  
-      // &.game {
-      //   height: $game-table-col * 10 + 9;
-      //   width: $game-table-col;
-      // }
-  
+      &.game {
+        height: $game-xxs-table-col * 10 + 9;
+        width: $game-xxs-table-col;
+      }
       &.builder {
         width: $builder-xxs-table-col;
         height: $builder-xxs-table-col * 10 + 9;
       }
     }
-  
-    // &.game {
-    //   .coords-info-item {
-    //     height: $game-table-col;
-    //     width: $game-table-col;
-    //     color: white;
-    //   }
-    // }
-  
+    &.game {
+      .coords-info-item {
+        height: $game-xxs-table-col;
+        width: $game-xxs-table-col;
+      }
+    }
     &.builder {
       .coords-info-item {
         height: $builder-xxs-table-col;

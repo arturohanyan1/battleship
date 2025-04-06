@@ -52,39 +52,6 @@
       }
     }
   }
-
-  // &__items {
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
-
-  // &__item {
-  //   color: #999;
-  //   margin: 0px 20px;
-  //   text-decoration: none;
-  //   text-transform: capitalize;
-
-  //   &:hover {
-  //     color: #fff;
-  //   }
-
-  //   &.active {
-  //     color: #fff;
-  //   }
-  // }
-
-  // &__user {
-  //   color: #fff;
-  //   display: flex;
-  //   flex-direction: row;
-  //   align-items: center;
-
-  //   &--username {
-  //     margin: 0px 10px;
-  //   }
-  // }
 }
 
 @media (max-width: $breakpoint-down-xs) {
