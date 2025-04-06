@@ -38,17 +38,25 @@
     height: 60px;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
     background: #000514;
     width: 100%;
-    padding: 0px 10px;
+    padding: 0px;
+
+    .modal-title-wrapper {
+      padding: 0px 12px;
+      @include center;
+      flex-grow: 1;
+    }
 
     .close-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 0px;
+      // position: absolute;
+      // top: 50%;
+      // transform: translateY(-50%);
+      // right: 0px;
+      flex-shrink: 0;
       height: 60px;
       width: 60px;
       cursor: pointer;
@@ -89,7 +97,7 @@
       border: none;
       border-radius: 4px;
       background: #f3e116;
-      padding: 10px 30px;
+      padding: 12px 30px;
       font-size: 18px;
       font-weight: 700;
       text-transform: uppercase;
@@ -108,7 +116,6 @@
 
     .modal-content__header {
       height: 40px;
-      padding: 0px 40px;
 
       .close-button {
         height: 40px;
@@ -129,7 +136,7 @@
       padding: 8px 8px 24px;
 
       .submit-button {
-        padding: 8px 25px;
+        padding: 12px 25px;
         font-size: 16px;
       }
     }

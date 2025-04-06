@@ -106,7 +106,7 @@ const SettingsDialog = () => {
             <div className='settings-item__name'>exit game</div>
             <div className='settings-item__value' onClick={backtoLobby}>
               <ReactSVG
-                src={`./images/icons/profile-settings.svg`}
+                src={`./images/icons/exit.svg`}
                 className={`settings-item__icon active`}
               />
             </div>
@@ -116,7 +116,7 @@ const SettingsDialog = () => {
           <div className='settings-item__name'>logout</div>
           <div className='settings-item__value' onClick={openLogoutDialog}>
             <ReactSVG
-              src={`./images/icons/profile-settings.svg`}
+              src={`./images/icons/logout.svg`}
               className={`settings-item__icon active`}
             />
           </div>
