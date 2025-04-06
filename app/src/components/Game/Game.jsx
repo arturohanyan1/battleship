@@ -176,7 +176,7 @@ const Game = () => {
             gameOver={gameOver}
           />
           <div className="panel-section bot-section-panel">
-            <PlayerInfoPanel infoData={{ ...bot, crashedShips: botCrashedShips }} />
+            <PlayerInfoPanel infoData={{ ...bot, crashedShips: botCrashedShips }} reverse />
           </div>
         </div>
       </div>

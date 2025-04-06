@@ -246,6 +246,9 @@
         width: $builder-sm-table-col;
       }
     }
+    .coords-info-item {
+      font-size: 12px;
+    }
   }
 }
 
@@ -283,6 +286,9 @@
         height: $builder-xs-table-col;
         width: $builder-xs-table-col;
       }
+    }
+    .coords-info-item {
+      font-size: 10px;
     }
   }
 }

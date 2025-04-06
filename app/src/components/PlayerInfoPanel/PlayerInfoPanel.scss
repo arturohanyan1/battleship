@@ -1,4 +1,5 @@
-@import '../../styles/mixins.scss';
+@import "../../styles/mixins.scss";
+@import "../../styles/breakpoints.scss";
 
 .player-info-panel-wrapper {
   height: 100%;
@@ -12,6 +13,12 @@
   padding: 50px 10px 10px;
 }
 
+.player_name_info {
+  width: 100%;
+  @include center;
+  flex-direction: column;
+}
+
 .player-info-panel__avatar-row {
   height: 140px;
   width: 140px;
@@ -19,6 +26,7 @@
   border-radius: 50%;
   @include center;
   margin-bottom: 12px;
+  overflow: hidden;
 
   img {
     height: 132px;
@@ -51,9 +59,93 @@
   border: 3px solid #000514;
   border-radius: 20px;
   @include center;
+  overflow: hidden;
 
   img {
     height: 92px;
     width: 147px;
+  }
+}
+
+// XXL
+@media (max-width: $breakpoint-down-xxl) {
+  .player-info-panel-wrapper {
+    .player-info-panel__avatar-row {
+      height: 120px;
+      width: 120px;
+
+      img {
+        height: 112px;
+        width: 112px;
+      }
+    }
+
+    .player-info-panel__statistics-row,
+    .player-info-panel__fleet-row {
+      width: 90%;
+    }
+
+    .player-info-panel__flag-row {
+      height: 80px;
+      width: 130px;
+      img {
+        height: 76px;
+        width: 127px;
+      }
+    }
+  }
+}
+
+// XL
+@media (max-width: $breakpoint-down-xl) {
+  .player-info-panel-wrapper {
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px;
+    gap: 12px;
+
+    &.player-info-panel-wrapper--reverse {
+      flex-direction: row-reverse;
+    }
+
+    .player_name_info {
+      width: auto;
+    }
+
+    .player-info-panel__avatar-row {
+      height: 80px;
+      width: 80px;
+      border: 2px solid #000514;
+      margin-bottom: 0px;
+
+      img {
+        height: 72px;
+        width: 72px;
+      }
+    }
+
+    .player-info-panel__username-row {
+      font-size: 16px;
+      margin-bottom: 0px;
+    }
+
+    .player-info-panel__statistics-row,
+    .player-info-panel__fleet-row {
+      margin-bottom: 0px;
+      width: auto;
+    }
+
+    .player-info-panel__flag-row {
+      height: 40px;
+      width: 70px;
+      border: 2px solid #000514;
+      border-radius: 10px;
+
+      img {
+        height: 36px;
+        width: 64px;
+      }
+    }
   }
 }
