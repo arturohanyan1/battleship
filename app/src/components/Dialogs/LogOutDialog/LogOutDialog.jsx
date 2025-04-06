@@ -4,17 +4,20 @@ import { logout } from '../../../store/actionCreators/auth';
 import Modal from '../../commons/Modal';
 import './LogOutDialog.scss';
 import { closeDialog } from '../../../store/actionCreators/dialodManager';
+import { useNavigate } from 'react-router';
 
 const LogOutDialog = () => {
 
   //Hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Actions
   const onConfirm = () => {
     localStorage.removeItem("player");
     dispatch(logout())
     dispatch(closeDialog('LogOutDialog'))
+    navigate('/');
   }
 
   const onCancel = () => {

@@ -17,6 +17,13 @@
   align-items: center;
   padding: 30px 50px 24px;
 
+  .settings-divider {
+    width: 240px;
+    height: 1px;
+    border-bottom: 1px solid #000514;
+    margin-bottom: 10px;
+  }
+
   .settings-item {
     width: 240px;
     display: flex;
