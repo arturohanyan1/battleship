@@ -23,8 +23,8 @@ const MainPage = () => {
         : dispatch(openDialog("RandomBoardBuilderDialog"));
     } else if (mode === "player") {
       config.allowPlayerBuildBoard
-        ? alert("coming soon")
-        : alert("coming soon");
+        ? dispatch(openDialog("ComingSoonDialog"))
+        : dispatch(openDialog("ComingSoonDialog"));
     }
   };
 

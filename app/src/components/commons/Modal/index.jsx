@@ -36,7 +36,7 @@ const Modal = ({
       <div className='modal-wrapper'>
         <div className={`modal-content ${size} ${classname} ${withanimation ? 'with-animation' : ''}`} onClick={e => e.stopPropagation()}>
           <div className='modal-content__header'>
-            <span className='modal-title'>{title}</span>
+            <div className='modal-title-wrapper'><span className='modal-title'>{title}</span></div>
             {closeIcon &&
               <div className={`close-button`} onClick={closePopUp}>
                 <ReactSVG src={`./images/icons/close.svg`} className={`close-button--icon`} />

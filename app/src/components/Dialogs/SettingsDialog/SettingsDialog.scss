@@ -17,6 +17,13 @@
   align-items: center;
   padding: 30px 50px 24px;
 
+  .settings-divider {
+    width: 240px;
+    height: 1px;
+    border-bottom: 1px solid #000514;
+    margin-bottom: 10px;
+  }
+
   .settings-item {
     width: 240px;
     display: flex;
@@ -27,7 +34,7 @@
 
     &__icon {
       @include svg-color(#fff);
-      @include svg-size(20px, 20px);
+      @include svg-size(24px, 24px);
 
       &.active {
         @include svg-color(#f3e116);
@@ -52,7 +59,7 @@
 
     &__select {
       height: 40px;
-      width: 85px;
+      width: 90px;
       border: none;
       background: #000514;
       color: #f3e116;

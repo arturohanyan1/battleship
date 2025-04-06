@@ -78,7 +78,28 @@ const SettingsDialog = () => {
             />
           </div>
         </div>
-        {!pathname.includes('game') && (
+        <div className='settings-divider' />
+        <div className='settings-item'>
+          <div className='settings-item__name'>profile</div>
+          <div className='settings-item__value' onClick={openUserProfileDialog}>
+            <ReactSVG
+              src={`./images/icons/profile-settings.svg`}
+              className={`settings-item__icon active`}
+            />
+          </div>
+        </div>
+        <div className='settings-divider' />
+        {pathname.includes('game') ? (
+          <div className='settings-item'>
+            <div className='settings-item__name'>exit game</div>
+            <div className='settings-item__value' onClick={backtoLobby}>
+              <ReactSVG
+                src={`./images/icons/exit.svg`}
+                className={`settings-item__icon active`}
+              />
+            </div>
+          </div>
+        ) : (
           <div className='settings-item'>
             <div className='settings-item__name'>level</div>
             <div className='settings-item__value'>
@@ -92,31 +113,12 @@ const SettingsDialog = () => {
             </div>
           </div>
         )}
-        <div className='settings-item'>
-          <div className='settings-item__name'>profile</div>
-          <div className='settings-item__value' onClick={openUserProfileDialog}>
-            <ReactSVG
-              src={`./images/icons/profile-settings.svg`}
-              className={`settings-item__icon active`}
-            />
-          </div>
-        </div>
-        {pathname.includes('game') && (
-          <div className='settings-item'>
-            <div className='settings-item__name'>exit game</div>
-            <div className='settings-item__value' onClick={backtoLobby}>
-              <ReactSVG
-                src={`./images/icons/profile-settings.svg`}
-                className={`settings-item__icon active`}
-              />
-            </div>
-          </div>
-        )}
+        <div className='settings-divider' />
         <div className='settings-item'>
           <div className='settings-item__name'>logout</div>
           <div className='settings-item__value' onClick={openLogoutDialog}>
             <ReactSVG
-              src={`./images/icons/profile-settings.svg`}
+              src={`./images/icons/logout.svg`}
               className={`settings-item__icon active`}
             />
           </div>

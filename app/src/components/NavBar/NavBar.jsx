@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import './NavBar.scss'
-import { getPlayer, getPlayerName } from '../../store/selectors';
+import { getPlayer } from '../../store/selectors';
 import { openDialog } from '../../store/actionCreators/dialodManager';
-import ConfirmPopUp from '../commons/ConfirmPopUp/ConfirmPopUp';
-import { logout } from '../../store/actionCreators/auth';
 
 const NavBar = () => {
 
@@ -14,25 +12,9 @@ const NavBar = () => {
   // Selectors
   const player = useSelector(getPlayer);
 
-  // States
-  const [isOpen, setIsOpen] = useState(false);
-
   //Actions
-  const openUserProfileDialog = () => {
-    dispatch(openDialog('UserProfileDialog'))
-  }
-
   const openSettingsDialog = () => {
     dispatch(openDialog('SettingsDialog'))
-  }
-
-  const logOutHandler = () => {
-    localStorage.removeItem("player");
-    dispatch(logout())
-  }
-
-  const openLogoutDialog = () => {
-    dispatch(openDialog('LogOutDialog'))
   }
 
   return (

@@ -7,11 +7,13 @@ import { getPlayer } from '../../../store/selectors';
 import Modal from '../../commons/Modal';
 import { validationScheme } from './validationScheme';
 import './UserProfileDialog.scss'
+import { useNavigate } from 'react-router';
 
 
 const UserProfileDialog = () => {
   // Hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Selectors
   const player = useSelector(getPlayer);
@@ -38,6 +40,7 @@ const UserProfileDialog = () => {
     } else if (formValues.username && !Object.values(formErrors).filter(el => el).length) {
       dispatch(setPlayerName(formValues.username));
       dispatch(closeDialog('UserProfileDialog'));
+      navigate('/');
     } else {
       Object.keys(formErrors).forEach(el => setFormErrors(prev => ({ ...prev, [el]: validationScheme(formValues[el]) })))
     }

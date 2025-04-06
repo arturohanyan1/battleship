@@ -64,6 +64,10 @@
       @include center;
       border-radius: 50%;
       cursor: pointer;
+
+      .edit-avatar--icon {
+        @include svg-size(20px, 20px);
+      }
     }
   }
 
@@ -227,6 +231,13 @@
     .user-profile-modal__content--first-row {
       width: 100%;
       gap: 12px;
+      .user-profile-modal__content--first-row-col {
+        justify-content: flex-end;
+
+        &:first-child {
+          justify-content: flex-start;
+        }
+      }
       .avatar-section {
         &_image {
           height: 120px;
