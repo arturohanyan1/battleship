@@ -93,14 +93,14 @@ const RandomBoardBuilder = () => {
         {Boolean(playerShips.length && board.length) && (
           <>
             <Button
+              name={"save"}
+              onClick={() => savePlayerBoard(board, playerShips)} className={'random_board-action-button'}
+            />
+            <Button
               name={"play"}
               onClick={() => playGame(board, playerShips)} className={'random_board-action-button'}
             />
             <Button name={"Auto"} onClick={randomBoardBuilder} className={'random_board-action-button'} />
-            <Button
-              name={"save"}
-              onClick={() => savePlayerBoard(board, playerShips)} className={'random_board-action-button'}
-            />
           </>
         )}
       </div>
