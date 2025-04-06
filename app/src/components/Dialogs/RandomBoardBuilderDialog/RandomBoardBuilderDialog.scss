@@ -1,6 +1,18 @@
 @import "../../../styles/constants.scss";
+@import "../../../styles/breakpoints.scss";
 
 .random_board__content {
-  width: 600px;
-  padding-left: $builder-table-col / 2;
+  padding: 0px 60px 0px 60 + $builder-table-col / 2;
+}
+
+@media (max-width: $breakpoint-down-sm) {
+  .random_board__content {
+    padding: 0px 24px 0px 24 + $builder-table-col / 2;
+  }
+}
+
+@media (max-width: $breakpoint-down-xs) {
+  .random_board__content {
+    padding: 0px 12px 0px 12px;
+  }
 }

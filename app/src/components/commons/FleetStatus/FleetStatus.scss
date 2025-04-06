@@ -1,4 +1,5 @@
-@import '../../../styles/mixins.scss';
+@import "../../../styles/mixins.scss";
+@import "../../../styles/breakpoints.scss";
 
 .fleet-status-wrapper {
   width: 100%;
@@ -15,7 +16,7 @@
     font-size: 18px;
     font-weight: bold;
     color: #f3e116;
-
+    text-transform: uppercase;
   }
 
   .fleet-status {
@@ -60,5 +61,32 @@
   .fleet-ship-status {
     margin-top: 10px;
     font-size: 12px;
+  }
+}
+
+// XL
+@media (max-width: $breakpoint-down-xl) {
+  .fleet-status-wrapper {
+    width: auto;
+    padding: 8px 8px 8px;
+    .fleet-status--title {
+      display: none;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .fleet-ship-item {
+      padding: 0px 4px;
+    }
+    .fleet-ship {
+      padding: 0px 1px;
+    }
+    .fleet-ship-square {
+      height: 10px;
+      width: 10px;
+    }
+    .fleet-ship-status {
+      margin-top: 4px;
+      font-size: 10px;
+    }
   }
 }

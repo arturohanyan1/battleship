@@ -1,3 +1,6 @@
+@import "../../styles/breakpoints.scss";
+@import "../../styles/constants.scss";
+
 .game_container {
   width: 100%;
   display: flex;
@@ -5,37 +8,79 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
-
-  .back-button {
-    position: absolute;
-    top: -30px;
-    left: 10px;
-  }
 }
 
 .game_container__game {
   width: 100%;
   height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .game-section {
   height: 100%;
-  max-width: 48%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
+
+  &.bot-section {
+    justify-content: flex-end;
+  }
 
   .panel-section {
     height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 300px;
+    width: 240px;
+  }
+}
+
+// XXL
+@media (max-width: $breakpoint-down-xxl) {
+  .game_container {
+    .panel-section {
+      width: 200px;
+    }
+  }
+}
+
+// XL
+@media (max-width: $breakpoint-down-xl) {
+  .game_container {
+    .game_container__game {
+      .game-section {
+        flex-direction: column;
+
+        &.bot-section {
+          flex-direction: column-reverse;
+        }
+        .panel-section {
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// LG
+@media (max-width: $breakpoint-down-lg) {
+}
+
+// MD
+@media (max-width: $breakpoint-down-md) {
+  .game_container {
+    background: red;
+  }
+}
+
+// SM
+@media (max-width: $breakpoint-down-sm) {
+  .game_container {
+    background: green;
   }
 }

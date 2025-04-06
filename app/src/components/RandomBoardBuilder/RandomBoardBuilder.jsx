@@ -90,17 +90,17 @@ const RandomBoardBuilder = () => {
         </div>
       </div>
       <div className="random_board-buttons">
-        <Button icon={"refresh"} onClick={randomBoardBuilder} />
         {Boolean(playerShips.length && board.length) && (
           <>
             <Button
-              icon={"play"}
-              onClick={() => playGame(board, playerShips)}
+              name={"save"}
+              onClick={() => savePlayerBoard(board, playerShips)} className={'random_board-action-button'}
             />
             <Button
-              icon={"save"}
-              onClick={() => savePlayerBoard(board, playerShips)}
+              name={"play"}
+              onClick={() => playGame(board, playerShips)} className={'random_board-action-button'}
             />
+            <Button name={"Auto"} onClick={randomBoardBuilder} className={'random_board-action-button'} />
           </>
         )}
       </div>
