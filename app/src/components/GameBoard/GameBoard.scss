@@ -1,5 +1,6 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/constants.scss";
+@import "../../styles/breakpoints.scss";
 
 .board_container {
   max-height: $game-table-col * 10 + 100px;
@@ -213,3 +214,705 @@
     @include svg-color($game-table-crashed-color);
   }
 }
+
+// XXL
+@media (max-width: $breakpoint-down-xxl) {
+  .board_container {
+    max-height: $game-xxl-table-col * 10 + 100px;
+    max-width: $game-xxl-table-col * 10 + 100px;
+    padding: $game-xxl-table-col;
+
+    .board-letters {
+      left: $game-xxl-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-xxl-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-xxl-table-col;
+        width: $game-xxl-table-col;
+      }
+
+      .content {
+        height: $game-xxl-table-col;
+        width: $game-xxl-table-col;
+      }
+
+      .injured {
+        height: $game-xxl-table-col;
+        width: $game-xxl-table-col;
+      }
+
+      .crashed {
+        height: $game-xxl-table-col;
+        width: $game-xxl-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-xxl-table-col;
+    width: $game-xxl-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xxl-table-col, $game-xxl-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xxl-table-col, $game-xxl-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xxl-table-col, $game-xxl-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xxl-table-col, $game-xxl-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xxl-table-col, $game-xxl-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xxl-table-col * 2, $game-xxl-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xxl-table-col * 3, $game-xxl-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xxl-table-col * 4, $game-xxl-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-xxl-table-shot-size, $game-xxl-table-shot-size);
+  }
+}
+
+// XL
+@media (max-width: $breakpoint-down-xl) {
+  .board_container {
+    max-height: $game-xl-table-col * 10 + 100px;
+    max-width: $game-xl-table-col * 10 + 100px;
+    padding: $game-xl-table-col;
+
+    .board-letters {
+      left: $game-xl-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-xl-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-xl-table-col;
+        width: $game-xl-table-col;
+      }
+
+      .content {
+        height: $game-xl-table-col;
+        width: $game-xl-table-col;
+      }
+
+      .injured {
+        height: $game-xl-table-col;
+        width: $game-xl-table-col;
+      }
+
+      .crashed {
+        height: $game-xl-table-col;
+        width: $game-xl-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-xl-table-col;
+    width: $game-xl-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xl-table-col, $game-xl-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xl-table-col, $game-xl-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xl-table-col, $game-xl-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xl-table-col, $game-xl-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xl-table-col, $game-xl-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xl-table-col * 2, $game-xl-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xl-table-col * 3, $game-xl-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xl-table-col * 4, $game-xl-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-xl-table-shot-size, $game-xl-table-shot-size);
+  }
+}
+
+// LG
+@media (max-width: $breakpoint-down-lg) {
+  .board_container {
+    max-height: $game-lg-table-col * 10 + 100px;
+    max-width: $game-lg-table-col * 10 + 100px;
+    padding: $game-lg-table-col;
+
+    .board-letters {
+      left: $game-lg-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-lg-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-lg-table-col;
+        width: $game-lg-table-col;
+      }
+
+      .content {
+        height: $game-lg-table-col;
+        width: $game-lg-table-col;
+      }
+
+      .injured {
+        height: $game-lg-table-col;
+        width: $game-lg-table-col;
+      }
+
+      .crashed {
+        height: $game-lg-table-col;
+        width: $game-lg-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-lg-table-col;
+    width: $game-lg-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-lg-table-col, $game-lg-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-lg-table-col, $game-lg-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-lg-table-col, $game-lg-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-lg-table-col, $game-lg-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-lg-table-col, $game-lg-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-lg-table-col * 2, $game-lg-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-lg-table-col * 3, $game-lg-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-lg-table-col * 4, $game-lg-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-lg-table-shot-size, $game-lg-table-shot-size);
+  }
+}
+
+// MD
+@media (max-width: $breakpoint-down-md) {
+  .board_container {
+    max-height: $game-md-table-col * 10 + 100px;
+    max-width: $game-md-table-col * 10 + 100px;
+    padding: $game-md-table-col;
+
+    .board-letters {
+      left: $game-md-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-md-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-md-table-col;
+        width: $game-md-table-col;
+      }
+
+      .content {
+        height: $game-md-table-col;
+        width: $game-md-table-col;
+      }
+
+      .injured {
+        height: $game-md-table-col;
+        width: $game-md-table-col;
+      }
+
+      .crashed {
+        height: $game-md-table-col;
+        width: $game-md-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-md-table-col;
+    width: $game-md-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-md-table-col, $game-md-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-md-table-col, $game-md-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-md-table-col, $game-md-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-md-table-col, $game-md-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-md-table-col, $game-md-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-md-table-col * 2, $game-md-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-md-table-col * 3, $game-md-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-md-table-col * 4, $game-md-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-md-table-shot-size, $game-md-table-shot-size);
+  }
+}
+
+// SM
+@media (max-width: $breakpoint-down-sm) {
+  .board_container {
+    max-height: $game-sm-table-col * 10 + 100px;
+    max-width: $game-sm-table-col * 10 + 100px;
+    padding: $game-sm-table-col;
+
+    .board-letters {
+      left: $game-sm-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-sm-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-sm-table-col;
+        width: $game-sm-table-col;
+      }
+
+      .content {
+        height: $game-sm-table-col;
+        width: $game-sm-table-col;
+      }
+
+      .injured {
+        height: $game-sm-table-col;
+        width: $game-sm-table-col;
+      }
+
+      .crashed {
+        height: $game-sm-table-col;
+        width: $game-sm-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-sm-table-col;
+    width: $game-sm-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-sm-table-col, $game-sm-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-sm-table-col, $game-sm-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-sm-table-col, $game-sm-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-sm-table-col, $game-sm-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-sm-table-col, $game-sm-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-sm-table-col * 2, $game-sm-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-sm-table-col * 3, $game-sm-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-sm-table-col * 4, $game-sm-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-sm-table-shot-size, $game-sm-table-shot-size);
+  }
+}
+
+// XS
+@media (max-width: $breakpoint-down-xs) {
+  .board_container {
+    max-height: $game-xs-table-col * 10 + 100px;
+    max-width: $game-xs-table-col * 10 + 100px;
+    padding: $game-xs-table-col;
+
+    .board-letters {
+      left: $game-xs-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-xs-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-xs-table-col;
+        width: $game-xs-table-col;
+      }
+
+      .content {
+        height: $game-xs-table-col;
+        width: $game-xs-table-col;
+      }
+
+      .injured {
+        height: $game-xs-table-col;
+        width: $game-xs-table-col;
+      }
+
+      .crashed {
+        height: $game-xs-table-col;
+        width: $game-xs-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-xs-table-col;
+    width: $game-xs-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xs-table-col, $game-xs-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xs-table-col, $game-xs-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xs-table-col, $game-xs-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xs-table-col, $game-xs-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xs-table-col, $game-xs-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xs-table-col * 2, $game-xs-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xs-table-col * 3, $game-xs-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xs-table-col * 4, $game-xs-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-xs-table-shot-size, $game-xs-table-shot-size);
+  }
+}
+
+// XXS
+@media (max-width: $breakpoint-down-xxs) {
+  .board_container {
+    max-height: $game-xxs-table-col * 10 + 100px;
+    max-width: $game-xxs-table-col * 10 + 100px;
+    padding: $game-xxs-table-col;
+
+    .board-letters {
+      left: $game-xxs-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-xxs-table-col + 1;
+    }
+  }
+
+  .board_container {
+    td {
+      .content-wrapper {
+        height: $game-xxs-table-col;
+        width: $game-xxs-table-col;
+      }
+
+      .content {
+        height: $game-xxs-table-col;
+        width: $game-xxs-table-col;
+      }
+
+      .injured {
+        height: $game-xxs-table-col;
+        width: $game-xxs-table-col;
+      }
+
+      .crashed {
+        height: $game-xxs-table-col;
+        width: $game-xxs-table-col;
+      }
+    }
+  }
+
+  .container {
+    height: $game-xxs-table-col;
+    width: $game-xxs-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xxs-table-col, $game-xxs-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xxs-table-col, $game-xxs-table-col * 2);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xxs-table-col, $game-xxs-table-col * 3);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xxs-table-col, $game-xxs-table-col * 4);
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size($game-xxs-table-col, $game-xxs-table-col);
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size($game-xxs-table-col * 2, $game-xxs-table-col);
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size($game-xxs-table-col * 3, $game-xxs-table-col);
+        }
+
+        &.ship-4-1 {
+          @include svg-size($game-xxs-table-col * 4, $game-xxs-table-col);
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size($game-xxs-table-shot-size, $game-xxs-table-shot-size);
+  }
+}
+
+
