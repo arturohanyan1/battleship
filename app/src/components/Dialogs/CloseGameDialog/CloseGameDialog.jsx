@@ -20,6 +20,7 @@ const CloseGameDialog = () => {
     dispatch(deleteBotBoard());
     dispatch(deleteBotShips());
     dispatch(deletePlayerShips());
+    dispatch(closeDialog('SettingsDialog'))
     dispatch(closeDialog('CloseGameDialog'))
     navigate('/')
   };

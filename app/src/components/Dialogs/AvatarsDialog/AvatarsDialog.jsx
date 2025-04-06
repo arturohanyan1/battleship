@@ -29,7 +29,7 @@ const AvatarsDialog = () => {
   }, [player])
 
   return (
-    <Modal dialogType={'AvatarsDialog'} size='md' title={'select your profile picture'} btnTitle='done' onSubmit={onSubmitHandler}>
+    <Modal dialogType={'AvatarsDialog'} size='md' title={'select your profile picture'} btnTitle='done' onSubmit={onSubmitHandler} withanimation>
       <div className='avatars-modal__wrapper'>
         <div className='avatars-modal__content'>
           {AVATARS.map(el => (

@@ -170,9 +170,13 @@ export const dialogs = (state = dialogsInitial, action) => {
   switch (action.type) {
     case actionTypes.OPEN_DIALOG:
       return { ...state, [action.payload.dialogType]: action.payload }
-    case actionTypes.CLOSE_DIALOG:
+    case actionTypes.CLOSE_DIALOG: {
+      const dialogType = action.payload;
+      const { [dialogType]: _, ...rest } = state;
+      return rest;
+    }
     case actionTypes.LOG_OUT:
-      return { ...state, [action.payload]: null }
+      return dialogsInitial
     default:
       return state;
   }

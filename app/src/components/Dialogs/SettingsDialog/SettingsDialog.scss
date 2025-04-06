@@ -1,11 +1,21 @@
-@import '../../../styles/mixins.scss';
+@import "../../../styles/mixins.scss";
+
+.settings-modal {
+  .settings-modal__footer {
+    padding: 0px 50px 24px !important;
+
+    .submit-button {
+      width: 100%;
+    }
+  }
+}
 
 .settings-modal__content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 30px 50px;
+  padding: 30px 50px 24px;
 
   .settings-item {
     width: 240px;

@@ -29,7 +29,7 @@ const FlagsDialog = () => {
   }, [player])
 
   return (
-    <Modal dialogType={'FlagsDialog'} size='md' title={'select flag'} btnTitle='done' onSubmit={onSubmitHandler}>
+    <Modal dialogType={'FlagsDialog'} size='md' title={'select flag'} btnTitle='done' onSubmit={onSubmitHandler} withanimation>
       <div className='flags-modal__wrapper'>
         <div className='flags-modal__content'>
           {FLAGS.map(el => (

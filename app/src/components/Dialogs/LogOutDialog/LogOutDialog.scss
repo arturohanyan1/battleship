@@ -1,6 +1,14 @@
+.log_out_dialog__footer {
+  padding: 8px 24px 24px !important;
+  gap: 24px;
+  button {
+    flex: 1;
+  }
+}
+
 .log_out_dialog {
   &--description {
-    padding: 86px 20px 0px;
+    padding: 86px 24px 0px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;

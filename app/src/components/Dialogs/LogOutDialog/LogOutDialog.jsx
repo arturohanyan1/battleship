@@ -17,6 +17,10 @@ const LogOutDialog = () => {
     dispatch(closeDialog('LogOutDialog'))
   }
 
+  const onCancel = () => {
+    dispatch(closeDialog('LogOutDialog'))
+  }
+
   return (
     <Modal
       dialogType={'LogOutDialog'}
@@ -24,8 +28,10 @@ const LogOutDialog = () => {
       title={'Log Out'}
       btnTitle='logout'
       onSubmit={onConfirm}
+      onSecondSubmit={onCancel}
       secondBtnTitle='cancel'
       size={"md"}
+      footerClassname={'log_out_dialog__footer'}
     >
       <div className='log_out_dialog--description'>Are you sure you want to log out?</div>
     </Modal>

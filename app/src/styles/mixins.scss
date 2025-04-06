@@ -13,10 +13,12 @@
   >div {
     width: $width;
     height: $height;
+    @include center;
 
     >div {
       width: $width;
       height: $height;
+      @include center;
     }
   }
 
