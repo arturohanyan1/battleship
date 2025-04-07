@@ -149,3 +149,115 @@
     }
   }
 }
+
+// MD
+@media (max-width: $breakpoint-down-md) {
+  .player-info-panel-wrapper {
+    padding: 8px;
+    gap: 8px;
+    
+    .player_name_info {
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    &.player-info-panel-wrapper--reverse {
+      flex-direction: row-reverse;
+
+      .player_name_info {
+        flex-direction: row-reverse;
+      }
+    }
+
+
+    .player-info-panel__avatar-row {
+      height: 40px;
+      width: 40px;
+      border: 1px solid #000514;
+
+      img {
+        height: 32px;
+        width: 32px;
+      }
+    }
+
+    .player-info-panel__username-row {
+      font-size: 12px;
+    }
+
+    .player-info-panel__fleet-row {
+      display: none;
+    }
+
+    .player-info-panel__statistics-row {
+      .statistics-wrapper {
+        .statistics--title {
+          display: none;
+        }
+      }
+    }
+
+    .player-info-panel__flag-row {
+      height: 30px;
+      width: 48px;
+      border: 1px solid #000514;
+      border-radius: 4px;
+
+      img {
+        height: 28px;
+        width: 46px;
+      }
+    }
+  }
+}
+
+// SM
+@media (max-width: $breakpoint-down-sm) {
+  .player-info-panel-wrapper {
+    padding: 4px 8px;
+    gap: 6px;
+    
+    .player_name_info {
+      flex-direction: row;
+      gap: 6px;
+    }
+
+    .player-info-panel__avatar-row {
+      height: 30px;
+      width: 30px;
+
+      img {
+        height: 28px;
+        width: 28px;
+      }
+    }
+
+    &.player-info-panel-wrapper--reverse {
+      flex-direction: row;
+
+      .player_name_info {
+        flex-direction: row;
+      }
+    }
+
+    .player-info-panel__statistics-row {
+      .statistics-wrapper {
+        .statistics--title {
+          display: none;
+        }
+      }
+    }
+
+    .player-info-panel__flag-row {
+      height: 26px;
+      width: 40px;
+      border: 1px solid #000514;
+      border-radius: 4px;
+
+      img {
+        height: 24px;
+        width: 38px;
+      }
+    }
+  }
+}
