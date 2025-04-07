@@ -73,14 +73,43 @@
 
 // MD
 @media (max-width: $breakpoint-down-md) {
-  .game_container {
-    background: red;
-  }
 }
 
 // SM
 @media (max-width: $breakpoint-down-sm) {
   .game_container {
-    background: green;
+    width: 100%;
+    height: calc(100vh - 50px);
+    height: calc(100svh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .game_container__game {
+      width: 100%;
+      height: auto;
+      min-height: calc(100vh - 50px);
+      min-height: calc(100svh - 50px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0px;
+      overflow: auto;
+
+      .game-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0px;
+
+        &.bot-section {
+          flex-direction: column;
+        }
+      }
+    }
   }
 }
