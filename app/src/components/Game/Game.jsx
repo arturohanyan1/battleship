@@ -165,6 +165,7 @@ const Game = () => {
             onClick={shotHandler}
             playerTurn={playerTurn}
             gameOver={gameOver}
+            extraSmall={true}
           />
         </div>
         <div className="game-section bot-section">

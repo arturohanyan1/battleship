@@ -64,6 +64,7 @@
 
       &.disableShot {
         cursor: not-allowed;
+        pointer-events: none;
       }
     }
 
@@ -133,9 +134,9 @@
   width: $game-table-col;
   position: relative;
 
-  // &.targeted.container {
-  // background: rgba($color: #dcd4d4, $alpha: 0.3);
-  // }
+  &.targeted.container {
+    background: rgba($color: #dcd4d4, $alpha: 0.3);
+  }
 
   .seted-ship {
     position: absolute;
@@ -916,4 +917,126 @@
   }
 }
 
+// EXTRA SMALL
+.extra_small {
+  &.board_container {
+    max-height: $game-extra-small-table-col * 10 + 100px;
+    max-width: $game-extra-small-table-col * 10 + 100px;
+    padding: $game-extra-small-table-col;
 
+    .board-letters {
+      left: $game-extra-small-table-col + 1;
+    }
+
+    .board-numbers {
+      top: $game-extra-small-table-col + 1;
+    }
+  }
+
+  td {
+    .content-wrapper {
+      height: $game-extra-small-table-col;
+      width: $game-extra-small-table-col;
+    }
+
+    .content {
+      height: $game-extra-small-table-col;
+      width: $game-extra-small-table-col;
+    }
+
+    .injured {
+      height: $game-extra-small-table-col;
+      width: $game-extra-small-table-col;
+    }
+
+    .crashed {
+      height: $game-extra-small-table-col;
+      width: $game-extra-small-table-col;
+    }
+  }
+  .container {
+    height: $game-extra-small-table-col;
+    width: $game-extra-small-table-col;
+    .seted-ship {
+      &.dir-x {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size(
+            $game-extra-small-table-col,
+            $game-extra-small-table-col
+          );
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size(
+            $game-extra-small-table-col,
+            $game-extra-small-table-col * 2
+          );
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size(
+            $game-extra-small-table-col,
+            $game-extra-small-table-col * 3
+          );
+        }
+
+        &.ship-4-1 {
+          @include svg-size(
+            $game-extra-small-table-col,
+            $game-extra-small-table-col * 4
+          );
+        }
+      }
+
+      &.dir-y {
+        &.ship-1-1,
+        &.ship-1-2,
+        &.ship-1-3,
+        &.ship-1-4 {
+          @include svg-size(
+            $game-extra-small-table-col,
+            $game-extra-small-table-col
+          );
+        }
+
+        &.ship-2-1,
+        &.ship-2-2,
+        &.ship-2-3 {
+          @include svg-size(
+            $game-extra-small-table-col * 2,
+            $game-extra-small-table-col
+          );
+        }
+
+        &.ship-3-1,
+        &.ship-3-2 {
+          @include svg-size(
+            $game-extra-small-table-col * 3,
+            $game-extra-small-table-col
+          );
+        }
+
+        &.ship-4-1 {
+          @include svg-size(
+            $game-extra-small-table-col * 4,
+            $game-extra-small-table-col
+          );
+        }
+      }
+    }
+  }
+
+  // shoted
+  .shot-img {
+    @include svg-size(
+      $game-extra-small-table-shot-size,
+      $game-extra-small-table-shot-size
+    );
+  }
+}
