@@ -330,3 +330,32 @@
     }
   }
 }
+
+// EXTRA SMALL
+.extra_small {
+  &.coords-info-wrapper {
+    &.horizontal {
+      &.game {
+        width: $game-extra-small-table-col * 10 + 9;
+        height: $game-extra-small-table-col;
+      }
+    }
+    &.vertical {
+      &.game {
+        height: $game-extra-small-table-col * 10 + 9;
+        width: $game-extra-small-table-col;
+      }
+    }
+    &.game {
+      .coords-info-item {
+        height: $game-extra-small-table-col;
+        width: $game-extra-small-table-col;
+      }
+    }
+    .coords-info-item {
+      font-size: 6px;
+      font-weight: 400;
+      margin: 0.4px;
+    }
+  }
+}

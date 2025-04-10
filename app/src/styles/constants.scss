@@ -25,8 +25,9 @@ $game-xl-table-col: 38px;
 $game-lg-table-col: 38px;
 $game-md-table-col: 30px;
 $game-sm-table-col: 24px;
-$game-xs-table-col: 22px;
-$game-xxs-table-col: 18px;
+$game-xs-table-col: 30px;
+$game-xxs-table-col: 24px;
+$game-extra-small-table-col: 12px;
 
 $game-ship-color: white;
 $game-table-color: #368ada;
@@ -40,6 +41,7 @@ $game-md-table-shot-size: $game-md-table-col / 2;
 $game-sm-table-shot-size: $game-sm-table-col / 2;
 $game-xs-table-shot-size: $game-xs-table-col / 2;
 $game-xxs-table-shot-size: $game-xxs-table-col / 2;
+$game-extra-small-table-shot-size: $game-extra-small-table-col / 2;
 
 $game-table-shot-color: red;
 $game-table-injured-color: yellow;

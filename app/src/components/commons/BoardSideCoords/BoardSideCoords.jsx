@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from "classnames";
 import './BoardSideCoords.scss';
 
-const BoardSideCoords = ({ info, horizontal, vertical, game, builder }) => {
+const BoardSideCoords = ({ info, horizontal, vertical, game, builder, extraSmall }) => {
 
   if (!info) return null;
 
@@ -11,7 +11,8 @@ const BoardSideCoords = ({ info, horizontal, vertical, game, builder }) => {
     'horizontal': horizontal,
     'vertical': vertical,
     'game': game,
-    'builder': builder
+    'builder': builder,
+    'extra_small': extraSmall
   })
 
   return (

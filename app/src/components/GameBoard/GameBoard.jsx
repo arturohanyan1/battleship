@@ -6,15 +6,15 @@ import setShotSVGClasses from '../../helpers/classNames/setShotSVGClasses';
 import BoardSideCoords from '../commons/BoardSideCoords/BoardSideCoords';
 import './GameBoard.scss';
 
-const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver }) => {
+const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver, extraSmall }) => {
 
   // States
   const [hoverCoordinates, setHoverCoordinates] = useState();
 
   return (
-    <div className='board_container'>
-      <div className='board-letters'><BoardSideCoords info={BOARD_LETTERS} horizontal game /></div>
-      <div className='board-numbers'><BoardSideCoords info={BOARD_NUMBERS} vertical game /></div>
+    <div className={`board_container ${extraSmall ? 'extra_small' : ''}`}>
+      <div className='board-letters'><BoardSideCoords extraSmall={extraSmall} info={BOARD_LETTERS} horizontal game /></div>
+      <div className='board-numbers'><BoardSideCoords extraSmall={extraSmall} info={BOARD_NUMBERS} vertical game /></div>
       <table>
         <tbody>
           {board.map((row, x) => (
