@@ -33,7 +33,9 @@ const CloseGameDialog = () => {
       title={'Close Game'}
       btnTitle='back to menu'
       onSubmit={backtoLobby}
-      secondBtnTitle='cancel'>
+      secondBtnTitle='cancel'
+      footerClassname="close_game_dialog--footer"
+    >
       <div className='close_game_dialog--description'>Are you sure you want to exit the game?</div>
     </Modal>
   )

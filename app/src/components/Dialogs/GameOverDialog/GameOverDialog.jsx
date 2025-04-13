@@ -37,7 +37,7 @@ const GameOverDialog = ({ data }) => {
   return (
     <Modal
       dialogType={'GameOverDialog'}
-      closeIcon={true}
+      closeIcon={false}
       title={'Game Over'}
       btnTitle='play again'
       onSubmit={playAgain}

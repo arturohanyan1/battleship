@@ -47,10 +47,10 @@ const Modal = ({
             {children}
           </div>
           <div className={`modal-content__footer ${footerClassname}`}>
-            {Boolean(btnTitle) && <button className='submit-button' onClick={onSubmit}>{btnTitle ?? 'confirm'}</button>}
             {Boolean(secondBtnTitle) && (
               <button className='submit-button' onClick={onSecondButton}>{secondBtnTitle ?? 'cancel'}</button>
             )}
+            {Boolean(btnTitle) && <button className='submit-button' onClick={onSubmit}>{btnTitle ?? 'confirm'}</button>}
           </div>
         </div>
       </div>
