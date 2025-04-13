@@ -6,13 +6,20 @@ import setShotSVGClasses from '../../helpers/classNames/setShotSVGClasses';
 import BoardSideCoords from '../commons/BoardSideCoords/BoardSideCoords';
 import './GameBoard.scss';
 
-const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver, extraSmall }) => {
+const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver, extraSmall, classname }) => {
 
   // States
   const [hoverCoordinates, setHoverCoordinates] = useState();
 
+  // Actions
+  const onClickHandler = (x, y, col) => {
+    if (!col.shoted) {
+      onClick(x, y, isPlayerBoard, col.shipId)
+    }
+  }
+
   return (
-    <div className={`board_container ${extraSmall ? 'extra_small' : ''}`}>
+    <div className={`board_container ${extraSmall ? 'extra_small' : ''} ${classname}`}>
       <div className='board-letters'><BoardSideCoords extraSmall={extraSmall} info={BOARD_LETTERS} horizontal game /></div>
       <div className='board-numbers'><BoardSideCoords extraSmall={extraSmall} info={BOARD_NUMBERS} vertical game /></div>
       <table>
@@ -21,8 +28,8 @@ const GameBoard = ({ board, isPlayerBoard, onClick, playerTurn, gameOver, extraS
             <tr key={x}>{row.map((col, y) => (
               <td key={col.id}>
                 <div
-                  className={`content-wrapper ${col.dir} ${!isPlayerBoard ? playerTurn ? 'enableShot' : 'disableShot' : ''}`}
-                  onClick={(e) => onClick(x, y, isPlayerBoard, col.shipId)}
+                  className={`content-wrapper ${col.dir} ${!isPlayerBoard ? playerTurn ? 'enableShot' : 'disableShot' : ''} ${col.shoted ? 'disableShot' : ''}`}
+                  onClick={(e) => onClickHandler(x, y, col)}
                   onMouseOver={() => setHoverCoordinates({ x, y })}
                   onMouseOut={() => setHoverCoordinates(null)}
                 >

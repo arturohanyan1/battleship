@@ -26,6 +26,20 @@
   align-items: center;
   gap: 12px;
 
+  &.player-section {
+    .turn-info {
+      position: absolute;
+      top: 60px;
+      right: 40px;
+      max-width: 120px;
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+      color: #f3e116;
+      display: none;
+    }
+  }
+
   &.bot-section {
     justify-content: flex-end;
   }
@@ -36,6 +50,10 @@
     justify-content: flex-start;
     align-items: center;
     width: 240px;
+  }
+
+  .player-board-small {
+    display: none;
   }
 }
 
@@ -106,10 +124,28 @@
         align-items: center;
         gap: 0px;
 
+        &.player-section {
+          align-items: flex-start;
+          position: relative;
+
+          .turn-info {
+            display: block;
+          }
+        }
+
         &.bot-section {
           flex-direction: column;
         }
       }
+    }
+
+    .player-board-default {
+      display: none;
+    }
+
+    .player-board-small {
+      display: block;
+      margin-left: 22px;
     }
   }
 }

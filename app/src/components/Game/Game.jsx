@@ -165,8 +165,18 @@ const Game = () => {
             onClick={shotHandler}
             playerTurn={playerTurn}
             gameOver={gameOver}
-            extraSmall={true}
+            classname='player-board-default'
           />
+          <GameBoard
+            board={playerBoard}
+            isPlayerBoard={true}
+            onClick={shotHandler}
+            playerTurn={playerTurn}
+            gameOver={gameOver}
+            extraSmall={true}
+            classname='player-board-small'
+          />
+          <div className="turn-info">{playerTurn ? 'Your Turn' : 'Bot Turn'}</div>
         </div>
         <div className="game-section bot-section">
           <GameBoard
